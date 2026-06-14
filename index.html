@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>JIMMY.RENDER</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #02050a;
+        background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='3' height='3' fill='%23ffffff' fill-opacity='0.08'/%3E%3C/svg%3E");
+        background-size: 4px 4px;
+        background-position: 0 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+      iframe {
+        border: none;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+    <div id="screenshot-guard-parent" style="display:none; position:fixed; inset:0; z-index:999999; background:black; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:20px; font-family:sans-serif;">
+      <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: white; text-transform: uppercase; margin-top: 0;">Screenshots are disabled</h2>
+      <p style="font-size: 16px; color: #a1a1aa; margin: 0; line-height: 1.5;">For the best experience please visit the website:<br/><a href="https://www.jimmyrender.com" target="_blank" style="color: #c4b5fd; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 5px;">www.JimmyRender.com</a></p>
+    </div>
+    <script>
+      function showGuard() {
+        const guard = document.getElementById('screenshot-guard-parent');
+        if (guard) guard.style.display = 'flex';
+      }
+      function hideGuard() {
+        const guard = document.getElementById('screenshot-guard-parent');
+        if (guard) guard.style.display = 'none';
+      }
+      function triggerScreenshotGuard() {
+        showGuard();
+        setTimeout(hideGuard, 3500);
+      }
+      window.addEventListener('keydown', (e) => {
+        if (
+          e.key === 'PrintScreen' || 
+          (e.metaKey && e.shiftKey) || 
+          (e.ctrlKey && e.shiftKey && e.key === 's') ||
+          (e.ctrlKey && e.key === 'p') || 
+          (e.metaKey && e.key === 'p')
+        ) {
+          triggerScreenshotGuard();
+          try { navigator.clipboard.writeText(""); } catch(err) {}
+        }
+      });
+      window.addEventListener('keyup', (e) => {
+        if (e.key === 'PrintScreen') {
+          triggerScreenshotGuard();
+          try { navigator.clipboard.writeText(""); } catch(err) {}
+        }
+      });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) showGuard();
+        else hideGuard();
+      });
+      window.addEventListener('blur', () => {
+        if (document.activeElement !== document.getElementById('app-frame')) {
+          showGuard();
+        }
+      });
+      window.addEventListener('focus', hideGuard);
+      // Extra prevention: listen on iframe mouse enter/leave to not trigger blur inadvertently
+    </script>
+    <iframe
+      id="app-frame"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+      "
+      allowfullscreen
+    ></iframe>
+
+    <script>
+      let currentMode = null; // 'desktop' or 'mobile'
+
+      function checkOrientation() {
+        const isPortrait = window.innerHeight >= window.innerWidth;
+        const isMobile =
+          /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent,
+          ) || window.innerWidth <= 768;
+
+        const targetMode = isPortrait || isMobile ? "mobile" : "desktop";
+
+        if (currentMode !== targetMode) {
+          currentMode = targetMode;
+          const iframe = document.getElementById("app-frame");
+
+          // Show loading state if needed. The inner HTML has its own loader.
+          if (targetMode === "mobile") {
+            iframe.src = "/mobile.html";
+          } else {
+            iframe.src = "/desktop.html";
+          }
+        }
+      }
+
+      // Initial load
+      checkOrientation();
+
+      // Listen for resizes or orientation changes
+      let resizeTimeout;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(checkOrientation, 150);
+      });
+    </script>
+  </body>
+</html>
