@@ -10,29 +10,11 @@
               navigator.userAgent,
             ) || window.innerWidth <= 768;
           if (!isPortrait && !isMobile) {
-            window.location.replace("/desktop.html" + window.location.hash);
+            window.location.replace("./desktop.html" + window.location.hash);
           }
         };
         checkAndRedirect();
         window.addEventListener("resize", checkAndRedirect);
-
-        // Prevent native pinch-zoom and double-tap zoom globally
-        document.addEventListener('gesturestart', function (e) {
-          e.preventDefault();
-        });
-        document.addEventListener('touchstart', function(event) {
-          if (event.touches.length > 1) {
-            event.preventDefault();
-          }
-        }, { passive: false });
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-          const now = (new Date()).getTime();
-          if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-          }
-          lastTouchEnd = now;
-        }, { passive: false });
       })();
     </script>
     <meta charset="UTF-8" />
@@ -41,9 +23,52 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>JIMMY.RENDER — CGI Creative Director</title>
+
+    <meta name="title" content="JIMMY.RENDER — CGI Creative Director" />
+    <meta
+      name="description"
+      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
+    />
+    <meta
+      name="keywords"
+      content="CGI, Creative Director, 3D Design, Animation, Motion Graphics, Jimmy Render, Premium Visuals, Product Rendering"
+    />
+    <meta name="author" content="JIMMY.RENDER" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <link rel="canonical" href="https://jimmyrender.com/" />
+    <meta name="theme-color" content="#0f0518" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jimmyrender.com/" />
+    <meta property="og:title" content="JIMMY.RENDER — CGI Creative Director" />
+    <meta
+      property="og:description"
+      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
+    />
+    <meta
+      property="og:image"
+      content="https://jimmyrender.com/social-thumb.png"
+    />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://jimmyrender.com/" />
+    <meta
+      property="twitter:title"
+      content="JIMMY.RENDER — CGI Creative Director"
+    />
+    <meta
+      property="twitter:description"
+      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
+    />
+    <meta
+      property="twitter:image"
+      content="https://jimmyrender.com/social-thumb.png"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+      img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none; }
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Alex+Brush&family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
       .font-montserrat {
@@ -63,6 +88,15 @@
       }
       .font-serif {
         font-family: "Playfair Display", serif;
+      }
+
+      html,
+      body {
+        overscroll-behavior-y: none;
+        overscroll-behavior-x: none;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
       }
 
       body {
@@ -376,7 +410,6 @@
     </style>
   </head>
   <body>
-    <!-- Global Loading Screen -->
     <div
       id="global-loader"
       class="fixed inset-0 z-[9999] bg-black transition-opacity duration-1000 ease-in-out flex flex-col items-center justify-center"
@@ -523,7 +556,6 @@
     </script>
 
     <div class="mobile-wrapper">
-      <!-- LANDING PAGE -->
       <div
         id="landing"
         class="absolute inset-0 z-20 flex flex-col w-full h-full bg-black overflow-hidden"
@@ -537,9 +569,9 @@
           webkit-playsinline="webkit-playsinline"
           preload="auto"
           class="absolute inset-0 w-full h-full object-cover opacity-80"
-          poster="https://images.unsplash.com/photo-1528150225139-4cb5038f9b96?q=80&w=1000&auto=format&fit=crop"
+          poster="https://jimmyrender.com/social-thumb.png"
         >
-          <source src="/BgVDv_3.mp4" type="video/mp4" />
+          <source src="./BgVDv_3.mp4" type="video/mp4" />
         </video>
         <div
           class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80"
@@ -571,7 +603,6 @@
         <div
           class="absolute bottom-[-100px] left-[-5px] right-[-5px] w-[calc(100%+10px)] h-[500px] pointer-events-none z-20 flex flex-col items-center overflow-hidden"
         >
-          <!-- Glass wave background mimicking the photo -->
           <svg class="absolute w-0 h-0">
             <defs>
               <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
@@ -582,7 +613,6 @@
             </defs>
           </svg>
           <div class="absolute bottom-0 w-full h-[300px]">
-            <!-- Glass area -->
             <div
               class="absolute inset-0 w-full h-full bg-white/[0.02] backdrop-blur-lg drop-shadow-xl shadow-[0_-8px_30px_rgba(0,0,0,0.2)]"
               style="
@@ -590,7 +620,6 @@
                 clip-path: url(#wave-clip);
               "
             >
-              <!-- Inner shadow fake placed inside the clipped div so it doesn't bleed out -->
               <svg
                 class="absolute inset-0 w-full h-full pointer-events-none"
                 viewBox="0 0 375 300"
@@ -607,7 +636,7 @@
                 />
               </svg>
             </div>
-            <!-- Overlay for the rim light/border effect, properly responsive -->
+
             <svg
               class="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 375 300"
@@ -623,12 +652,10 @@
             </svg>
           </div>
 
-          <!-- Full track for bound checks -->
           <div
             id="slider-track"
             class="relative w-full h-[500px] pointer-events-none"
           >
-            <!-- Arrows -->
             <div
               id="slider-arrows"
               class="flex flex-col items-center justify-center absolute bottom-[315px] inset-x-0 pointer-events-none transition-opacity duration-300"
@@ -653,7 +680,6 @@
               ></i>
             </div>
 
-            <!-- Button -->
             <button
               id="slider-btn"
               class="w-[84px] h-[84px] rounded-full bg-white/10 backdrop-blur-3xl border border-white/60 text-white font-bold text-[24px] flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.4)] cursor-grab absolute bottom-[209px] left-1/2 -translate-x-1/2 z-20 touch-none transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
@@ -664,12 +690,10 @@
         </div>
       </div>
 
-      <!-- DASHBOARD PAGE -->
       <div
         id="dashboard"
         class="absolute inset-0 z-10 w-full h-full bg-black overflow-hidden"
       >
-        <!-- Background Image -->
         <img
           loading="lazy"
           src="https://lh3.googleusercontent.com/d/1dsy5rC4ph9a0kUJRpSs7LMuqNZBYhLdq"
@@ -682,9 +706,8 @@
 
         <div
           id="dashboard-scroll"
-          class="w-full h-full overflow-y-auto overflow-x-hidden hide-scrollbar pb-16 relative"
+          class="w-full h-full overflow-y-auto overflow-x-hidden hide-scrollbar pb-16 relative overscroll-contain"
         >
-          <!-- Ambient details & lines -->
           <div
             class="absolute inset-0 overflow-hidden pointer-events-none"
             style="z-index: -1"
@@ -720,12 +743,12 @@
                 stroke-width="0.5"
                 fill="none"
               />
-              <!-- Star 1 -->
+
               <path
                 d="M 300 30 Q 310 30 310 20 Q 310 30 320 30 Q 310 30 310 40 Q 310 30 300 30 Z"
                 fill="#EAE0EB"
               />
-              <!-- Star 2 -->
+
               <path
                 d="M 230 60 Q 235 60 235 55 Q 235 60 240 60 Q 235 60 235 65 Q 235 60 230 60 Z"
                 fill="#EAE0EB"
@@ -736,7 +759,6 @@
             ></div>
           </div>
 
-          <!-- Header -->
           <div
             class="sticky top-0 z-50 flex items-center justify-between px-6 pt-8 pb-3 bg-white/10 backdrop-blur-[24px] saturate-[180%] border-b border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]"
           >
@@ -751,14 +773,13 @@
             <div class="relative">
               <img
                 loading="lazy"
-                src="https://drive.google.com/thumbnail?sz=w1000&id=1CNQLC1yDNqE6hIbmC9qh9PC-wJiuoPTr"
+                src="https://jimmyrender.com/social-thumb.png"
                 class="w-[44px] h-[44px] rounded-full object-cover border-[1.5px] border-[#C4B5FD]/60 shadow-md"
                 alt="Jimmy"
               />
             </div>
           </div>
 
-          <!-- Trusted By Strip -->
           <div class="relative z-10 w-full mb-2">
             <div
               class="bg-white/10 backdrop-blur-[24px] saturate-[180%] border-y border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] pl-3 pr-6 py-4 flex items-center overflow-hidden text-white"
@@ -790,7 +811,6 @@
                   class="flex items-center gap-6 w-max translate-x-0 group-hover:animation-play-state-paused"
                   style="animation: mobileMarquee 15s linear infinite"
                 >
-                  <!-- Set 1 -->
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -831,7 +851,7 @@
                       alt="logo"
                     />
                   </div>
-                  <!-- Set 2 -->
+
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -872,7 +892,7 @@
                       alt="logo"
                     />
                   </div>
-                  <!-- Set 3 -->
+
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -913,7 +933,7 @@
                       alt="logo"
                     />
                   </div>
-                  <!-- Set 4 (Needed for smooth infinite scroll) -->
+
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -959,7 +979,6 @@
             </div>
           </div>
 
-          <!-- Projects Glass Panel Header -->
           <div class="relative z-10 mb-5 w-full pointer-events-auto">
             <div
               class="bg-white/5 backdrop-blur-md border-y border-white/10 shadow-lg px-6 py-2.5 w-full flex items-center justify-between"
@@ -979,14 +998,11 @@
             </div>
           </div>
 
-          <!-- Main Carousel -->
-
           <div class="relative z-10 mb-6 w-full">
             <div
               id="main-carousel"
               class="flex gap-4 overflow-x-auto hide-scrollbar px-6 drag-scroll"
             >
-              <!-- Repetition 1 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1042,7 +1058,6 @@
                 </div>
               </div>
 
-              <!-- Repetition 2 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1098,7 +1113,6 @@
                 </div>
               </div>
 
-              <!-- Repetition 3 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1154,7 +1168,6 @@
                 </div>
               </div>
 
-              <!-- Repetition 4 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1212,7 +1225,6 @@
             </div>
           </div>
 
-          <!-- Featured Projects -->
           <div class="relative z-10 mb-6 w-full pointer-events-auto">
             <div class="mb-5 w-full">
               <div
@@ -1236,12 +1248,9 @@
             <div
               id="featured-carousel"
               class="flex gap-4 overflow-x-auto hide-scrollbar px-6 drag-scroll"
-            >
-              <!-- POPULATED DYNAMICALLY BY JAVASCRIPT -->
-            </div>
+            ></div>
           </div>
 
-          <!-- Spatial Design -->
           <div class="relative z-10 px-6 pb-0 pointer-events-auto w-full">
             <div
               class="bg-white/5 backdrop-blur-md border-y border-white/10 shadow-lg -mx-6 px-6 py-2.5 w-[calc(100%+3rem)] flex items-center justify-between mb-5"
@@ -1267,18 +1276,14 @@
             <div
               id="spatial-carousel"
               class="flex gap-4 overflow-x-auto hide-scrollbar pb-2 -mx-6 px-6 drag-scroll"
-            >
-              <!-- POPULATED DYNAMICALLY BY JAVASCRIPT -->
-            </div>
+            ></div>
           </div>
         </div>
 
-        <!-- PROJECT DETAIL PAGE -->
         <div
           id="project-detail"
           class="absolute inset-0 z-[60] bg-black translate-y-full transition-transform duration-500 overflow-hidden flex flex-col pointer-events-none"
         >
-          <!-- Stationary Background Image -->
           <div
             class="absolute top-0 left-0 w-full h-[75vh] z-0 pointer-events-none"
           >
@@ -1286,7 +1291,7 @@
               loading="lazy"
               id="project-detail-hero-img"
               draggable="false"
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop"
+              src="https://jimmyrender.com/social-thumb.png"
               class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300"
               style="filter: brightness(0.85); object-position: 50% 20%"
             />
@@ -1295,7 +1300,6 @@
             ></div>
           </div>
 
-          <!-- Sticky Header -->
           <div
             class="absolute top-0 inset-x-0 h-20 flex justify-start items-center px-6 z-[70] w-full pt-4 pointer-events-none"
           >
@@ -1310,18 +1314,15 @@
 
           <div
             id="project-detail-scroll"
-            class="flex-1 overflow-y-auto overflow-x-hidden hide-scrollbar pb-0 w-full text-white bg-transparent z-10 touch-pan-y"
+            class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden hide-scrollbar pb-0 w-full text-white bg-transparent z-10 touch-pan-y overscroll-contain"
           >
-            <!-- Hero Section -->
             <div
               class="relative w-full min-h-[75vh] shrink-0 flex flex-col justify-end"
             >
-              <!-- Gradient covering bottom portion -->
               <div
                 class="absolute bottom-0 -inset-x-[100px] h-[40vh] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"
               ></div>
 
-              <!-- Content on Image -->
               <div
                 class="relative z-10 px-6 pb-6 pt-[40vh] w-full flex flex-col pointer-events-auto"
               >
@@ -1332,7 +1333,6 @@
                   Diane<br />Kruger
                 </h2>
 
-                <!-- Swipe Instruction -->
                 <div
                   class="flex items-center gap-2 mb-8 animate-fade-in-out pointer-events-none w-full"
                 >
@@ -1385,7 +1385,6 @@
               </div>
             </div>
 
-            <!-- Article Content -->
             <div class="px-6 pt-4 pb-28 min-h-screen bg-black relative z-20">
               <p
                 id="project-detail-concept-text"
@@ -1397,7 +1396,6 @@
                 it's no big deal.
               </p>
 
-              <!-- Video Section -->
               <div id="project-detail-video-sec" class="mt-8 mb-8">
                 <h4
                   class="text-xs font-bold text-white/50 uppercase tracking-[0.2em] mb-4"
@@ -1408,7 +1406,6 @@
                   id="project-detail-video-container"
                   class="w-full aspect-video bg-black/40 backdrop-blur-3xl border border-white/30 rounded-3xl flex items-center justify-center relative overflow-hidden group shadow-xl"
                 >
-                  <!-- Embedded Iframe -->
                   <iframe
                     id="project-detail-video-iframe"
                     class="absolute inset-0 w-full h-full z-0 pointer-events-none transition-all duration-300 opacity-0"
@@ -1425,18 +1422,15 @@
                     allowfullscreen
                   ></iframe>
 
-                  <!-- Watch Trailer overlay on top -->
                   <div
                     id="project-detail-video-overlay"
                     onclick="window.playMobileDetailVideo()"
                     class="absolute inset-0 z-10 cursor-pointer flex flex-col items-center justify-center transition-all duration-300"
                   >
-                    <!-- Dark tint overlay -->
                     <div
                       class="absolute inset-0 bg-black/35 group-hover:bg-black/50 transition-colors"
                     ></div>
 
-                    <!-- Glowing Play Button -->
                     <div
                       id="project-detail-video-play-btn"
                       class="w-14 h-14 bg-white/15 backdrop-blur-xl rounded-full flex items-center justify-center z-20 border border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-125 group-hover:border-white/60 transition-all duration-300"
@@ -1448,26 +1442,23 @@
                       ></i>
                     </div>
 
-                    <!-- Text indicator below button -->
                     <span
                       id="project-detail-video-text"
                       class="text-white/80 text-[10px] uppercase font-bold tracking-[0.2em] mt-3 z-20"
                       >Watch Trailer</span
                     >
 
-                    <!-- Video Thumbnail Image -->
                     <img
                       loading="lazy"
                       id="project-detail-video-placeholder"
                       draggable="false"
-                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop"
+                      src="https://jimmyrender.com/social-thumb.png"
                       class="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-500"
                     />
                   </div>
                 </div>
               </div>
 
-              <!-- Gallery Section -->
               <div class="mt-10 mb-8" id="project-detail-gallery-container">
                 <h4
                   class="text-xs font-bold text-white/50 uppercase tracking-[0.2em] mb-4"
@@ -1485,13 +1476,10 @@
           </div>
         </div>
 
-        <!-- ABOUT VIEW -->
-        <!-- ABOUT VIEW -->
         <div
           id="about-view"
-          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-[#0c0908] overflow-y-auto overflow-x-hidden hide-scrollbar transition-transform duration-500 ease-out translate-y-full pointer-events-none will-change-transform block font-sans"
+          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-[#0c0908] overflow-y-auto overflow-x-hidden hide-scrollbar transition-transform duration-500 ease-out translate-y-full pointer-events-none will-change-transform block font-sans overscroll-contain"
         >
-          <!-- Background Header Close Button -->
           <button
             class="fixed top-6 right-6 z-50 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 pointer-events-auto"
             onclick="goBackSafely('dashboard')"
@@ -1499,13 +1487,12 @@
             <i data-lucide="x" class="text-white w-6 h-6"></i>
           </button>
 
-          <!-- Background Photo -->
           <div
             class="sticky top-0 z-0 w-full h-[80dvh] bg-black overflow-hidden pointer-events-none flex items-start justify-center"
           >
             <img
               loading="lazy"
-              src="https://drive.google.com/thumbnail?sz=w1000&id=1CNQLC1yDNqE6hIbmC9qh9PC-wJiuoPTr"
+              src="https://jimmyrender.com/social-thumb.png"
               class="w-full h-full object-cover opacity-90"
               alt="Jimmy"
             />
@@ -1514,18 +1501,14 @@
             ></div>
           </div>
 
-          <!-- Bottom Card Component -->
           <div
             class="relative z-10 w-full flex flex-col pointer-events-auto min-h-[45dvh] drop-shadow-[0_-5px_15px_rgba(0,0,0,0.1)] -mt-[25dvh]"
           >
-            <!-- Top Row -->
             <div class="relative w-full h-[72px] pointer-events-none z-20">
-              <!-- Base Floor -->
               <div
                 class="absolute bottom-0 left-0 right-0 h-[16px] bg-black"
               ></div>
 
-              <!-- Left Tab -->
               <div
                 class="absolute top-0 bottom-[16px] left-0 right-[200px] bg-black rounded-tl-[32px] flex items-end pb-[14px] pl-6"
               >
@@ -1536,7 +1519,6 @@
                 </p>
               </div>
 
-              <!-- S-Curve Drop -->
               <svg
                 class="absolute bottom-[16px] right-[152px] w-[48px] h-[56px] text-black"
                 viewBox="0 0 48 56"
@@ -1548,7 +1530,6 @@
                 ></path>
               </svg>
 
-              <!-- Right Cradle -->
               <svg
                 class="absolute bottom-[16px] right-0 w-[24px] h-[56px] text-black"
                 viewBox="0 0 24 56"
@@ -1560,7 +1541,6 @@
                 ></path>
               </svg>
 
-              <!-- Contact Us Pill -->
               <div
                 class="absolute bottom-[22px] right-[24px] pointer-events-auto"
               >
@@ -1594,7 +1574,6 @@
               </div>
             </div>
 
-            <!-- Main White Body -->
             <div class="bg-black w-full px-6 pb-24 pt-4 relative z-20">
               <h2
                 class="text-white font-sans text-[22px] sm:text-[26px] leading-[1.15] font-bold tracking-tight mb-4 w-[95%]"
@@ -1619,7 +1598,6 @@
                 immersive, and memorable.
               </p>
 
-              <!-- Methodology -->
               <div class="mb-10 w-[95%]">
                 <h3
                   class="text-white font-sans text-lg font-bold tracking-tight mb-5 flex items-center gap-3"
@@ -1746,7 +1724,6 @@
                 </div>
               </div>
 
-              <!-- Core Strengths -->
               <div class="mb-14">
                 <h3
                   class="text-white font-sans text-lg font-bold tracking-tight mb-5 flex items-center gap-3"
@@ -1831,10 +1808,9 @@
           </div>
         </div>
 
-        <!-- PRICING VIEW -->
         <div
           id="pricing-view"
-          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-black overflow-y-auto overflow-x-hidden hide-scrollbar translate-y-full transition-transform duration-500 ease-out flex flex-col pointer-events-none will-change-transform"
+          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-black overflow-y-auto overflow-x-hidden hide-scrollbar translate-y-full transition-transform duration-500 ease-out flex flex-col pointer-events-none will-change-transform overscroll-contain"
         >
           <div
             class="absolute inset-0 overflow-hidden pointer-events-none"
@@ -1851,7 +1827,6 @@
             ></div>
           </div>
 
-          <!-- Fixed Title -->
           <div
             class="absolute left-0 top-[80px] md:top-[110px] pointer-events-none z-0 overflow-hidden"
           >
@@ -1862,7 +1837,6 @@
             </h1>
           </div>
 
-          <!-- Header -->
           <div
             class="flex-none p-6 pt-6 pb-2 flex justify-start items-start pointer-events-auto mt-[-10px] relative z-20"
           >
@@ -1874,14 +1848,11 @@
           </div>
 
           <div
-            class="flex-1 overflow-y-auto w-full px-6 pb-24 pointer-events-auto relative z-10 hide-scrollbar"
+            class="flex-1 min-h-0 overflow-y-auto w-full px-6 pb-24 pointer-events-auto relative z-10 hide-scrollbar"
           >
-            <!-- Spacer for fixed title -->
             <div class="w-full h-[60px]"></div>
 
-            <!-- Cards Container -->
             <div class="w-full max-w-5xl mx-auto flex flex-col gap-10 pb-20">
-              <!-- SECTION HEAD: CAMPAIGN PACKAGES -->
               <div>
                 <h3
                   class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-6 uppercase text-center md:text-left select-none"
@@ -1896,7 +1867,6 @@
                       -webkit-overflow-scrolling: touch;
                     "
                   >
-                    <!-- STARTER PACK -->
                     <div
                       class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
                     >
@@ -1991,7 +1961,6 @@
                       </button>
                     </div>
 
-                    <!-- CINEMATIC -->
                     <div
                       class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
                     >
@@ -2099,11 +2068,9 @@
                       </button>
                     </div>
 
-                    <!-- PREMIUM (MOST POPULAR) -->
                     <div
                       class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-gradient-to-b from-[#221244] to-[#0E061D] border border-violet-500/30 rounded-[32px] p-6 flex flex-col justify-between relative shadow-[0_12px_40px_rgba(109,84,223,0.3)] z-10 mt-6"
                     >
-                      <!-- MOST POPULAR BADGE -->
                       <div
                         class="absolute -top-[14px] left-1/2 -translate-x-1/2 bg-[#6E53DF] text-white font-extrabold text-[9px] uppercase tracking-widest px-4 py-1.5 rounded-full select-none shadow-[0_4px_12px_rgba(109,84,223,0.4)]"
                       >
@@ -2226,7 +2193,6 @@
                       </button>
                     </div>
 
-                    <!-- BRAND FILM -->
                     <div
                       class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
                     >
@@ -2389,7 +2355,6 @@
                 </div>
               </div>
 
-              <!-- SECTION HEAD: BRAND FOUNDATION -->
               <div class="w-full">
                 <h3
                   class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
@@ -2397,7 +2362,6 @@
                   BRAND FOUNDATION
                 </h3>
 
-                <!-- FOUNDATION CARD -->
                 <div
                   class="bg-gradient-to-b from-[#180F2E] to-[#0A0417] border border-violet-500/20 rounded-[36px] p-6 md:p-8 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center relative w-full shadow-lg cursor-pointer"
                   onclick="buyProject('Foundation')"
@@ -2488,7 +2452,6 @@
                 </div>
               </div>
 
-              <!-- SECTION HEAD: SOLO SERVICES -->
               <div class="w-full">
                 <h3
                   class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
@@ -2496,7 +2459,6 @@
                   SOLO SERVICES
                 </h3>
                 <div class="flex flex-col gap-4">
-                  <!-- WEB DESIGN -->
                   <div
                     class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
                     onclick="buyProject('Web Design')"
@@ -2535,7 +2497,6 @@
                     </div>
                   </div>
 
-                  <!-- CGI / VFX VIDEO -->
                   <div
                     class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
                     onclick="buyProject('CGI / VFX Video')"
@@ -2573,7 +2534,6 @@
                     </div>
                   </div>
 
-                  <!-- SHOOT & EDIT -->
                   <div
                     class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
                     onclick="buyProject('Shoot & Edit')"
@@ -2611,7 +2571,6 @@
                     </div>
                   </div>
 
-                  <!-- VIDEO EDITING -->
                   <div
                     class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
                     onclick="buyProject('Video Editing')"
@@ -2651,7 +2610,6 @@
                 </div>
               </div>
 
-              <!-- SECTION HEAD: INTERIOR DESIGN -->
               <div class="w-full">
                 <h3
                   class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
@@ -2659,7 +2617,6 @@
                   INTERIOR DESIGN
                 </h3>
                 <div class="flex flex-col gap-4">
-                  <!-- RESIDENTIAL SPACES -->
                   <div
                     class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
                     onclick="buyProject('Residential Spaces')"
@@ -2697,7 +2654,6 @@
                     </div>
                   </div>
 
-                  <!-- COMMERCIAL SPACES -->
                   <div
                     class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
                     onclick="buyProject('Commercial Spaces')"
@@ -2738,7 +2694,6 @@
                 </div>
               </div>
 
-              <!-- NEW BUSINESS WELCOME OFFER -->
               <div
                 class="relative w-full overflow-hidden bg-gradient-to-r from-[#211145] to-[#12072E] border border-violet-500/30 rounded-[36px] p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-[0_12px_40px_rgba(109,84,223,0.15)] my-4"
               >
@@ -2786,7 +2741,6 @@
           </div>
         </div>
 
-        <!-- SEARCH OVERLAY -->
         <div
           id="search-overlay"
           class="absolute inset-0 z-[70] bg-transparent backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col pt-12 px-6"
@@ -2812,7 +2766,7 @@
           </div>
           <div
             id="search-results"
-            class="flex-1 flex flex-col gap-4 overflow-y-auto pb-24 min-h-0"
+            class="flex-1 flex flex-col gap-4 overflow-y-auto pb-24 min-h-0 overscroll-contain"
           >
             <h3
               class="text-white/40 text-xs font-bold uppercase tracking-wider mb-2"
@@ -2828,7 +2782,7 @@
               >
                 <img
                   loading="lazy"
-                  src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=150&auto=format&fit=crop"
+                  src="https://jimmyrender.com/social-thumb.png"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -2849,7 +2803,7 @@
               >
                 <img
                   loading="lazy"
-                  src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=150&auto=format&fit=crop"
+                  src="https://jimmyrender.com/social-thumb.png"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -2868,7 +2822,7 @@
               >
                 <img
                   loading="lazy"
-                  src="https://images.unsplash.com/photo-1504221507732-5246c045949b?q=80&w=150&auto=format&fit=crop"
+                  src="https://jimmyrender.com/social-thumb.png"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -2889,7 +2843,7 @@
               >
                 <img
                   loading="lazy"
-                  src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=150&auto=format&fit=crop"
+                  src="https://jimmyrender.com/social-thumb.png"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -2901,13 +2855,11 @@
           </div>
         </div>
 
-        <!-- Bottom Nav -->
         <div
           id="bottom-nav-container"
           class="absolute bottom-0 inset-x-0 h-[70px] z-[200] pointer-events-none transition-all duration-500"
           style="transform: translateY(100px); opacity: 0"
         >
-          <!-- SVG Mask Definition (Invisible) -->
           <svg class="absolute w-0 h-0">
             <defs>
               <clipPath id="nav-cutout-clip">
@@ -2916,7 +2868,6 @@
             </defs>
           </svg>
 
-          <!-- White background with dynamic animated SVG cutout -->
           <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div
               class="absolute inset-0 w-full h-full bg-black/60 backdrop-blur-xl pointer-events-auto border-t border-white/10"
@@ -2924,19 +2875,16 @@
             ></div>
           </div>
 
-          <!-- The sliding black dot -->
           <div
             id="nav-dot"
             class="absolute w-[50px] h-[50px] bg-black/60 backdrop-blur-xl rounded-full top-[-20px] pointer-events-none z-10 shadow-[0_4px_15px_rgba(0,0,0,0.3)] border border-white/10"
             style="left: 0; transform: translateX(0)"
           ></div>
 
-          <!-- Icons -->
           <div
             id="nav-icons"
             class="absolute top-0 inset-x-0 h-[60px] flex items-center px-1 pointer-events-auto z-20"
           >
-            <!-- MAIN NAV -->
             <div id="main-nav-items" class="nav-transition-set nav-set-active">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -3049,7 +2997,6 @@
               </div>
             </div>
 
-            <!-- ABOUT NAV -->
             <div id="about-nav-items" class="hidden nav-transition-set">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -3085,7 +3032,6 @@
               </div>
             </div>
 
-            <!-- PRICING NAV -->
             <div id="pricing-nav-items" class="hidden nav-transition-set">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -3117,7 +3063,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g transform="scale(0.85) translate(2, 2)">
-                    <!-- Background Card -->
                     <g transform="rotate(-8 12 12) translate(1, -2)">
                       <rect
                         x="2"
@@ -3130,7 +3075,7 @@
                         stroke-width="1.6"
                       />
                     </g>
-                    <!-- Foreground Card -->
+
                     <g transform="translate(-1, 1)">
                       <rect
                         x="2"
@@ -3148,7 +3093,7 @@
                         d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
                         stroke-width="1.4"
                       />
-                      <!-- Corners -->
+
                       <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
                       <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
                       <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
@@ -3163,7 +3108,6 @@
               </div>
             </div>
 
-            <!-- PROJECT NAV -->
             <div id="project-nav-items" class="hidden nav-transition-set">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -3195,7 +3139,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <g transform="scale(0.85) translate(2, 2)">
-                    <!-- Background Card -->
                     <g transform="rotate(-8 12 12) translate(1, -2)">
                       <rect
                         x="2"
@@ -3208,7 +3151,7 @@
                         stroke-width="1.6"
                       />
                     </g>
-                    <!-- Foreground Card -->
+
                     <g transform="translate(-1, 1)">
                       <rect
                         x="2"
@@ -3226,7 +3169,7 @@
                         d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
                         stroke-width="1.4"
                       />
-                      <!-- Corners -->
+
                       <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
                       <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
                       <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
@@ -3747,6 +3690,7 @@
 
       window.projectsList = projectsList;
       window.spatialProjectsList = spatialProjectsList;
+      window.activeList = activeList;
 
       // Extract projects and make cards clickable
       setTimeout(() => {
@@ -4300,6 +4244,7 @@
           }
           currentProjectIndex = index;
           activeList = listName;
+          window.activeList = activeList;
           updateProjectDetailView(index, listName, direction);
         }
 
@@ -4731,19 +4676,25 @@
 
         const currentId = history.state?.id;
         const currentParams = JSON.stringify(history.state?.params || {});
-        
+
         // Only push if different
         if (currentId !== routeId || currentParams !== JSON.stringify(params)) {
           // Truncate forward history if we are in the middle of the stack
-          if (window.appRouteHistoryIndex > -1 && window.appRouteHistoryIndex < window.appRouteHistory.length - 1) {
-             window.appRouteHistory = window.appRouteHistory.slice(0, window.appRouteHistoryIndex + 1);
+          if (
+            window.appRouteHistoryIndex > -1 &&
+            window.appRouteHistoryIndex < window.appRouteHistory.length - 1
+          ) {
+            window.appRouteHistory = window.appRouteHistory.slice(
+              0,
+              window.appRouteHistoryIndex + 1,
+            );
           }
-          
+
           window.appRouteHistory.push({ id: routeId, params });
-          
+
           // Limit to five steps back and forth (maintaining a window)
           if (window.appRouteHistory.length > MAX_HISTORY_STEPS * 2 + 1) {
-             window.appRouteHistory.shift();
+            window.appRouteHistory.shift();
           }
           window.appRouteHistoryIndex = window.appRouteHistory.length - 1;
 
@@ -4792,10 +4743,10 @@
           else if (e.state.idx < window._lastHistoryIdx)
             navDirectionHint = "prev";
         }
-        
+
         if (e.state && e.state.idx !== undefined) {
-           window._lastHistoryIdx = e.state.idx;
-           window.appRouteHistoryIndex = e.state.idx;
+          window._lastHistoryIdx = e.state.idx;
+          window.appRouteHistoryIndex = e.state.idx;
         }
         window._currentNavDirectionHint = navDirectionHint;
 
@@ -5016,14 +4967,17 @@
             // so speed * (safeDt / 16.66) gives smooth identical pace at any hz
             exactScrollLeft += conf.dir * conf.speed * (safeDt / 16.66);
 
+                        let didWrap = false;
             // Handle endless wrapping synchronously before applying to DOM
             if (exactScrollLeft >= conf.setWidth * 2) {
               exactScrollLeft -= conf.setWidth;
+              didWrap = true;
             } else if (exactScrollLeft <= 0) {
               exactScrollLeft += conf.setWidth;
+              didWrap = true;
             }
 
-            if (Math.abs(el.scrollLeft - exactScrollLeft) > 2) {
+            if (!didWrap && Math.abs(el.scrollLeft - exactScrollLeft) > 2) {
               exactScrollLeft = el.scrollLeft;
             } else {
               el.scrollLeft = exactScrollLeft;
@@ -5048,9 +5002,9 @@
       {
         const spatialCarouselEl = document.getElementById("spatial-carousel");
         if (spatialCarouselEl) {
-          const spatialSetWidth = (140 + 16) * 3;
+          const spatialSetWidth = (140 + 16) * 4;
           spatialCarouselEl.scrollLeft = spatialSetWidth;
-          
+
           function monitorSpatial() {
             if (spatialCarouselEl.scrollLeft >= spatialSetWidth * 2) {
               spatialCarouselEl.scrollLeft -= spatialSetWidth;
@@ -5208,7 +5162,7 @@
         });
       }, 3000);
     </script>
-    <!-- Fullscreen Image Viewer -->
+
     <div
       id="fullscreen-viewer"
       class="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-3xl hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 pointer-events-auto"
@@ -5341,7 +5295,7 @@
               startPanY = e.touches[0].clientY - currentPanY;
             }
           },
-          { passive: false }
+          { passive: false },
         );
 
         viewer.addEventListener(
@@ -5357,14 +5311,14 @@
                 scale = currentScale * (distance / initialDistance);
                 scale = Math.min(Math.max(1, scale), 4); // Limit zoom between 1x and 4x
                 img.style.transform = `translate(${currentPanX}px, ${currentPanY}px) scale(${scale})`;
-                window.isFullscreenZoomed = (scale > 1);
+                window.isFullscreenZoomed = scale > 1;
               }
             } else if (e.touches.length === 1 && currentScale > 1) {
               e.preventDefault();
               e.stopPropagation();
               panX = e.touches[0].clientX - startPanX;
               panY = e.touches[0].clientY - startPanY;
-              
+
               // Simple bound logic to prevent panning photo way out of view
               // Max pan boundary roughly scales with zoom
               const maxPanX = (window.innerWidth / 2) * (currentScale - 1);
@@ -5376,7 +5330,7 @@
               img.style.transform = `translate(${panX}px, ${panY}px) scale(${currentScale})`;
             }
           },
-          { passive: false }
+          { passive: false },
         );
 
         viewer.addEventListener("touchend", (e) => {
@@ -5394,7 +5348,7 @@
               currentPanX = panX;
               currentPanY = panY;
             }
-            window.isFullscreenZoomed = (currentScale > 1);
+            window.isFullscreenZoomed = currentScale > 1;
           }
         });
 
@@ -5423,7 +5377,7 @@
         };
       });
     </script>
-    <!-- I Want This Modal -->
+
     <div
       id="i-want-this-modal"
       class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
@@ -6004,7 +5958,7 @@
         closeIWantThisModal();
       }
     </script>
-    <!-- Spatial Want This Modal -->
+
     <div
       id="spatial-want-modal"
       class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
@@ -6047,7 +6001,6 @@
         <div
           class="flex flex-col gap-5 max-h-[75vh] overflow-y-auto px-2 -mx-2 hide-scrollbar pb-10"
         >
-          <!-- 1. Type of Space -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -6089,7 +6042,6 @@
             </select>
           </div>
 
-          <!-- 2. Project Goal -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -6119,7 +6071,6 @@
             </select>
           </div>
 
-          <!-- 3. Design Style -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -6161,7 +6112,6 @@
             </select>
           </div>
 
-          <!-- 4. Preferred Color Palette -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -6191,7 +6141,6 @@
             </select>
           </div>
 
-          <!-- 5. Estimated Timeline -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -6219,7 +6168,6 @@
             </select>
           </div>
 
-          <!-- 6. Additional Notes -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -6342,17 +6290,19 @@
         const handleMove = (x, y, e) => {
           if (!isDown) return;
           if (window.isFullscreenZoomed) {
-             isDown = false;
-             return;
+            isDown = false;
+            return;
           }
           const diffX = x - startX;
           const diffY = y - startY;
 
           // Proactively detect long swipe to avoid browser cancelling it via touchcancel
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
-            isDown = false; 
+            isDown = false;
             window.isSwiping = true;
-            setTimeout(() => { window.isSwiping = false; }, 100);
+            setTimeout(() => {
+              window.isSwiping = false;
+            }, 100);
             if (diffX < 0) {
               onSwipeLeft && onSwipeLeft();
             } else {
@@ -6361,7 +6311,9 @@
           } else if (Math.abs(diffY) > Math.abs(diffX) && diffY > 60) {
             isDown = false;
             window.isSwiping = true;
-            setTimeout(() => { window.isSwiping = false; }, 100);
+            setTimeout(() => {
+              window.isSwiping = false;
+            }, 100);
             if (diffY > 0) {
               onSwipeDown && onSwipeDown();
             }
@@ -6371,8 +6323,8 @@
         const handleEnd = (x, y, e) => {
           if (!isDown) return;
           if (window.isFullscreenZoomed) {
-             isDown = false;
-             return;
+            isDown = false;
+            return;
           }
           isDown = false;
           const diffX = x - startX;
@@ -6475,52 +6427,36 @@
         setupSwipeHandler(
           "project-detail",
           () => {
+
             if (window.nextProject) window.nextProject();
           },
           () => {
+
             if (window.prevProject) window.prevProject();
           },
           () => {
             const scroller = document.getElementById("project-detail-scroll");
             if (scroller && scroller.scrollTop <= 0) {
-              if (typeof handleProjectNavBack === "function") handleProjectNavBack();
+              if (typeof handleProjectNavBack === "function")
+                handleProjectNavBack();
             }
           },
         );
 
         // Setup swipe for pricing view
-        setupSwipeHandler(
-          "pricing-view",
-          null,
-          null,
-          () => {
-            const scroller = document.getElementById("pricing-view");
-            if (scroller && scroller.scrollTop <= 0) {
-              if (typeof handlePricingNavBack === "function") {
-                handlePricingNavBack();
-              } else if (typeof closePricingView === "function") {
-                closePricingView(true);
-              }
-            }
-          },
-        );
+        setupSwipeHandler("pricing-view", null, null, null);
 
         // Setup swipe for about view
-        setupSwipeHandler(
-          "about-view",
-          null,
-          null,
-          () => {
-            const scroller = document.getElementById("about-view");
-            if (scroller && scroller.scrollTop <= 0) {
-              if (typeof goBackSafely === "function") {
-                goBackSafely("dashboard");
-              } else if (typeof closeAboutView === "function") {
-                closeAboutView();
-              }
+        setupSwipeHandler("about-view", null, null, () => {
+          const scroller = document.getElementById("about-view");
+          if (scroller && scroller.scrollTop <= 0) {
+            if (typeof goBackSafely === "function") {
+              goBackSafely("dashboard");
+            } else if (typeof closeAboutView === "function") {
+              closeAboutView();
             }
-          },
-        );
+          }
+        });
 
         // Setup swipe for fullscreen image viewer
         setupSwipeHandler(
@@ -6600,5 +6536,6 @@
         observer.observe(document.body, { childList: true, subtree: true });
       })();
     </script>
+  <script>document.addEventListener('dragstart', function(e) { if (e.target.tagName.toLowerCase() === 'img') { e.preventDefault(); } });</script>
   </body>
 </html>
