@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>JIMMY.RENDER — Redirecting...</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0f0518;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Fallback 404 handling for GitHub Pages
+      // Detect device type and route safely
+      let currentMode = null; // 'desktop' or 'mobile'
+
+      function checkOrientation() {
+        const isPortrait = window.innerHeight >= window.innerWidth;
+        const isMobile =
+          /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent,
+          ) || window.innerWidth <= 768;
+
+        const targetMode = isPortrait || isMobile ? "mobile" : "desktop";
+
+        if (targetMode === "mobile") {
+          window.location.replace("/mobile.html");
+        } else {
+          window.location.replace("/desktop.html");
+        }
+      }
+
+      // Initial load
+      checkOrientation();
+    </script>
+  </body>
+</html>
