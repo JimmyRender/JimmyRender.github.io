@@ -2006,7 +2006,7 @@
 
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
-                onclick="setNavActive(4)"
+                onclick="setNavActive(3)"
               >
                 <i
                   data-lucide="feather"
@@ -3228,6 +3228,7 @@
         pushRouteState("dashboard");
         projectDetailOpen = false;
         const panel = document.getElementById("project-detail");
+        if (!panel) return;
         panel.classList.add("translate-y-full", "pointer-events-none");
         panel.classList.remove("translate-y-0", "pointer-events-auto");
 
@@ -3245,15 +3246,15 @@
       let pricingViewOpen = false;
       function openPricingView() {
         pushRouteState("pricing");
+        const panel = document.getElementById("pricing-view");
         if (pricingViewOpen) {
-          const panel = document.getElementById("pricing-view");
           if (panel && !window._isPopStateHandling)
             panel.scrollTo({ top: 0, behavior: "smooth" });
           return;
         }
         triggerLoader(() => {
           pricingViewOpen = true;
-          const panel = document.getElementById("pricing-view");
+          if (!panel) return;
           panel.classList.remove("translate-y-full", "pointer-events-none");
           panel.classList.add("translate-y-0");
           updateProjectDetailNavShape();
@@ -3268,11 +3269,13 @@
       function closePricingView(returnToProject = false) {
         pricingViewOpen = false;
         const panel = document.getElementById("pricing-view");
+        if (!panel) return;
         panel.classList.remove("translate-y-0");
         panel.classList.add("translate-y-full");
         setTimeout(() => {
           panel.classList.add("pointer-events-none");
         }, 600);
+
         updateProjectDetailNavShape();
         if (!returnToProject || !projectDetailOpen) {
           goToDashboard(false);
@@ -3300,6 +3303,7 @@
         moreOpen = !moreOpen;
         const moreOverlay = document.getElementById("more-overlay");
         const moreMenu = document.getElementById("more-menu");
+        if (!moreOverlay || !moreMenu) return;
 
         if (moreOpen) {
           moreOverlay.classList.remove("opacity-0", "pointer-events-none");
@@ -3394,13 +3398,6 @@
               if (pricingViewOpen) closePricingView();
               if (aboutViewOpen) closeAboutView();
             } else if (idx === 3) {
-              if (pricingViewOpen) {
-                return;
-              }
-              openPricingView();
-              if (searchOpen) toggleSearch(false);
-              if (aboutViewOpen) closeAboutView();
-            } else if (idx === 4) {
               if (aboutViewOpen) {
                 return;
               }
@@ -3939,6 +3936,7 @@
         triggerLoader(() => {
           aboutViewOpen = true;
           const p = document.getElementById("about-view");
+          if (!p) return;
           p.classList.remove("translate-y-full");
           p.classList.remove("pointer-events-none");
           p.classList.add("translate-y-0");
@@ -3953,10 +3951,11 @@
       function closeAboutView() {
         aboutViewOpen = false;
         const p = document.getElementById("about-view");
+        if (!p) return;
         p.classList.remove("translate-y-0");
         p.classList.add("translate-y-full");
         setTimeout(() => {
-          p.classList.add("pointer-events-none");
+          if (p) p.classList.add("pointer-events-none");
         }, 600);
         updateProjectDetailNavShape();
         goToDashboard(false);
