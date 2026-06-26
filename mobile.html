@@ -68,7 +68,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-      img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none; }
+      img {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+      }
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Alex+Brush&family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
       .font-montserrat {
@@ -450,12 +456,12 @@
         const toast = document.getElementById("slow-connection-toast");
         if (toast) {
           toast.style.display = "flex";
-          // small delay to allow display to apply before transition
+          
           setTimeout(() => {
             toast.classList.remove("opacity-0", "scale-95");
           }, 50);
 
-          // hide toast after 4 seconds
+          
           setTimeout(() => {
             toast.classList.add("opacity-0", "scale-95");
             setTimeout(() => {
@@ -484,7 +490,7 @@
           const loader = document.getElementById("global-loader");
           if (loader) {
             loader.style.transitionDuration = "1000ms";
-            void loader.offsetWidth; // Force reflow
+            void loader.offsetWidth; 
             loader.style.opacity = "0";
             setTimeout(() => {
               loader.style.display = "none";
@@ -498,7 +504,7 @@
         if (loader) {
           loader.style.transitionDuration = "0ms";
           loader.style.display = "flex";
-          // Force reflow
+          
           void loader.offsetWidth;
           loader.style.opacity = "1";
           loaderRemoved = false;
@@ -513,7 +519,7 @@
               .catch((e) => console.error("Could not play video", e));
           }
 
-          // Wait shortly to let browser paint the loader before doing work
+          
           setTimeout(() => {
             if (callback) callback();
           }, 50);
@@ -526,7 +532,7 @@
         }
       };
 
-      // Ensure loader disappears after 4 seconds regardless
+      
       setTimeout(() => {
         if (!loaderRemoved) {
           removeLoader(true);
@@ -540,7 +546,7 @@
           const heroVideo = document.getElementById("hero-video");
           const coreVideo = document.getElementById("core-solution-video");
 
-          // readyState >= 3 means HAVE_FUTURE_DATA
+          
           const isHeroReady = !heroVideo || heroVideo.readyState >= 3;
           const isCoreReady = !coreVideo || coreVideo.readyState >= 3;
 
@@ -1809,939 +1815,6 @@
         </div>
 
         <div
-          id="pricing-view"
-          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-black overflow-y-auto overflow-x-hidden hide-scrollbar translate-y-full transition-transform duration-500 ease-out flex flex-col pointer-events-none will-change-transform overscroll-contain"
-        >
-          <div
-            class="absolute inset-0 overflow-hidden pointer-events-none"
-            style="z-index: -1"
-          >
-            <div
-              class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-violet-500 rounded-full blur-[100px] opacity-30 mix-blend-multiply"
-            ></div>
-            <div
-              class="absolute top-[20%] -right-[20%] w-[60%] h-[60%] bg-fuchsia-500 rounded-full blur-[120px] opacity-25 mix-blend-multiply"
-            ></div>
-            <div
-              class="absolute -bottom-[10%] left-[20%] w-[70%] h-[50%] bg-purple-600 rounded-full blur-[100px] opacity-30 mix-blend-multiply"
-            ></div>
-          </div>
-
-          <div
-            class="absolute left-0 top-[80px] md:top-[110px] pointer-events-none z-0 overflow-hidden"
-          >
-            <h1
-              class="text-[100px] md:text-[200px] font-black tracking-tighter text-white/10 leading-[0.8] uppercase font-montserrat select-none -ml-4 md:-ml-12"
-            >
-              PRICING
-            </h1>
-          </div>
-
-          <div
-            class="flex-none p-6 pt-6 pb-2 flex justify-start items-start pointer-events-auto mt-[-10px] relative z-20"
-          >
-            <div
-              class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs text-white shadow-md border border-white/50 jimmy-render-brand"
-            >
-              JIMMY.RENDER
-            </div>
-          </div>
-
-          <div
-            class="flex-1 min-h-0 overflow-y-auto w-full px-6 pb-24 pointer-events-auto relative z-10 hide-scrollbar"
-          >
-            <div class="w-full h-[60px]"></div>
-
-            <div class="w-full max-w-5xl mx-auto flex flex-col gap-10 pb-20">
-              <div>
-                <h3
-                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-6 uppercase text-center md:text-left select-none"
-                >
-                  CAMPAIGN PACKAGES
-                </h3>
-                <div class="flex flex-col gap-6 w-full">
-                  <div
-                    class="flex gap-4 overflow-x-auto hide-scrollbar drag-scroll pt-6 pb-6 -mx-6 px-6 w-[calc(100%+3rem)] items-stretch select-none"
-                    style="
-                      overscroll-behavior-x: contain;
-                      -webkit-overflow-scrolling: touch;
-                    "
-                  >
-                    <div
-                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
-                    >
-                      <div class="flex flex-col gap-4">
-                        <div>
-                          <span
-                            class="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-sans mb-1.5 block"
-                            >STARTER PACK</span
-                          >
-                          <div class="flex items-baseline">
-                            <span
-                              class="text-[44px] font-black text-white tracking-tight leading-none"
-                              >999</span
-                            >
-                            <span
-                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
-                              >/EGP</span
-                            >
-                          </div>
-                        </div>
-
-                        <p
-                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
-                        >
-                          Perfect first step for brands entering the digital
-                          space
-                        </p>
-
-                        <div class="w-full h-px bg-white/5 my-1"></div>
-
-                        <ul class="space-y-3.5">
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>5-Sec. promotional video</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>2 professionally designed posts</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>1 round of revisions included</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Delivered within 5 business days</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <button
-                        onclick="buyProject('Starter Pack', '999 EGP')"
-                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block"
-                      >
-                        START SMALL
-                      </button>
-                    </div>
-
-                    <div
-                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
-                    >
-                      <div class="flex flex-col gap-4">
-                        <div>
-                          <span
-                            class="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-sans mb-1.5 block"
-                            >CINEMATIC</span
-                          >
-                          <div class="flex items-baseline">
-                            <span
-                              class="text-[44px] font-black text-white tracking-tight leading-none"
-                              >4,999</span
-                            >
-                            <span
-                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
-                              >/EGP</span
-                            >
-                          </div>
-                        </div>
-
-                        <p
-                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
-                        >
-                          Ideal for businesses ready to build a real online
-                          presence
-                        </p>
-
-                        <div class="w-full h-px bg-white/5 my-1"></div>
-
-                        <ul class="space-y-3.5">
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>15-Sec. promotional video</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>4 professionally designed posts</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Personalized marketing advice session</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>2 rounds of revisions included</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Delivered within 10 business days</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <button
-                        onclick="buyProject('Cinematic Pack', '4,999 EGP')"
-                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block"
-                      >
-                        BUILD PRESENCE
-                      </button>
-                    </div>
-
-                    <div
-                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-gradient-to-b from-[#221244] to-[#0E061D] border border-violet-500/30 rounded-[32px] p-6 flex flex-col justify-between relative shadow-[0_12px_40px_rgba(109,84,223,0.3)] z-10 mt-6"
-                    >
-                      <div
-                        class="absolute -top-[14px] left-1/2 -translate-x-1/2 bg-[#6E53DF] text-white font-extrabold text-[9px] uppercase tracking-widest px-4 py-1.5 rounded-full select-none shadow-[0_4px_12px_rgba(109,84,223,0.4)]"
-                      >
-                        MOST POPULAR
-                      </div>
-
-                      <div class="flex flex-col gap-4 mt-1">
-                        <div>
-                          <span
-                            class="text-[10px] font-extrabold tracking-widest text-violet-300 uppercase font-sans mb-1.5 block"
-                            >PREMIUM</span
-                          >
-                          <div class="flex items-baseline">
-                            <span
-                              class="text-[44px] font-black text-white tracking-tight leading-none"
-                              >8,999</span
-                            >
-                            <span
-                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
-                              >/EGP</span
-                            >
-                          </div>
-                        </div>
-
-                        <p
-                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
-                        >
-                          A complete content campaign that drives real results
-                        </p>
-
-                        <div class="w-full h-px bg-white/10 my-1"></div>
-
-                        <ul class="space-y-3.5">
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>30-Sec. promotional video</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>1 bonus 5-second highlight clip</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>10 professionally designed posts</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Personalized marketing advice session</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>3 rounds of revisions included</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Delivered within 10 business days</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <button
-                        onclick="buyProject('Premium Pack', '8,999 EGP')"
-                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block"
-                      >
-                        GO PREMIUM
-                      </button>
-                    </div>
-
-                    <div
-                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
-                    >
-                      <div class="flex flex-col gap-4">
-                        <div>
-                          <span
-                            class="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-sans mb-1.5 block"
-                            >BRAND FILM</span
-                          >
-                          <div class="flex items-baseline">
-                            <span
-                              class="text-[44px] font-black text-white tracking-tight leading-none"
-                              >24,999</span
-                            >
-                            <span
-                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
-                              >/EGP</span
-                            >
-                          </div>
-                        </div>
-
-                        <p
-                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
-                        >
-                          Full-service campaign management — we handle
-                          everything
-                        </p>
-
-                        <div class="w-full h-px bg-white/5 my-1"></div>
-
-                        <ul class="space-y-3.5">
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>1-minute full production video</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>2&times;15-Sec. short form videos</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>20 professionally designed posts</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Personalized strategy session</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Full competitors market analysis</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Ad account setup & targeting</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Unlimited revisions for 14 days</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-3 h-3 stroke-[3.5]"
-                              ></i>
-                            </div>
-                            <span>Delivered within 14 business days</span>
-                          </li>
-                          <li
-                            class="flex items-center gap-3 text-xs font-medium text-white/55 italic"
-                          >
-                            <div
-                              class="w-[18px] h-[18px] rounded-full bg-white/10 text-white flex items-center justify-center shrink-0 shadow-sm"
-                            >
-                              <i
-                                data-lucide="check"
-                                class="w-2.5 h-2.5 stroke-[2]"
-                              ></i>
-                            </div>
-                            <span>*Platform payments not included</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <button
-                        onclick="buyProject('Brand Film Pack', '24,999 EGP')"
-                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block pointer-events-auto"
-                      >
-                        FULL BRAND EXPERIENCE
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="w-full">
-                <h3
-                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
-                >
-                  BRAND FOUNDATION
-                </h3>
-
-                <div
-                  class="bg-gradient-to-b from-[#180F2E] to-[#0A0417] border border-violet-500/20 rounded-[36px] p-6 md:p-8 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center relative w-full shadow-lg cursor-pointer"
-                  onclick="buyProject('Foundation')"
-                >
-                  <div class="flex-1">
-                    <span
-                      class="text-[10px] font-extrabold tracking-widest text-[#94A3B8] block mb-2 font-sans select-none"
-                      >NEW BUSINESS ESSENTIALS</span
-                    >
-                    <h4
-                      class="text-3xl font-black text-white tracking-tight uppercase font-sans"
-                    >
-                      FOUNDATION
-                    </h4>
-
-                    <div class="flex items-center gap-3.5 mt-3">
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[44px] font-black text-white tracking-tight leading-none"
-                          >15,000</span
-                        >
-                        <span
-                          class="text-sm font-extrabold text-white/50 ml-1.5 uppercase tracking-wide"
-                          >EGP</span
-                        >
-                      </div>
-                      <span
-                        class="px-2.5 py-1 bg-violet-900/40 text-violet-300 text-[10px] font-black uppercase tracking-widest rounded-md border border-violet-800/40 select-none"
-                        >20% OFF</span
-                      >
-                    </div>
-
-                    <div class="w-full h-px bg-white/5 my-4"></div>
-
-                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-                      <li
-                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
-                      >
-                        <i
-                          data-lucide="check"
-                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
-                        ></i>
-                        <span>Logo design</span>
-                      </li>
-                      <li
-                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
-                      >
-                        <i
-                          data-lucide="check"
-                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
-                        ></i>
-                        <span
-                          >Color palette and design foundation for the
-                          brand</span
-                        >
-                      </li>
-                      <li
-                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
-                      >
-                        <i
-                          data-lucide="check"
-                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
-                        ></i>
-                        <span>2 branded social media posts</span>
-                      </li>
-                      <li
-                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
-                      >
-                        <i
-                          data-lucide="check"
-                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
-                        ></i>
-                        <span>Menus/card designs</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div
-                    class="w-full md:w-auto shrink-0 self-stretch md:self-center flex items-end"
-                  >
-                    <button
-                      onclick="buyProject('Foundation Pack')"
-                      class="w-full md:w-[200px] py-4 bg-white/10 hover:bg-white/15 border border-white/20 rounded-2xl font-extrabold text-xs tracking-widest text-white uppercase text-center active:scale-95 transition-all shadow-md group pointer-events-auto"
-                    >
-                      ACQUIRE FOUNDATION
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="w-full">
-                <h3
-                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
-                >
-                  SOLO SERVICES
-                </h3>
-                <div class="flex flex-col gap-4">
-                  <div
-                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
-                    onclick="buyProject('Web Design')"
-                  >
-                    <div class="flex-1">
-                      <h4
-                        class="text-sm font-black text-white tracking-widest uppercase"
-                      >
-                        WEB DESIGN
-                      </h4>
-                      <p
-                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
-                      >
-                        A fully functional website crafted with premium visuals,
-                        refined composition, and responsive design, delivered as
-                        a ready-to-use HTML file.
-                      </p>
-                    </div>
-                    <div
-                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
-                    >
-                      <span
-                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
-                        >Starting From</span
-                      >
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[26px] font-black text-white tracking-tight"
-                          >10,000</span
-                        >
-                        <span
-                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
-                          >EGP</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
-                    onclick="buyProject('CGI / VFX Video')"
-                  >
-                    <div class="flex-1">
-                      <h4
-                        class="text-sm font-black text-white tracking-widest uppercase"
-                      >
-                        CGI / VFX VIDEO
-                      </h4>
-                      <p
-                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
-                      >
-                        High-impact computer-generated visuals and visual
-                        effects.
-                      </p>
-                    </div>
-                    <div
-                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
-                    >
-                      <span
-                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
-                        >Starting From</span
-                      >
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[26px] font-black text-white tracking-tight"
-                          >3,000</span
-                        >
-                        <span
-                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
-                          >EGP</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
-                    onclick="buyProject('Shoot & Edit')"
-                  >
-                    <div class="flex-1">
-                      <h4
-                        class="text-sm font-black text-white tracking-widest uppercase"
-                      >
-                        SHOOT & EDIT
-                      </h4>
-                      <p
-                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
-                      >
-                        On-location video capture combined with full
-                        professional editing.
-                      </p>
-                    </div>
-                    <div
-                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
-                    >
-                      <span
-                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
-                        >Starting From</span
-                      >
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[26px] font-black text-white tracking-tight"
-                          >2,000</span
-                        >
-                        <span
-                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
-                          >EGP</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
-                    onclick="buyProject('Video Editing')"
-                  >
-                    <div class="flex-1">
-                      <h4
-                        class="text-sm font-black text-white tracking-widest uppercase"
-                      >
-                        VIDEO EDITING
-                      </h4>
-                      <p
-                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
-                      >
-                        Professional editing of your existing footage. Color
-                        grading, cuts, transitions & sound design.
-                      </p>
-                    </div>
-                    <div
-                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
-                    >
-                      <span
-                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
-                        >Starting From</span
-                      >
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[26px] font-black text-white tracking-tight"
-                          >1,000</span
-                        >
-                        <span
-                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
-                          >EGP</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="w-full">
-                <h3
-                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
-                >
-                  INTERIOR DESIGN
-                </h3>
-                <div class="flex flex-col gap-4">
-                  <div
-                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
-                    onclick="buyProject('Residential Spaces')"
-                  >
-                    <div class="flex-1">
-                      <h4
-                        class="text-sm font-black text-white tracking-widest uppercase"
-                      >
-                        RESIDENTIAL SPACES
-                      </h4>
-                      <p
-                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
-                      >
-                        Thoughtfully designed interiors that balance comfort,
-                        functionality, and aesthetics for modern living.
-                      </p>
-                    </div>
-                    <div
-                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
-                    >
-                      <span
-                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5 whitespace-nowrap"
-                        >Per Square Meter</span
-                      >
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[26px] font-black text-white tracking-tight"
-                          >80</span
-                        >
-                        <span
-                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
-                          >EGP</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
-                    onclick="buyProject('Commercial Spaces')"
-                  >
-                    <div class="flex-1">
-                      <h4
-                        class="text-sm font-black text-white tracking-widest uppercase"
-                      >
-                        COMMERCIAL SPACES
-                      </h4>
-                      <p
-                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
-                      >
-                        Strategic interior environments designed to enhance
-                        customer experience, strengthen brand identity, and
-                        improve workplace efficiency.
-                      </p>
-                    </div>
-                    <div
-                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
-                    >
-                      <span
-                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5 whitespace-nowrap"
-                        >Per Square Meter</span
-                      >
-                      <div class="flex items-baseline">
-                        <span
-                          class="text-[26px] font-black text-white tracking-tight"
-                          >120</span
-                        >
-                        <span
-                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
-                          >EGP</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="relative w-full overflow-hidden bg-gradient-to-r from-[#211145] to-[#12072E] border border-violet-500/30 rounded-[36px] p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-[0_12px_40px_rgba(109,84,223,0.15)] my-4"
-              >
-                <div class="flex-1 text-center md:text-left">
-                  <span
-                    class="text-[11px] font-extrabold tracking-widest text-violet-300 uppercase block font-sans select-none"
-                    >NEW BUSINESS WELCOME OFFER</span
-                  >
-                  <span
-                    class="text-[52px] font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-indigo-200 leading-none mt-2 block select-none"
-                    >20% OFF</span
-                  >
-                  <p
-                    class="text-white/70 text-sm font-medium mt-3 leading-relaxed max-w-[450px]"
-                  >
-                    Starting a new venture? Get an exclusive discount on your
-                    first order on any package or solo service.
-                  </p>
-                  <span
-                    class="text-[9px] font-bold text-violet-300/50 uppercase tracking-widest block mt-4 select-none"
-                    >VALID FOR FIRST-TIME BUSINESS OWNERS ONLY.</span
-                  >
-                </div>
-                <div
-                  class="w-full md:w-auto shrink-0 flex flex-col items-center"
-                >
-                  <button
-                    onclick="buyProject('Welcome Offer 20% Off')"
-                    class="w-full md:w-[220px] py-4 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-violet-400/50 backdrop-blur-xl rounded-2xl group flex flex-col items-center justify-center transition-all duration-300 shadow-lg pointer-events-auto"
-                  >
-                    <div
-                      class="flex items-center gap-2 text-violet-200 font-extrabold text-sm uppercase tracking-wider group-hover:translate-x-1 transition-transform"
-                    >
-                      <span>CLAIM OFFER</span>
-                      <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </div>
-                    <span
-                      class="text-[8px] font-bold text-white/40 tracking-wider uppercase mt-1"
-                      >UNLOCK PREMIUM NOW</span
-                    >
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
           id="search-overlay"
           class="absolute inset-0 z-[70] bg-transparent backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col pt-12 px-6"
         >
@@ -2930,58 +2003,7 @@
                   >Talk</span
                 >
               </div>
-              <div
-                class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
-                onclick="setNavActive(3)"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="icon w-[24px] h-[24px] pointer-events-none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g transform="scale(0.85) translate(2, 2)">
-                    <g transform="rotate(-8 12 12) translate(1, -2)">
-                      <rect
-                        x="2"
-                        y="6"
-                        width="20"
-                        height="12"
-                        rx="0.5"
-                        fill="#0F0518"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                      />
-                    </g>
-                    <g transform="translate(-1, 1)">
-                      <rect
-                        x="2"
-                        y="6"
-                        width="20"
-                        height="12"
-                        rx="0.5"
-                        fill="#0F0518"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                      />
-                      <circle cx="12" cy="12" r="3.2" stroke-width="1.4" />
-                      <path d="M12 10.3v3.4" stroke-width="1.4" />
-                      <path
-                        d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
-                        stroke-width="1.4"
-                      />
-                      <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
-                      <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
-                      <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
-                      <path d="M18.5 15.5v-1.5H17" stroke-width="1.4" />
-                    </g>
-                  </g>
-                </svg>
-                <span
-                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
-                  >Pricing</span
-                >
-              </div>
+
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
                 onclick="setNavActive(4)"
@@ -3032,82 +2054,6 @@
               </div>
             </div>
 
-            <div id="pricing-nav-items" class="hidden nav-transition-set">
-              <div
-                class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
-                onclick="handlePricingNavBack()"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="icon w-[24px] h-[24px] pointer-events-none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M20 10.5H8.8l4.6-4.6a1.5 1.5 0 0 0-2.12-2.12l-7.5 7.5a1.5 1.5 0 0 0 0 2.12l7.5 7.5a1.5 1.5 0 0 0 2.12-2.12L8.8 13.5H20a1.5 1.5 0 0 0 0-3z"
-                  />
-                </svg>
-                <span
-                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
-                  >Back</span
-                >
-              </div>
-              <div
-                class="nav-item flex-[2] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
-                onclick="openPricingView()"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  class="icon w-[24px] h-[24px] pointer-events-none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g transform="scale(0.85) translate(2, 2)">
-                    <g transform="rotate(-8 12 12) translate(1, -2)">
-                      <rect
-                        x="2"
-                        y="6"
-                        width="20"
-                        height="12"
-                        rx="0.5"
-                        fill="#0F0518"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                      />
-                    </g>
-
-                    <g transform="translate(-1, 1)">
-                      <rect
-                        x="2"
-                        y="6"
-                        width="20"
-                        height="12"
-                        rx="0.5"
-                        fill="#0F0518"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                      />
-                      <circle cx="12" cy="12" r="3.2" stroke-width="1.4" />
-                      <path d="M12 10.3v3.4" stroke-width="1.4" />
-                      <path
-                        d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
-                        stroke-width="1.4"
-                      />
-
-                      <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
-                      <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
-                      <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
-                      <path d="M18.5 15.5v-1.5H17" stroke-width="1.4" />
-                    </g>
-                  </g>
-                </svg>
-                <span
-                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
-                  >Pricing</span
-                >
-              </div>
-            </div>
-
             <div id="project-nav-items" class="hidden nav-transition-set">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -3128,60 +2074,7 @@
                   >Back</span
                 >
               </div>
-              <div
-                class="nav-item flex-[2] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
-                onclick="openProjectPricing()"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  class="icon w-[24px] h-[24px] pointer-events-none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g transform="scale(0.85) translate(2, 2)">
-                    <g transform="rotate(-8 12 12) translate(1, -2)">
-                      <rect
-                        x="2"
-                        y="6"
-                        width="20"
-                        height="12"
-                        rx="0.5"
-                        fill="#0F0518"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                      />
-                    </g>
 
-                    <g transform="translate(-1, 1)">
-                      <rect
-                        x="2"
-                        y="6"
-                        width="20"
-                        height="12"
-                        rx="0.5"
-                        fill="#0F0518"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                      />
-                      <circle cx="12" cy="12" r="3.2" stroke-width="1.4" />
-                      <path d="M12 10.3v3.4" stroke-width="1.4" />
-                      <path
-                        d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
-                        stroke-width="1.4"
-                      />
-
-                      <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
-                      <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
-                      <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
-                      <path d="M18.5 15.5v-1.5H17" stroke-width="1.4" />
-                    </g>
-                  </g>
-                </svg>
-                <span
-                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
-                  >Pricing</span
-                >
-              </div>
               <div
                 class="nav-item flex-[2] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
                 onclick="buyProject()"
@@ -3560,11 +2453,11 @@
         return `<span class="truncate block max-w-[85px] text-[12px] font-medium font-sans text-white/90 whitespace-nowrap">${norm}</span>`;
       }
 
-      // Dynamic Population of Featured Carousel
+      
       const featuredCarousel = document.getElementById("featured-carousel");
       if (featuredCarousel) {
         let html = "";
-        // We repeat the array 3 times for premium smooth endless scrolling
+        
         for (let r = 0; r < 3; r++) {
           rawProjectData.forEach((prj) => {
             html += `
@@ -3586,7 +2479,7 @@
         featuredCarousel.innerHTML = html;
       }
 
-      // Dynamic Population of Spatial Carousel (only four projects of spatial design)
+      
       const spatialCarousel = document.getElementById("spatial-carousel");
       const spatialData = [
         {
@@ -3628,7 +2521,7 @@
         spatialCarousel.innerHTML = html;
       }
 
-      // Cleanup old hardcoded components
+      
       const spatialCarouselOld = document.getElementById(
         "spatial-carousel-old",
       );
@@ -3642,7 +2535,7 @@
         featuredCarouselOld.parentNode.removeChild(featuredCarouselOld);
       }
 
-      // Dynamic Population of Search overlay results
+      
       const searchResults = document.getElementById("search-results");
       if (searchResults) {
         let html = `
@@ -3682,7 +2575,7 @@
 
       lucide.createIcons();
 
-      // Project transition logic
+      
       let projectsList = [];
       let spatialProjectsList = [];
       let currentProjectIndex = 0;
@@ -3692,7 +2585,7 @@
       window.spatialProjectsList = spatialProjectsList;
       window.activeList = activeList;
 
-      // Extract projects and make cards clickable
+      
       setTimeout(() => {
         document.querySelectorAll(".shrink-0, .search-item").forEach((card) => {
           if (
@@ -3721,7 +2614,7 @@
               const targetList = isSpatial ? spatialProjectsList : projectsList;
               const listName = isSpatial ? "spatial" : "projects";
 
-              // Avoid duplicate array items in navigation index tracking
+              
               const srcShort = imgElement.getAttribute("src");
               const alreadyExists = targetList.some((p) => p.src === srcShort);
               if (!alreadyExists) {
@@ -3879,7 +2772,7 @@
             title.innerHTML = formatDetailTitle(proj.title);
           }
 
-          // Update Concept dynamic text
+          
           const conceptTextEl = document.getElementById(
             "project-detail-concept-text",
           );
@@ -3888,7 +2781,7 @@
               proj.concept || "The concept for this project is being updated.";
           }
 
-          // Handle Video visibility and reset overlay play state
+          
           const videoSec = document.getElementById("project-detail-video-sec");
           const iframe = document.getElementById("project-detail-video-iframe");
           const overlay = document.getElementById(
@@ -3907,7 +2800,7 @@
               "project-detail-video-text",
             );
             if (proj.video && proj.video.trim() !== "") {
-              // Pre-load video source link but keep paused/hidden with overlay visible
+              
               if (iframe && overlay) {
                 const sep = proj.video.includes("?") ? "&" : "?";
                 const newSrc = proj.video + sep + "rel=0&showinfo=0&controls=0";
@@ -3994,7 +2887,7 @@
               heroImg.style.transform = `translateX(${direction === "next" ? "50px" : "-50px"})`;
               scrollContainer.scrollTop = 0;
 
-              // force reflow
+              
               void scrollContainer.offsetWidth;
               void heroImg.offsetWidth;
 
@@ -4128,15 +3021,15 @@
             ) {
               return;
             }
-            // Prepare for sliding in from right
+            
             el.classList.remove("hidden");
             el.classList.remove("nav-set-active", "nav-set-hide-down");
             el.classList.add("nav-set-from-right");
 
-            // Force layout reflow
+            
             void el.offsetWidth;
 
-            // Start the transition
+            
             el.classList.remove("nav-set-from-right");
             el.classList.add("nav-set-active");
           } else {
@@ -4144,11 +3037,11 @@
               el.classList.contains("nav-set-active") &&
               !el.classList.contains("hidden")
             ) {
-              // Sliding down & fading out
+              
               el.classList.remove("nav-set-active");
               el.classList.add("nav-set-hide-down");
 
-              // Hide after transition duration
+              
               setTimeout(() => {
                 if (!el.classList.contains("nav-set-active")) {
                   el.classList.add("hidden");
@@ -4238,7 +3131,7 @@
             currentProjectIndex !== undefined &&
             activeList === listName
           ) {
-            // Fallback
+            
             if (index > currentProjectIndex) direction = "next";
             else if (index < currentProjectIndex) direction = "prev";
           }
@@ -4270,7 +3163,7 @@
 
       function handleProjectNavBack() {
         if (pricingViewOpen) {
-          goBackSafely("project"); // Close pricing and go back to project
+          goBackSafely("project"); 
         } else {
           goBackSafely("dashboard");
         }
@@ -4315,7 +3208,7 @@
           );
           if (iframe && overlay) {
             const sep = proj.video.includes("?") ? "&" : "?";
-            // Autoplay with full audio enabled and inline setting
+            
             const newSrc =
               proj.video +
               sep +
@@ -4338,7 +3231,7 @@
         panel.classList.add("translate-y-full", "pointer-events-none");
         panel.classList.remove("translate-y-0", "pointer-events-auto");
 
-        // Clear the video iframe to pause playback
+        
         const iframe = document.getElementById("project-detail-video-iframe");
         if (iframe) {
           const clone = iframe.cloneNode(true);
@@ -4439,8 +3332,8 @@
       }
 
       function setNavActive(idx, isInstant = false, preventRouting = false) {
-        // If it's a modal (2 = Search, 3 = More) and we click it, don't necessarily stay there after closing?
-        // Let's just track it directly
+        
+        
         const activeNavId = getActiveNavId();
         const items = document.querySelectorAll(`#${activeNavId} > .nav-item`);
         if (!items || items.length === 0 || !items[idx]) return;
@@ -4467,9 +3360,9 @@
         }
         if (!navRaf) lerpNav();
 
-        // Routing
+        
         if (!isInstant && !preventRouting) {
-          // Don't trigger on initial load
+          
           if (activeNavId === "main-nav-items") {
             const wasAlreadyOnRoute = lastMainRoute === idx;
 
@@ -4495,7 +3388,7 @@
               if (pricingViewOpen) closePricingView();
               if (aboutViewOpen) closeAboutView();
             } else if (idx === 2) {
-              // Talk route
+              
               goToTalk();
               if (searchOpen) toggleSearch(false);
               if (pricingViewOpen) closePricingView();
@@ -4533,7 +3426,7 @@
       const sliderTrack = document.getElementById("slider-track");
       let isDragging = false;
       let startY = 0;
-      let btnBottom = 209; // corresponds to bottom-[209px]
+      let btnBottom = 209; 
 
       function handleDragStart(y) {
         if (!sliderBtn) return;
@@ -4558,7 +3451,7 @@
         let shouldGo = false;
         if (newBottom > maxBottom) {
           newBottom = maxBottom;
-          isDragging = false; // Successfully reached top
+          isDragging = false; 
           shouldGo = true;
         }
 
@@ -4598,7 +3491,7 @@
         });
       }
 
-      // Mouse events
+      
       const landingPageNode = document.getElementById("landing");
       if (landingPageNode) {
         landingPageNode.addEventListener("mousedown", (e) => {
@@ -4613,7 +3506,7 @@
       });
       window.addEventListener("mouseup", handleDragEnd);
 
-      // Touch events
+      
       if (landingPageNode) {
         landingPageNode.addEventListener(
           "touchstart",
@@ -4666,7 +3559,7 @@
         updateProjectDetailNavShape();
       });
 
-      // --- History Routing Engine ---
+      
       window.appRouteHistory = [];
       window.appRouteHistoryIndex = -1;
       const MAX_HISTORY_STEPS = 5;
@@ -4677,9 +3570,9 @@
         const currentId = history.state?.id;
         const currentParams = JSON.stringify(history.state?.params || {});
 
-        // Only push if different
+        
         if (currentId !== routeId || currentParams !== JSON.stringify(params)) {
-          // Truncate forward history if we are in the middle of the stack
+          
           if (
             window.appRouteHistoryIndex > -1 &&
             window.appRouteHistoryIndex < window.appRouteHistory.length - 1
@@ -4692,7 +3585,7 @@
 
           window.appRouteHistory.push({ id: routeId, params });
 
-          // Limit to five steps back and forth (maintaining a window)
+          
           if (window.appRouteHistory.length > MAX_HISTORY_STEPS * 2 + 1) {
             window.appRouteHistory.shift();
           }
@@ -4715,7 +3608,7 @@
       };
 
       function goBackSafely(fallbackRoute) {
-        // Use custom logic instead of browsers history back
+        
         pushRouteState(fallbackRoute);
         if (fallbackRoute === "dashboard") {
           if (typeof closeProjectDetail === "function")
@@ -4753,7 +3646,7 @@
         const routeId = e.state ? e.state.id : "landing";
         const params = e.state ? e.state.params : {};
 
-        // Close whatever is open to restore baseline
+        
         if (routeId === "landing") {
           if (projectDetailOpen) closeProjectDetail();
           if (pricingViewOpen) closePricingView();
@@ -4785,7 +3678,7 @@
           window._isPopStateHandling = false;
         }, 50);
       });
-      // -------------------------------
+      
 
       function goToDashboard(wasAlreadyOnRoute = false) {
         pushRouteState("dashboard");
@@ -4854,14 +3747,14 @@
         }, 600);
       }
 
-      // Mouse Drag-to-Scroll Logic (simulate touch testing)
+      
       document.querySelectorAll(".drag-scroll").forEach((slider) => {
         let isDown = false;
         let startX, startY;
         let scrollLeft, scrollTop;
         let resumeTimeout = null;
 
-        // Ensure no native ghost-image dragging inside these containers for clean testing
+        
         slider
           .querySelectorAll("img")
           .forEach((img) => img.setAttribute("draggable", "false"));
@@ -4932,7 +3825,7 @@
         });
       });
 
-      // Auto-scrollers
+      
       const autoScrollers = [
         { id: "main-carousel", setWidth: (280 + 16) * 3, dir: 1, speed: 0.3 },
         {
@@ -4956,19 +3849,19 @@
           const dt = time - lastTime;
           lastTime = time;
 
-          // Cap dt to avoid massive jumps if tab is inactive
+          
           const safeDt = Math.min(dt, 50);
 
           if (
             el.dataset.pauseAnim !== "true" &&
             !el.classList.contains("active-drag")
           ) {
-            // Base speed is adjusted for 16.66ms frames (~60fps)
-            // so speed * (safeDt / 16.66) gives smooth identical pace at any hz
+            
+            
             exactScrollLeft += conf.dir * conf.speed * (safeDt / 16.66);
 
-                        let didWrap = false;
-            // Handle endless wrapping synchronously before applying to DOM
+            let didWrap = false;
+            
             if (exactScrollLeft >= conf.setWidth * 2) {
               exactScrollLeft -= conf.setWidth;
               didWrap = true;
@@ -4984,7 +3877,7 @@
             }
           } else {
             exactScrollLeft = el.scrollLeft;
-            // Also need to handle wrap while passively scrolling/dragging
+            
             if (exactScrollLeft >= conf.setWidth * 2) {
               exactScrollLeft -= conf.setWidth;
               el.scrollLeft = exactScrollLeft;
@@ -4998,7 +3891,7 @@
         requestAnimationFrame(animate);
       });
 
-      // Spatial carousel loop logic (scroll only)
+      
       {
         const spatialCarouselEl = document.getElementById("spatial-carousel");
         if (spatialCarouselEl) {
@@ -5016,7 +3909,7 @@
           requestAnimationFrame(monitorSpatial);
         }
       }
-      // Filter search results
+      
       const searchInput = document.getElementById("search-input");
       if (searchInput) {
         searchInput.addEventListener("input", (e) => {
@@ -5069,7 +3962,7 @@
         goToDashboard(false);
       }
 
-      // Handle slow connection video playback recovery globally
+      
       function ensureVideosPlay() {
         const videos = document.querySelectorAll("video[autoplay]");
         videos.forEach((video) => {
@@ -5090,23 +3983,23 @@
             }
           };
 
-          // Try whenever data is ready
+          
           video.addEventListener("canplay", forcePlay, { passive: true });
           video.addEventListener("loadeddata", forcePlay, { passive: true });
           video.addEventListener("waiting", () => {
-            // If connection drops and video waits, listen for when it can play again
+            
             video.addEventListener("canplay", forcePlay, {
               once: true,
               passive: true,
             });
           });
 
-          // Check if it should be playing right now
+          
           if (video.readyState >= 3 && video.paused) {
             forcePlay();
           }
 
-          // Retry playing on user interactions to bypass stricter autoplay limits
+          
           document.body.addEventListener("click", forcePlay, {
             passive: true,
           });
@@ -5114,7 +4007,7 @@
             passive: true,
           });
 
-          // Re-load if video errors out due to bad connection
+          
           video.addEventListener("error", () => {
             setTimeout(() => {
               if (navigator.onLine) {
@@ -5124,7 +4017,7 @@
           });
         });
 
-        // Globally listen to connection coming back online to reload missing videos
+        
         window.addEventListener("online", () => {
           const vids = document.querySelectorAll("video[autoplay]");
           vids.forEach((v) => {
@@ -5142,11 +4035,11 @@
         ensureVideosPlay();
       });
 
-      // Periodically check for stuck videos (e.g. they paused due to slow connection and didn't resume automatically)
+      
       setInterval(() => {
         const videos = document.querySelectorAll("video[autoplay]");
         videos.forEach((video) => {
-          // readyState >= 3 means we have enough data for the current playback position
+          
           if (video.paused && video.readyState >= 3) {
             const p = video.play();
             if (p !== undefined) p.catch(() => {});
@@ -5154,7 +4047,7 @@
             navigator.onLine &&
             (video.readyState === 0 || video.error)
           ) {
-            // only load if no network state is indicating it's already loading
+            
             if (video.networkState !== HTMLMediaElement.NETWORK_LOADING) {
               video.load();
             }
@@ -5222,7 +4115,7 @@
         updateFullscreenImage();
         const viewer = document.getElementById("fullscreen-viewer");
         viewer.classList.remove("hidden");
-        // trigger reflow
+        
         void viewer.offsetWidth;
         viewer.classList.remove("opacity-0");
         viewer.classList.add("opacity-100");
@@ -5268,7 +4161,7 @@
         }
       }
 
-      // Custom Pinch-to-Zoom logic for fullscreen viewer
+      
       document.addEventListener("DOMContentLoaded", () => {
         const viewer = document.getElementById("fullscreen-viewer");
         const img = document.getElementById("fullscreen-img");
@@ -5302,14 +4195,14 @@
           "touchmove",
           (e) => {
             if (e.touches.length === 2) {
-              e.preventDefault(); // Stop native scrolling
-              e.stopPropagation(); // Prevent swipe handlers
+              e.preventDefault(); 
+              e.stopPropagation(); 
               const dx = e.touches[0].clientX - e.touches[1].clientX;
               const dy = e.touches[0].clientY - e.touches[1].clientY;
               const distance = Math.sqrt(dx * dx + dy * dy);
               if (initialDistance) {
                 scale = currentScale * (distance / initialDistance);
-                scale = Math.min(Math.max(1, scale), 4); // Limit zoom between 1x and 4x
+                scale = Math.min(Math.max(1, scale), 4); 
                 img.style.transform = `translate(${currentPanX}px, ${currentPanY}px) scale(${scale})`;
                 window.isFullscreenZoomed = scale > 1;
               }
@@ -5319,8 +4212,8 @@
               panX = e.touches[0].clientX - startPanX;
               panY = e.touches[0].clientY - startPanY;
 
-              // Simple bound logic to prevent panning photo way out of view
-              // Max pan boundary roughly scales with zoom
+              
+              
               const maxPanX = (window.innerWidth / 2) * (currentScale - 1);
               const maxPanY = (window.innerHeight / 2) * (currentScale - 1);
 
@@ -5352,7 +4245,7 @@
           }
         });
 
-        // Reset transform on close or image change
+        
         const resetZoom = () => {
           scale = 1;
           currentScale = 1;
@@ -5726,7 +4619,7 @@
         }
       }
 
-      // Auto-save listeners
+      
       setTimeout(() => {
         [
           "req-brand-name",
@@ -5812,7 +4705,7 @@
           pkgSelect.classList.remove("opacity-50", "pointer-events-none");
         }
 
-        // Clear errors
+        
         document.getElementById(
           "req-brand-name",
         ).previousElementSibling.innerHTML = "Brand Name";
@@ -6266,7 +5159,7 @@
         closeSpatialWantModal();
       }
 
-      // Generic Swipe Detector
+      
       function setupSwipeHandler(
         elementId,
         onSwipeLeft,
@@ -6296,7 +5189,7 @@
           const diffX = x - startX;
           const diffY = y - startY;
 
-          // Proactively detect long swipe to avoid browser cancelling it via touchcancel
+          
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
             isDown = false;
             window.isSwiping = true;
@@ -6330,7 +5223,7 @@
           const diffX = x - startX;
           const diffY = y - startY;
 
-          // Block clicks if we moved enough in ANY direction
+          
           if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
             window.isSwiping = true;
             setTimeout(() => {
@@ -6339,7 +5232,7 @@
           }
 
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-            // Horizontal swipe
+            
             if (diffX < 0) {
               onSwipeLeft && onSwipeLeft();
             } else {
@@ -6349,14 +5242,14 @@
             Math.abs(diffY) > Math.abs(diffX) &&
             Math.abs(diffY) > 50
           ) {
-            // Vertical swipe
+            
             if (diffY > 0) {
               onSwipeDown && onSwipeDown();
             }
           }
         };
 
-        // Mouse events
+        
         element.addEventListener("mousedown", (e) => {
           if (e.button !== 0 || e.target.closest(".drag-scroll")) return;
           handleStart(e.pageX, e.pageY);
@@ -6373,7 +5266,7 @@
           isDown = false;
         });
 
-        // Touch events
+        
         element.addEventListener(
           "touchstart",
           (e) => {
@@ -6418,20 +5311,18 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        // Prevent hold press context menu globally
+        
         window.addEventListener("contextmenu", (e) => {
           e.preventDefault();
         });
 
-        // Setup swipe for project detail
+        
         setupSwipeHandler(
           "project-detail",
           () => {
-
             if (window.nextProject) window.nextProject();
           },
           () => {
-
             if (window.prevProject) window.prevProject();
           },
           () => {
@@ -6443,10 +5334,10 @@
           },
         );
 
-        // Setup swipe for pricing view
+        
         setupSwipeHandler("pricing-view", null, null, null);
 
-        // Setup swipe for about view
+        
         setupSwipeHandler("about-view", null, null, () => {
           const scroller = document.getElementById("about-view");
           if (scroller && scroller.scrollTop <= 0) {
@@ -6458,7 +5349,7 @@
           }
         });
 
-        // Setup swipe for fullscreen image viewer
+        
         setupSwipeHandler(
           "fullscreen-viewer",
           () => {
@@ -6479,8 +5370,8 @@
       (function () {
         function setupLoadingPlaceholders() {
           document.querySelectorAll("img").forEach((img) => {
-            // Target mainly the project/photo images (they usually have object-cover or are in cards)
-            // Skip tiny logos like trusted strip or icons
+            
+            
             if (
               img.classList.contains("object-cover") ||
               img.classList.contains("rounded-2xl") ||
@@ -6489,11 +5380,11 @@
               if (img.dataset.hasLoader) return;
               img.dataset.hasLoader = "true";
 
-              if (img.complete) return; // If it's broken, it doesn't matter, we don't want infinite loader
+              if (img.complete) return; 
 
               const parent = img.parentElement;
               if (parent) {
-                // Ensure parent can trap absolute elements
+                
                 const style = window.getComputedStyle(parent);
                 if (style.position === "static") {
                   parent.style.position = "relative";
@@ -6503,7 +5394,7 @@
                 loader.className =
                   "loader-overlay absolute inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-sm pointer-events-none transition-opacity duration-700";
 
-                // Use existing styling from body / global for breathing text
+                
                 loader.innerHTML =
                   '<span class="text-white/60 font-bold tracking-[0.2em] text-[10px] md:text-xs animate-text-breathe uppercase drop-shadow-md">JIMMY.RENDER</span>';
 
@@ -6521,11 +5412,11 @@
           });
         }
 
-        // Run immediately when script loads and when DOM is fully done
+        
         setupLoadingPlaceholders();
         document.addEventListener("DOMContentLoaded", setupLoadingPlaceholders);
 
-        // Observe mutations for dynamically rendered carousels/searches
+        
         const observer = new MutationObserver((mutations) => {
           let hasNewNodes = false;
           mutations.forEach((m) => {
@@ -6536,6 +5427,12 @@
         observer.observe(document.body, { childList: true, subtree: true });
       })();
     </script>
-  <script>document.addEventListener('dragstart', function(e) { if (e.target.tagName.toLowerCase() === 'img') { e.preventDefault(); } });</script>
+    <script>
+      document.addEventListener("dragstart", function (e) {
+        if (e.target.tagName.toLowerCase() === "img") {
+          e.preventDefault();
+        }
+      });
+    </script>
   </body>
 </html>
