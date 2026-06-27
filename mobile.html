@@ -10,11 +10,37 @@
               navigator.userAgent,
             ) || window.innerWidth <= 768;
           if (!isPortrait && !isMobile) {
-            window.location.replace("./desktop.html" + window.location.hash);
+            window.location.replace("/desktop.html" + window.location.hash);
           }
         };
         checkAndRedirect();
         window.addEventListener("resize", checkAndRedirect);
+
+        // Prevent native pinch-zoom and double-tap zoom globally
+        document.addEventListener("gesturestart", function (e) {
+          e.preventDefault();
+        });
+        document.addEventListener(
+          "touchstart",
+          function (event) {
+            if (event.touches.length > 1) {
+              event.preventDefault();
+            }
+          },
+          { passive: false },
+        );
+        let lastTouchEnd = 0;
+        document.addEventListener(
+          "touchend",
+          function (event) {
+            const now = new Date().getTime();
+            if (now - lastTouchEnd <= 300) {
+              event.preventDefault();
+            }
+            lastTouchEnd = now;
+          },
+          { passive: false },
+        );
       })();
     </script>
     <meta charset="UTF-8" />
@@ -23,58 +49,9 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>JIMMY.RENDER — CGI Creative Director</title>
-
-    <meta name="title" content="JIMMY.RENDER — CGI Creative Director" />
-    <meta
-      name="description"
-      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
-    />
-    <meta
-      name="keywords"
-      content="CGI, Creative Director, 3D Design, Animation, Motion Graphics, Jimmy Render, Premium Visuals, Product Rendering"
-    />
-    <meta name="author" content="JIMMY.RENDER" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <link rel="canonical" href="https://jimmyrender.com/" />
-    <meta name="theme-color" content="#0f0518" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jimmyrender.com/" />
-    <meta property="og:title" content="JIMMY.RENDER — CGI Creative Director" />
-    <meta
-      property="og:description"
-      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
-    />
-    <meta
-      property="og:image"
-      content="https://jimmyrender.com/social-thumb.png"
-    />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://jimmyrender.com/" />
-    <meta
-      property="twitter:title"
-      content="JIMMY.RENDER — CGI Creative Director"
-    />
-    <meta
-      property="twitter:description"
-      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
-    />
-    <meta
-      property="twitter:image"
-      content="https://jimmyrender.com/social-thumb.png"
-    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-      img {
-        -webkit-user-drag: none;
-        -khtml-user-drag: none;
-        -moz-user-drag: none;
-        -o-user-drag: none;
-        user-drag: none;
-      }
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Alex+Brush&family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
       .font-montserrat {
@@ -94,15 +71,6 @@
       }
       .font-serif {
         font-family: "Playfair Display", serif;
-      }
-
-      html,
-      body {
-        overscroll-behavior-y: none;
-        overscroll-behavior-x: none;
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
       }
 
       body {
@@ -415,7 +383,12 @@
       }
     </style>
   </head>
-  <body>
+  <body
+    oncontextmenu="return false;"
+    ondragstart="return false;"
+    class="select-none"
+  >
+    <!-- Global Loading Screen -->
     <div
       id="global-loader"
       class="fixed inset-0 z-[9999] bg-black transition-opacity duration-1000 ease-in-out flex flex-col items-center justify-center"
@@ -456,12 +429,12 @@
         const toast = document.getElementById("slow-connection-toast");
         if (toast) {
           toast.style.display = "flex";
-          
+          // small delay to allow display to apply before transition
           setTimeout(() => {
             toast.classList.remove("opacity-0", "scale-95");
           }, 50);
 
-          
+          // hide toast after 4 seconds
           setTimeout(() => {
             toast.classList.add("opacity-0", "scale-95");
             setTimeout(() => {
@@ -490,7 +463,7 @@
           const loader = document.getElementById("global-loader");
           if (loader) {
             loader.style.transitionDuration = "1000ms";
-            void loader.offsetWidth; 
+            void loader.offsetWidth; // Force reflow
             loader.style.opacity = "0";
             setTimeout(() => {
               loader.style.display = "none";
@@ -504,7 +477,7 @@
         if (loader) {
           loader.style.transitionDuration = "0ms";
           loader.style.display = "flex";
-          
+          // Force reflow
           void loader.offsetWidth;
           loader.style.opacity = "1";
           loaderRemoved = false;
@@ -519,7 +492,7 @@
               .catch((e) => console.error("Could not play video", e));
           }
 
-          
+          // Wait shortly to let browser paint the loader before doing work
           setTimeout(() => {
             if (callback) callback();
           }, 50);
@@ -532,7 +505,7 @@
         }
       };
 
-      
+      // Ensure loader disappears after 4 seconds regardless
       setTimeout(() => {
         if (!loaderRemoved) {
           removeLoader(true);
@@ -546,7 +519,7 @@
           const heroVideo = document.getElementById("hero-video");
           const coreVideo = document.getElementById("core-solution-video");
 
-          
+          // readyState >= 3 means HAVE_FUTURE_DATA
           const isHeroReady = !heroVideo || heroVideo.readyState >= 3;
           const isCoreReady = !coreVideo || coreVideo.readyState >= 3;
 
@@ -562,6 +535,7 @@
     </script>
 
     <div class="mobile-wrapper">
+      <!-- LANDING PAGE -->
       <div
         id="landing"
         class="absolute inset-0 z-20 flex flex-col w-full h-full bg-black overflow-hidden"
@@ -575,9 +549,8 @@
           webkit-playsinline="webkit-playsinline"
           preload="auto"
           class="absolute inset-0 w-full h-full object-cover opacity-80"
-          poster="https://jimmyrender.com/social-thumb.png"
         >
-          <source src="./BgVDv_3.mp4" type="video/mp4" />
+          <source src="/BgVDv_3.mp4" type="video/mp4" />
         </video>
         <div
           class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80"
@@ -609,6 +582,7 @@
         <div
           class="absolute bottom-[-100px] left-[-5px] right-[-5px] w-[calc(100%+10px)] h-[500px] pointer-events-none z-20 flex flex-col items-center overflow-hidden"
         >
+          <!-- Glass wave background mimicking the photo -->
           <svg class="absolute w-0 h-0">
             <defs>
               <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
@@ -619,6 +593,7 @@
             </defs>
           </svg>
           <div class="absolute bottom-0 w-full h-[300px]">
+            <!-- Glass area -->
             <div
               class="absolute inset-0 w-full h-full bg-white/[0.02] backdrop-blur-lg drop-shadow-xl shadow-[0_-8px_30px_rgba(0,0,0,0.2)]"
               style="
@@ -626,6 +601,7 @@
                 clip-path: url(#wave-clip);
               "
             >
+              <!-- Inner shadow fake placed inside the clipped div so it doesn't bleed out -->
               <svg
                 class="absolute inset-0 w-full h-full pointer-events-none"
                 viewBox="0 0 375 300"
@@ -642,7 +618,7 @@
                 />
               </svg>
             </div>
-
+            <!-- Overlay for the rim light/border effect, properly responsive -->
             <svg
               class="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 375 300"
@@ -658,10 +634,12 @@
             </svg>
           </div>
 
+          <!-- Full track for bound checks -->
           <div
             id="slider-track"
             class="relative w-full h-[500px] pointer-events-none"
           >
+            <!-- Arrows -->
             <div
               id="slider-arrows"
               class="flex flex-col items-center justify-center absolute bottom-[315px] inset-x-0 pointer-events-none transition-opacity duration-300"
@@ -686,6 +664,7 @@
               ></i>
             </div>
 
+            <!-- Button -->
             <button
               id="slider-btn"
               class="w-[84px] h-[84px] rounded-full bg-white/10 backdrop-blur-3xl border border-white/60 text-white font-bold text-[24px] flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.4)] cursor-grab absolute bottom-[209px] left-1/2 -translate-x-1/2 z-20 touch-none transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
@@ -696,10 +675,12 @@
         </div>
       </div>
 
+      <!-- DASHBOARD PAGE -->
       <div
         id="dashboard"
         class="absolute inset-0 z-10 w-full h-full bg-black overflow-hidden"
       >
+        <!-- Background Image -->
         <img
           loading="lazy"
           src="https://lh3.googleusercontent.com/d/1dsy5rC4ph9a0kUJRpSs7LMuqNZBYhLdq"
@@ -712,8 +693,9 @@
 
         <div
           id="dashboard-scroll"
-          class="w-full h-full overflow-y-auto overflow-x-hidden hide-scrollbar pb-16 relative overscroll-contain"
+          class="w-full h-full overflow-y-auto overflow-x-hidden hide-scrollbar pb-16 relative"
         >
+          <!-- Ambient details & lines -->
           <div
             class="absolute inset-0 overflow-hidden pointer-events-none"
             style="z-index: -1"
@@ -749,12 +731,12 @@
                 stroke-width="0.5"
                 fill="none"
               />
-
+              <!-- Star 1 -->
               <path
                 d="M 300 30 Q 310 30 310 20 Q 310 30 320 30 Q 310 30 310 40 Q 310 30 300 30 Z"
                 fill="#EAE0EB"
               />
-
+              <!-- Star 2 -->
               <path
                 d="M 230 60 Q 235 60 235 55 Q 235 60 240 60 Q 235 60 235 65 Q 235 60 230 60 Z"
                 fill="#EAE0EB"
@@ -765,6 +747,7 @@
             ></div>
           </div>
 
+          <!-- Header -->
           <div
             class="sticky top-0 z-50 flex items-center justify-between px-6 pt-8 pb-3 bg-white/10 backdrop-blur-[24px] saturate-[180%] border-b border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]"
           >
@@ -779,13 +762,14 @@
             <div class="relative">
               <img
                 loading="lazy"
-                src="https://jimmyrender.com/social-thumb.png"
+                src="https://drive.google.com/thumbnail?sz=w1000&id=1CNQLC1yDNqE6hIbmC9qh9PC-wJiuoPTr"
                 class="w-[44px] h-[44px] rounded-full object-cover border-[1.5px] border-[#C4B5FD]/60 shadow-md"
                 alt="Jimmy"
               />
             </div>
           </div>
 
+          <!-- Trusted By Strip -->
           <div class="relative z-10 w-full mb-2">
             <div
               class="bg-white/10 backdrop-blur-[24px] saturate-[180%] border-y border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] pl-3 pr-6 py-4 flex items-center overflow-hidden text-white"
@@ -817,6 +801,7 @@
                   class="flex items-center gap-6 w-max translate-x-0 group-hover:animation-play-state-paused"
                   style="animation: mobileMarquee 15s linear infinite"
                 >
+                  <!-- Set 1 -->
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -857,7 +842,7 @@
                       alt="logo"
                     />
                   </div>
-
+                  <!-- Set 2 -->
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -898,7 +883,7 @@
                       alt="logo"
                     />
                   </div>
-
+                  <!-- Set 3 -->
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -939,7 +924,7 @@
                       alt="logo"
                     />
                   </div>
-
+                  <!-- Set 4 (Needed for smooth infinite scroll) -->
                   <div
                     class="flex items-center gap-6 shrink-0 opacity-50 grayscale"
                   >
@@ -985,6 +970,7 @@
             </div>
           </div>
 
+          <!-- Projects Glass Panel Header -->
           <div class="relative z-10 mb-5 w-full pointer-events-auto">
             <div
               class="bg-white/5 backdrop-blur-md border-y border-white/10 shadow-lg px-6 py-2.5 w-full flex items-center justify-between"
@@ -1004,11 +990,14 @@
             </div>
           </div>
 
+          <!-- Main Carousel -->
+
           <div class="relative z-10 mb-6 w-full">
             <div
               id="main-carousel"
               class="flex gap-4 overflow-x-auto hide-scrollbar px-6 drag-scroll"
             >
+              <!-- Repetition 1 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1064,6 +1053,7 @@
                 </div>
               </div>
 
+              <!-- Repetition 2 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1119,6 +1109,7 @@
                 </div>
               </div>
 
+              <!-- Repetition 3 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1174,6 +1165,7 @@
                 </div>
               </div>
 
+              <!-- Repetition 4 -->
               <div
                 class="shrink-0 w-[280px] h-[160px] rounded-[36px] bg-white/10 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden relative shadow-lg select-none"
               >
@@ -1231,6 +1223,7 @@
             </div>
           </div>
 
+          <!-- Featured Projects -->
           <div class="relative z-10 mb-6 w-full pointer-events-auto">
             <div class="mb-5 w-full">
               <div
@@ -1254,9 +1247,12 @@
             <div
               id="featured-carousel"
               class="flex gap-4 overflow-x-auto hide-scrollbar px-6 drag-scroll"
-            ></div>
+            >
+              <!-- POPULATED DYNAMICALLY BY JAVASCRIPT -->
+            </div>
           </div>
 
+          <!-- Spatial Design -->
           <div class="relative z-10 px-6 pb-0 pointer-events-auto w-full">
             <div
               class="bg-white/5 backdrop-blur-md border-y border-white/10 shadow-lg -mx-6 px-6 py-2.5 w-[calc(100%+3rem)] flex items-center justify-between mb-5"
@@ -1282,14 +1278,18 @@
             <div
               id="spatial-carousel"
               class="flex gap-4 overflow-x-auto hide-scrollbar pb-2 -mx-6 px-6 drag-scroll"
-            ></div>
+            >
+              <!-- POPULATED DYNAMICALLY BY JAVASCRIPT -->
+            </div>
           </div>
         </div>
 
+        <!-- PROJECT DETAIL PAGE -->
         <div
           id="project-detail"
           class="absolute inset-0 z-[60] bg-black translate-y-full transition-transform duration-500 overflow-hidden flex flex-col pointer-events-none"
         >
+          <!-- Stationary Background Image -->
           <div
             class="absolute top-0 left-0 w-full h-[75vh] z-0 pointer-events-none"
           >
@@ -1297,7 +1297,7 @@
               loading="lazy"
               id="project-detail-hero-img"
               draggable="false"
-              src="https://jimmyrender.com/social-thumb.png"
+              src=""
               class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300"
               style="filter: brightness(0.85); object-position: 50% 20%"
             />
@@ -1306,6 +1306,7 @@
             ></div>
           </div>
 
+          <!-- Sticky Header -->
           <div
             class="absolute top-0 inset-x-0 h-20 flex justify-start items-center px-6 z-[70] w-full pt-4 pointer-events-none"
           >
@@ -1320,15 +1321,18 @@
 
           <div
             id="project-detail-scroll"
-            class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden hide-scrollbar pb-0 w-full text-white bg-transparent z-10 touch-pan-y overscroll-contain"
+            class="flex-1 overflow-y-auto overflow-x-hidden hide-scrollbar pb-0 w-full text-white bg-transparent z-10 touch-pan-y"
           >
+            <!-- Hero Section -->
             <div
               class="relative w-full min-h-[75vh] shrink-0 flex flex-col justify-end"
             >
+              <!-- Gradient covering bottom portion -->
               <div
                 class="absolute bottom-0 -inset-x-[100px] h-[40vh] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"
               ></div>
 
+              <!-- Content on Image -->
               <div
                 class="relative z-10 px-6 pb-6 pt-[40vh] w-full flex flex-col pointer-events-auto"
               >
@@ -1339,6 +1343,7 @@
                   Diane<br />Kruger
                 </h2>
 
+                <!-- Swipe Instruction -->
                 <div
                   class="flex items-center gap-2 mb-8 animate-fade-in-out pointer-events-none w-full"
                 >
@@ -1391,6 +1396,7 @@
               </div>
             </div>
 
+            <!-- Article Content -->
             <div class="px-6 pt-4 pb-28 min-h-screen bg-black relative z-20">
               <p
                 id="project-detail-concept-text"
@@ -1402,6 +1408,7 @@
                 it's no big deal.
               </p>
 
+              <!-- Video Section -->
               <div id="project-detail-video-sec" class="mt-8 mb-8">
                 <h4
                   class="text-xs font-bold text-white/50 uppercase tracking-[0.2em] mb-4"
@@ -1412,6 +1419,7 @@
                   id="project-detail-video-container"
                   class="w-full aspect-video bg-black/40 backdrop-blur-3xl border border-white/30 rounded-3xl flex items-center justify-center relative overflow-hidden group shadow-xl"
                 >
+                  <!-- Embedded Iframe -->
                   <iframe
                     id="project-detail-video-iframe"
                     class="absolute inset-0 w-full h-full z-0 pointer-events-none transition-all duration-300 opacity-0"
@@ -1428,15 +1436,18 @@
                     allowfullscreen
                   ></iframe>
 
+                  <!-- Watch Trailer overlay on top -->
                   <div
                     id="project-detail-video-overlay"
                     onclick="window.playMobileDetailVideo()"
                     class="absolute inset-0 z-10 cursor-pointer flex flex-col items-center justify-center transition-all duration-300"
                   >
+                    <!-- Dark tint overlay -->
                     <div
                       class="absolute inset-0 bg-black/35 group-hover:bg-black/50 transition-colors"
                     ></div>
 
+                    <!-- Glowing Play Button -->
                     <div
                       id="project-detail-video-play-btn"
                       class="w-14 h-14 bg-white/15 backdrop-blur-xl rounded-full flex items-center justify-center z-20 border border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-125 group-hover:border-white/60 transition-all duration-300"
@@ -1448,23 +1459,26 @@
                       ></i>
                     </div>
 
+                    <!-- Text indicator below button -->
                     <span
                       id="project-detail-video-text"
                       class="text-white/80 text-[10px] uppercase font-bold tracking-[0.2em] mt-3 z-20"
                       >Watch Trailer</span
                     >
 
+                    <!-- Video Thumbnail Image -->
                     <img
                       loading="lazy"
                       id="project-detail-video-placeholder"
                       draggable="false"
-                      src="https://jimmyrender.com/social-thumb.png"
+                      src=""
                       class="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-500"
                     />
                   </div>
                 </div>
               </div>
 
+              <!-- Gallery Section -->
               <div class="mt-10 mb-8" id="project-detail-gallery-container">
                 <h4
                   class="text-xs font-bold text-white/50 uppercase tracking-[0.2em] mb-4"
@@ -1482,10 +1496,13 @@
           </div>
         </div>
 
+        <!-- ABOUT VIEW -->
+        <!-- ABOUT VIEW -->
         <div
           id="about-view"
-          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-[#0c0908] overflow-y-auto overflow-x-hidden hide-scrollbar transition-transform duration-500 ease-out translate-y-full pointer-events-none will-change-transform block font-sans overscroll-contain"
+          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-[#0c0908] overflow-y-auto overflow-x-hidden hide-scrollbar transition-transform duration-500 ease-out translate-y-full pointer-events-none will-change-transform block font-sans"
         >
+          <!-- Background Header Close Button -->
           <button
             class="fixed top-6 right-6 z-50 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 pointer-events-auto"
             onclick="goBackSafely('dashboard')"
@@ -1493,12 +1510,13 @@
             <i data-lucide="x" class="text-white w-6 h-6"></i>
           </button>
 
+          <!-- Background Photo -->
           <div
             class="sticky top-0 z-0 w-full h-[80dvh] bg-black overflow-hidden pointer-events-none flex items-start justify-center"
           >
             <img
               loading="lazy"
-              src="https://jimmyrender.com/social-thumb.png"
+              src="https://drive.google.com/thumbnail?sz=w1000&id=1CNQLC1yDNqE6hIbmC9qh9PC-wJiuoPTr"
               class="w-full h-full object-cover opacity-90"
               alt="Jimmy"
             />
@@ -1507,14 +1525,18 @@
             ></div>
           </div>
 
+          <!-- Bottom Card Component -->
           <div
             class="relative z-10 w-full flex flex-col pointer-events-auto min-h-[45dvh] drop-shadow-[0_-5px_15px_rgba(0,0,0,0.1)] -mt-[25dvh]"
           >
+            <!-- Top Row -->
             <div class="relative w-full h-[72px] pointer-events-none z-20">
+              <!-- Base Floor -->
               <div
                 class="absolute bottom-0 left-0 right-0 h-[16px] bg-black"
               ></div>
 
+              <!-- Left Tab -->
               <div
                 class="absolute top-0 bottom-[16px] left-0 right-[200px] bg-black rounded-tl-[32px] flex items-end pb-[14px] pl-6"
               >
@@ -1525,6 +1547,7 @@
                 </p>
               </div>
 
+              <!-- S-Curve Drop -->
               <svg
                 class="absolute bottom-[16px] right-[152px] w-[48px] h-[56px] text-black"
                 viewBox="0 0 48 56"
@@ -1536,6 +1559,7 @@
                 ></path>
               </svg>
 
+              <!-- Right Cradle -->
               <svg
                 class="absolute bottom-[16px] right-0 w-[24px] h-[56px] text-black"
                 viewBox="0 0 24 56"
@@ -1547,6 +1571,7 @@
                 ></path>
               </svg>
 
+              <!-- Contact Us Pill -->
               <div
                 class="absolute bottom-[22px] right-[24px] pointer-events-auto"
               >
@@ -1580,6 +1605,7 @@
               </div>
             </div>
 
+            <!-- Main White Body -->
             <div class="bg-black w-full px-6 pb-24 pt-4 relative z-20">
               <h2
                 class="text-white font-sans text-[22px] sm:text-[26px] leading-[1.15] font-bold tracking-tight mb-4 w-[95%]"
@@ -1604,6 +1630,7 @@
                 immersive, and memorable.
               </p>
 
+              <!-- Methodology -->
               <div class="mb-10 w-[95%]">
                 <h3
                   class="text-white font-sans text-lg font-bold tracking-tight mb-5 flex items-center gap-3"
@@ -1730,6 +1757,7 @@
                 </div>
               </div>
 
+              <!-- Core Strengths -->
               <div class="mb-14">
                 <h3
                   class="text-white font-sans text-lg font-bold tracking-tight mb-5 flex items-center gap-3"
@@ -1814,6 +1842,980 @@
           </div>
         </div>
 
+        <!-- FEATURED VIEW -->
+        <div
+          id="pricing-view"
+          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-black overflow-hidden translate-y-full transition-transform duration-500 ease-out flex flex-col pointer-events-none will-change-transform"
+        >
+          <div
+            id="featured-iframe-container"
+            class="w-full h-full relative overflow-hidden pointer-events-auto"
+            style="-webkit-overflow-scrolling: touch"
+          >
+            <iframe
+              id="featured-iframe"
+              src="/featured.html?mobile=true"
+              class="absolute top-0 left-0 border-none"
+              style="transform-origin: top left"
+            ></iframe>
+          </div>
+        </div>
+        <div
+          id="pricing-view-old"
+          class="hidden"
+          class="absolute inset-0 z-[80] w-full h-[100dvh] bg-black overflow-y-auto overflow-x-hidden hide-scrollbar translate-y-full transition-transform duration-500 ease-out flex flex-col pointer-events-none will-change-transform"
+        >
+          <div
+            class="absolute inset-0 overflow-hidden pointer-events-none"
+            style="z-index: -1"
+          >
+            <div
+              class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-violet-500 rounded-full blur-[100px] opacity-30 mix-blend-multiply"
+            ></div>
+            <div
+              class="absolute top-[20%] -right-[20%] w-[60%] h-[60%] bg-fuchsia-500 rounded-full blur-[120px] opacity-25 mix-blend-multiply"
+            ></div>
+            <div
+              class="absolute -bottom-[10%] left-[20%] w-[70%] h-[50%] bg-purple-600 rounded-full blur-[100px] opacity-30 mix-blend-multiply"
+            ></div>
+          </div>
+
+          <!-- Fixed Title -->
+          <div
+            class="absolute left-0 top-[80px] md:top-[110px] pointer-events-none z-0 overflow-hidden"
+          >
+            <h1
+              class="text-[100px] md:text-[200px] font-black tracking-tighter text-white/10 leading-[0.8] uppercase font-montserrat select-none -ml-4 md:-ml-12"
+            >
+              PRICING
+            </h1>
+          </div>
+
+          <!-- Header -->
+          <div
+            class="flex-none p-6 pt-6 pb-2 flex justify-start items-start pointer-events-auto mt-[-10px] relative z-20"
+          >
+            <div
+              class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs text-white shadow-md border border-white/50 jimmy-render-brand"
+            >
+              JIMMY.RENDER
+            </div>
+          </div>
+
+          <div
+            class="flex-1 overflow-y-auto w-full px-6 pb-24 pointer-events-auto relative z-10 hide-scrollbar"
+          >
+            <!-- Spacer for fixed title -->
+            <div class="w-full h-[60px]"></div>
+
+            <!-- Cards Container -->
+            <div class="w-full max-w-5xl mx-auto flex flex-col gap-10 pb-20">
+              <!-- SECTION HEAD: CAMPAIGN PACKAGES -->
+              <div>
+                <h3
+                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-6 uppercase text-center md:text-left select-none"
+                >
+                  CAMPAIGN PACKAGES
+                </h3>
+                <div class="flex flex-col gap-6 w-full">
+                  <div
+                    class="flex gap-4 overflow-x-auto hide-scrollbar drag-scroll pt-6 pb-6 -mx-6 px-6 w-[calc(100%+3rem)] items-stretch select-none"
+                    style="
+                      overscroll-behavior-x: contain;
+                      -webkit-overflow-scrolling: touch;
+                    "
+                  >
+                    <!-- STARTER PACK -->
+                    <div
+                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
+                    >
+                      <div class="flex flex-col gap-4">
+                        <div>
+                          <span
+                            class="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-sans mb-1.5 block"
+                            >STARTER PACK</span
+                          >
+                          <div class="flex items-baseline">
+                            <span
+                              class="text-[44px] font-black text-white tracking-tight leading-none"
+                              >999</span
+                            >
+                            <span
+                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
+                              >/EGP</span
+                            >
+                          </div>
+                        </div>
+
+                        <p
+                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
+                        >
+                          Perfect first step for brands entering the digital
+                          space
+                        </p>
+
+                        <div class="w-full h-px bg-white/5 my-1"></div>
+
+                        <ul class="space-y-3.5">
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>5-Sec. promotional video</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>2 professionally designed posts</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>1 round of revisions included</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Delivered within 5 business days</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <button
+                        onclick="buyProject('Starter Pack', '999 EGP')"
+                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block"
+                      >
+                        START SMALL
+                      </button>
+                    </div>
+
+                    <!-- CINEMATIC -->
+                    <div
+                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
+                    >
+                      <div class="flex flex-col gap-4">
+                        <div>
+                          <span
+                            class="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-sans mb-1.5 block"
+                            >CINEMATIC</span
+                          >
+                          <div class="flex items-baseline">
+                            <span
+                              class="text-[44px] font-black text-white tracking-tight leading-none"
+                              >4,999</span
+                            >
+                            <span
+                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
+                              >/EGP</span
+                            >
+                          </div>
+                        </div>
+
+                        <p
+                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
+                        >
+                          Ideal for businesses ready to build a real online
+                          presence
+                        </p>
+
+                        <div class="w-full h-px bg-white/5 my-1"></div>
+
+                        <ul class="space-y-3.5">
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>15-Sec. promotional video</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>4 professionally designed posts</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Personalized marketing advice session</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>2 rounds of revisions included</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Delivered within 10 business days</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <button
+                        onclick="buyProject('Cinematic Pack', '4,999 EGP')"
+                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block"
+                      >
+                        BUILD PRESENCE
+                      </button>
+                    </div>
+
+                    <!-- PREMIUM (MOST POPULAR) -->
+                    <div
+                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-gradient-to-b from-[#221244] to-[#0E061D] border border-violet-500/30 rounded-[32px] p-6 flex flex-col justify-between relative shadow-[0_12px_40px_rgba(109,84,223,0.3)] z-10 mt-6"
+                    >
+                      <!-- MOST POPULAR BADGE -->
+                      <div
+                        class="absolute -top-[14px] left-1/2 -translate-x-1/2 bg-[#6E53DF] text-white font-extrabold text-[9px] uppercase tracking-widest px-4 py-1.5 rounded-full select-none shadow-[0_4px_12px_rgba(109,84,223,0.4)]"
+                      >
+                        MOST POPULAR
+                      </div>
+
+                      <div class="flex flex-col gap-4 mt-1">
+                        <div>
+                          <span
+                            class="text-[10px] font-extrabold tracking-widest text-violet-300 uppercase font-sans mb-1.5 block"
+                            >PREMIUM</span
+                          >
+                          <div class="flex items-baseline">
+                            <span
+                              class="text-[44px] font-black text-white tracking-tight leading-none"
+                              >8,999</span
+                            >
+                            <span
+                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
+                              >/EGP</span
+                            >
+                          </div>
+                        </div>
+
+                        <p
+                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
+                        >
+                          A complete content campaign that drives real results
+                        </p>
+
+                        <div class="w-full h-px bg-white/10 my-1"></div>
+
+                        <ul class="space-y-3.5">
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>30-Sec. promotional video</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>1 bonus 5-second highlight clip</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>10 professionally designed posts</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Personalized marketing advice session</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>3 rounds of revisions included</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/95"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Delivered within 10 business days</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <button
+                        onclick="buyProject('Premium Pack', '8,999 EGP')"
+                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block"
+                      >
+                        GO PREMIUM
+                      </button>
+                    </div>
+
+                    <!-- BRAND FILM -->
+                    <div
+                      class="shrink-0 w-[85%] sm:w-[320px] h-auto bg-[#0B0612] border border-white/10 rounded-[32px] p-6 flex flex-col justify-between relative shadow-lg mt-6"
+                    >
+                      <div class="flex flex-col gap-4">
+                        <div>
+                          <span
+                            class="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-sans mb-1.5 block"
+                            >BRAND FILM</span
+                          >
+                          <div class="flex items-baseline">
+                            <span
+                              class="text-[44px] font-black text-white tracking-tight leading-none"
+                              >24,999</span
+                            >
+                            <span
+                              class="text-[14px] font-semibold text-white/40 tracking-wide ml-1.5 uppercase font-sans"
+                              >/EGP</span
+                            >
+                          </div>
+                        </div>
+
+                        <p
+                          class="text-white/60 text-[12.5px] leading-relaxed font-sans"
+                        >
+                          Full-service campaign management — we handle
+                          everything
+                        </p>
+
+                        <div class="w-full h-px bg-white/5 my-1"></div>
+
+                        <ul class="space-y-3.5">
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>1-minute full production video</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>2&times;15-Sec. short form videos</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>20 professionally designed posts</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Personalized strategy session</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Full competitors market analysis</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Ad account setup & targeting</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Unlimited revisions for 14 days</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-semibold text-white/90"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-3 h-3 stroke-[3.5]"
+                              ></i>
+                            </div>
+                            <span>Delivered within 14 business days</span>
+                          </li>
+                          <li
+                            class="flex items-center gap-3 text-xs font-medium text-white/55 italic"
+                          >
+                            <div
+                              class="w-[18px] h-[18px] rounded-full bg-white/10 text-white flex items-center justify-center shrink-0 shadow-sm"
+                            >
+                              <i
+                                data-lucide="check"
+                                class="w-2.5 h-2.5 stroke-[2]"
+                              ></i>
+                            </div>
+                            <span>*Platform payments not included</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <button
+                        onclick="buyProject('Brand Film Pack', '24,999 EGP')"
+                        class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-all rounded-[28px] font-extrabold text-[11px] tracking-widest uppercase text-center mt-6 active:scale-95 shadow-md block pointer-events-auto"
+                      >
+                        FULL BRAND EXPERIENCE
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION HEAD: BRAND FOUNDATION -->
+              <div class="w-full">
+                <h3
+                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
+                >
+                  BRAND FOUNDATION
+                </h3>
+
+                <!-- FOUNDATION CARD -->
+                <div
+                  class="bg-gradient-to-b from-[#180F2E] to-[#0A0417] border border-violet-500/20 rounded-[36px] p-6 md:p-8 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center relative w-full shadow-lg cursor-pointer"
+                  onclick="buyProject('Foundation')"
+                >
+                  <div class="flex-1">
+                    <span
+                      class="text-[10px] font-extrabold tracking-widest text-[#94A3B8] block mb-2 font-sans select-none"
+                      >NEW BUSINESS ESSENTIALS</span
+                    >
+                    <h4
+                      class="text-3xl font-black text-white tracking-tight uppercase font-sans"
+                    >
+                      FOUNDATION
+                    </h4>
+
+                    <div class="flex items-center gap-3.5 mt-3">
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[44px] font-black text-white tracking-tight leading-none"
+                          >15,000</span
+                        >
+                        <span
+                          class="text-sm font-extrabold text-white/50 ml-1.5 uppercase tracking-wide"
+                          >EGP</span
+                        >
+                      </div>
+                      <span
+                        class="px-2.5 py-1 bg-violet-900/40 text-violet-300 text-[10px] font-black uppercase tracking-widest rounded-md border border-violet-800/40 select-none"
+                        >20% OFF</span
+                      >
+                    </div>
+
+                    <div class="w-full h-px bg-white/5 my-4"></div>
+
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                      <li
+                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
+                      >
+                        <i
+                          data-lucide="check"
+                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
+                        ></i>
+                        <span>Logo design</span>
+                      </li>
+                      <li
+                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
+                      >
+                        <i
+                          data-lucide="check"
+                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
+                        ></i>
+                        <span
+                          >Color palette and design foundation for the
+                          brand</span
+                        >
+                      </li>
+                      <li
+                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
+                      >
+                        <i
+                          data-lucide="check"
+                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
+                        ></i>
+                        <span>2 branded social media posts</span>
+                      </li>
+                      <li
+                        class="flex items-start gap-3.5 text-xs font-semibold text-white/90"
+                      >
+                        <i
+                          data-lucide="check"
+                          class="w-4 h-4 text-violet-300 mt-[2px] shrink-0 stroke-[3]"
+                        ></i>
+                        <span>Menus/card designs</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div
+                    class="w-full md:w-auto shrink-0 self-stretch md:self-center flex items-end"
+                  >
+                    <button
+                      onclick="buyProject('Foundation Pack')"
+                      class="w-full md:w-[200px] py-4 bg-white/10 hover:bg-white/15 border border-white/20 rounded-2xl font-extrabold text-xs tracking-widest text-white uppercase text-center active:scale-95 transition-all shadow-md group pointer-events-auto"
+                    >
+                      ACQUIRE FOUNDATION
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION HEAD: SOLO SERVICES -->
+              <div class="w-full">
+                <h3
+                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
+                >
+                  SOLO SERVICES
+                </h3>
+                <div class="flex flex-col gap-4">
+                  <!-- WEB DESIGN -->
+                  <div
+                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
+                    onclick="buyProject('Web Design')"
+                  >
+                    <div class="flex-1">
+                      <h4
+                        class="text-sm font-black text-white tracking-widest uppercase"
+                      >
+                        WEB DESIGN
+                      </h4>
+                      <p
+                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
+                      >
+                        A fully functional website crafted with premium visuals,
+                        refined composition, and responsive design, delivered as
+                        a ready-to-use HTML file.
+                      </p>
+                    </div>
+                    <div
+                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
+                    >
+                      <span
+                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
+                        >Starting From</span
+                      >
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[26px] font-black text-white tracking-tight"
+                          >10,000</span
+                        >
+                        <span
+                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
+                          >EGP</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- CGI / VFX VIDEO -->
+                  <div
+                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
+                    onclick="buyProject('CGI / VFX Video')"
+                  >
+                    <div class="flex-1">
+                      <h4
+                        class="text-sm font-black text-white tracking-widest uppercase"
+                      >
+                        CGI / VFX VIDEO
+                      </h4>
+                      <p
+                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
+                      >
+                        High-impact computer-generated visuals and visual
+                        effects.
+                      </p>
+                    </div>
+                    <div
+                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
+                    >
+                      <span
+                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
+                        >Starting From</span
+                      >
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[26px] font-black text-white tracking-tight"
+                          >3,000</span
+                        >
+                        <span
+                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
+                          >EGP</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SHOOT & EDIT -->
+                  <div
+                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
+                    onclick="buyProject('Shoot & Edit')"
+                  >
+                    <div class="flex-1">
+                      <h4
+                        class="text-sm font-black text-white tracking-widest uppercase"
+                      >
+                        SHOOT & EDIT
+                      </h4>
+                      <p
+                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
+                      >
+                        On-location video capture combined with full
+                        professional editing.
+                      </p>
+                    </div>
+                    <div
+                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
+                    >
+                      <span
+                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
+                        >Starting From</span
+                      >
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[26px] font-black text-white tracking-tight"
+                          >2,000</span
+                        >
+                        <span
+                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
+                          >EGP</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIDEO EDITING -->
+                  <div
+                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
+                    onclick="buyProject('Video Editing')"
+                  >
+                    <div class="flex-1">
+                      <h4
+                        class="text-sm font-black text-white tracking-widest uppercase"
+                      >
+                        VIDEO EDITING
+                      </h4>
+                      <p
+                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
+                      >
+                        Professional editing of your existing footage. Color
+                        grading, cuts, transitions & sound design.
+                      </p>
+                    </div>
+                    <div
+                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
+                    >
+                      <span
+                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5"
+                        >Starting From</span
+                      >
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[26px] font-black text-white tracking-tight"
+                          >1,000</span
+                        >
+                        <span
+                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
+                          >EGP</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION HEAD: INTERIOR DESIGN -->
+              <div class="w-full">
+                <h3
+                  class="text-[11px] font-black text-violet-300 tracking-[0.2em] mb-4 uppercase text-center md:text-left select-none"
+                >
+                  INTERIOR DESIGN
+                </h3>
+                <div class="flex flex-col gap-4">
+                  <!-- RESIDENTIAL SPACES -->
+                  <div
+                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
+                    onclick="buyProject('Residential Spaces')"
+                  >
+                    <div class="flex-1">
+                      <h4
+                        class="text-sm font-black text-white tracking-widest uppercase"
+                      >
+                        RESIDENTIAL SPACES
+                      </h4>
+                      <p
+                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
+                      >
+                        Thoughtfully designed interiors that balance comfort,
+                        functionality, and aesthetics for modern living.
+                      </p>
+                    </div>
+                    <div
+                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
+                    >
+                      <span
+                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5 whitespace-nowrap"
+                        >Per Square Meter</span
+                      >
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[26px] font-black text-white tracking-tight"
+                          >80</span
+                        >
+                        <span
+                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
+                          >EGP</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- COMMERCIAL SPACES -->
+                  <div
+                    class="w-full bg-[#110B1E]/90 border border-white/10 rounded-[28px] p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-violet-500/30 hover:bg-[#140E24] transition-all duration-300 cursor-pointer"
+                    onclick="buyProject('Commercial Spaces')"
+                  >
+                    <div class="flex-1">
+                      <h4
+                        class="text-sm font-black text-white tracking-widest uppercase"
+                      >
+                        COMMERCIAL SPACES
+                      </h4>
+                      <p
+                        class="text-xs text-white/60 leading-relaxed mt-1.5 font-sans"
+                      >
+                        Strategic interior environments designed to enhance
+                        customer experience, strengthen brand identity, and
+                        improve workplace efficiency.
+                      </p>
+                    </div>
+                    <div
+                      class="flex flex-col items-start md:items-end shrink-0 mt-1 md:mt-0 select-none"
+                    >
+                      <span
+                        class="text-[9px] font-bold text-white/40 tracking-wider uppercase mb-0.5 whitespace-nowrap"
+                        >Per Square Meter</span
+                      >
+                      <div class="flex items-baseline">
+                        <span
+                          class="text-[26px] font-black text-white tracking-tight"
+                          >120</span
+                        >
+                        <span
+                          class="text-[10px] font-bold text-white/50 ml-1.5 uppercase font-sans"
+                          >EGP</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NEW BUSINESS WELCOME OFFER -->
+              <div
+                class="relative w-full overflow-hidden bg-gradient-to-r from-[#211145] to-[#12072E] border border-violet-500/30 rounded-[36px] p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-[0_12px_40px_rgba(109,84,223,0.15)] my-4"
+              >
+                <div class="flex-1 text-center md:text-left">
+                  <span
+                    class="text-[11px] font-extrabold tracking-widest text-violet-300 uppercase block font-sans select-none"
+                    >NEW BUSINESS WELCOME OFFER</span
+                  >
+                  <span
+                    class="text-[52px] font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-indigo-200 leading-none mt-2 block select-none"
+                    >20% OFF</span
+                  >
+                  <p
+                    class="text-white/70 text-sm font-medium mt-3 leading-relaxed max-w-[450px]"
+                  >
+                    Starting a new venture? Get an exclusive discount on your
+                    first order on any package or solo service.
+                  </p>
+                  <span
+                    class="text-[9px] font-bold text-violet-300/50 uppercase tracking-widest block mt-4 select-none"
+                    >VALID FOR FIRST-TIME BUSINESS OWNERS ONLY.</span
+                  >
+                </div>
+                <div
+                  class="w-full md:w-auto shrink-0 flex flex-col items-center"
+                >
+                  <button
+                    onclick="buyProject('Welcome Offer 20% Off')"
+                    class="w-full md:w-[220px] py-4 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-violet-400/50 backdrop-blur-xl rounded-2xl group flex flex-col items-center justify-center transition-all duration-300 shadow-lg pointer-events-auto"
+                  >
+                    <div
+                      class="flex items-center gap-2 text-violet-200 font-extrabold text-sm uppercase tracking-wider group-hover:translate-x-1 transition-transform"
+                    >
+                      <span>CLAIM OFFER</span>
+                      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                    <span
+                      class="text-[8px] font-bold text-white/40 tracking-wider uppercase mt-1"
+                      >UNLOCK PREMIUM NOW</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEARCH OVERLAY -->
         <div
           id="search-overlay"
           class="absolute inset-0 z-[70] bg-transparent backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col pt-12 px-6"
@@ -1839,100 +2841,17 @@
           </div>
           <div
             id="search-results"
-            class="flex-1 flex flex-col gap-4 overflow-y-auto pb-24 min-h-0 overscroll-contain"
-          >
-            <h3
-              class="text-white/40 text-xs font-bold uppercase tracking-wider mb-2"
-            >
-              Recent Projects
-            </h3>
-            <div
-              class="search-item flex items-center gap-4 bg-[#1a1225] rounded-3xl p-3 border border-white/10 shadow-none"
-              data-title="abstract geometry"
-            >
-              <div
-                class="w-12 h-12 rounded-[20px] overflow-hidden bg-white/5 border border-white/20 shrink-0 shadow-none"
-              >
-                <img
-                  loading="lazy"
-                  src="https://jimmyrender.com/social-thumb.png"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h4 class="text-white font-medium text-sm">
-                  Abstract Geometry
-                </h4>
-                <p class="text-white/50 text-xs">Updated 2 days ago</p>
-              </div>
-            </div>
-
-            <div
-              class="search-item flex items-center gap-4 bg-[#1a1225] rounded-3xl p-3 border border-white/10 shadow-none"
-              data-title="modern waves 3d spatial"
-            >
-              <div
-                class="w-12 h-12 rounded-[20px] overflow-hidden bg-white/5 border border-white/20 shrink-0 shadow-none"
-              >
-                <img
-                  loading="lazy"
-                  src="https://jimmyrender.com/social-thumb.png"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h4 class="text-white font-medium text-sm">Modern Waves 3D</h4>
-                <p class="text-white/50 text-xs">Updated 5 days ago</p>
-              </div>
-            </div>
-
-            <div
-              class="search-item flex items-center gap-4 bg-[#1a1225] rounded-3xl p-3 border border-white/10 shadow-none"
-              data-title="cyberpunk streets"
-            >
-              <div
-                class="w-12 h-12 rounded-[20px] overflow-hidden bg-white/5 border border-white/20 shrink-0 shadow-none"
-              >
-                <img
-                  loading="lazy"
-                  src="https://jimmyrender.com/social-thumb.png"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h4 class="text-white font-medium text-sm">
-                  Cyberpunk Streets
-                </h4>
-                <p class="text-white/50 text-xs">Updated last week</p>
-              </div>
-            </div>
-
-            <div
-              class="search-item flex items-center gap-4 bg-[#1a1225] rounded-3xl p-3 border border-white/10 shadow-none"
-              data-title="minimal shapes branding"
-            >
-              <div
-                class="w-12 h-12 rounded-[20px] overflow-hidden bg-white/5 border border-white/20 shrink-0 shadow-none"
-              >
-                <img
-                  loading="lazy"
-                  src="https://jimmyrender.com/social-thumb.png"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h4 class="text-white font-medium text-sm">Minimal Branding</h4>
-                <p class="text-white/50 text-xs">Updated 2 weeks ago</p>
-              </div>
-            </div>
-          </div>
+            class="flex-1 flex flex-col gap-4 overflow-y-auto pb-24 min-h-0"
+          ></div>
         </div>
 
+        <!-- Bottom Nav -->
         <div
           id="bottom-nav-container"
           class="absolute bottom-0 inset-x-0 h-[70px] z-[200] pointer-events-none transition-all duration-500"
           style="transform: translateY(100px); opacity: 0"
         >
+          <!-- SVG Mask Definition (Invisible) -->
           <svg class="absolute w-0 h-0">
             <defs>
               <clipPath id="nav-cutout-clip">
@@ -1941,6 +2860,7 @@
             </defs>
           </svg>
 
+          <!-- White background with dynamic animated SVG cutout -->
           <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div
               class="absolute inset-0 w-full h-full bg-black/60 backdrop-blur-xl pointer-events-auto border-t border-white/10"
@@ -1948,16 +2868,19 @@
             ></div>
           </div>
 
+          <!-- The sliding black dot -->
           <div
             id="nav-dot"
             class="absolute w-[50px] h-[50px] bg-black/60 backdrop-blur-xl rounded-full top-[-20px] pointer-events-none z-10 shadow-[0_4px_15px_rgba(0,0,0,0.3)] border border-white/10"
             style="left: 0; transform: translateX(0)"
           ></div>
 
+          <!-- Icons -->
           <div
             id="nav-icons"
             class="absolute top-0 inset-x-0 h-[60px] flex items-center px-1 pointer-events-auto z-20"
           >
+            <!-- MAIN NAV -->
             <div id="main-nav-items" class="nav-transition-set nav-set-active">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -2003,10 +2926,22 @@
                   >Talk</span
                 >
               </div>
-
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
                 onclick="setNavActive(3)"
+              >
+                <i
+                  data-lucide="star"
+                  class="icon w-[24px] h-[24px] pointer-events-none"
+                ></i>
+                <span
+                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
+                  >Featured</span
+                >
+              </div>
+              <div
+                class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
+                onclick="setNavActive(4)"
               >
                 <i
                   data-lucide="feather"
@@ -2019,6 +2954,7 @@
               </div>
             </div>
 
+            <!-- ABOUT NAV -->
             <div id="about-nav-items" class="hidden nav-transition-set">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -2054,6 +2990,85 @@
               </div>
             </div>
 
+            <!-- PRICING NAV -->
+            <div id="pricing-nav-items" class="hidden nav-transition-set">
+              <div
+                class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
+                onclick="handlePricingNavBack()"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="icon w-[24px] h-[24px] pointer-events-none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 10.5H8.8l4.6-4.6a1.5 1.5 0 0 0-2.12-2.12l-7.5 7.5a1.5 1.5 0 0 0 0 2.12l7.5 7.5a1.5 1.5 0 0 0 2.12-2.12L8.8 13.5H20a1.5 1.5 0 0 0 0-3z"
+                  />
+                </svg>
+                <span
+                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
+                  >Back</span
+                >
+              </div>
+              <div
+                class="nav-item flex-[2] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
+                onclick="openPricingView()"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  class="icon w-[24px] h-[24px] pointer-events-none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g transform="scale(0.85) translate(2, 2)">
+                    <!-- Background Card -->
+                    <g transform="rotate(-8 12 12) translate(1, -2)">
+                      <rect
+                        x="2"
+                        y="6"
+                        width="20"
+                        height="12"
+                        rx="0.5"
+                        fill="#0F0518"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                      />
+                    </g>
+                    <!-- Foreground Card -->
+                    <g transform="translate(-1, 1)">
+                      <rect
+                        x="2"
+                        y="6"
+                        width="20"
+                        height="12"
+                        rx="0.5"
+                        fill="#0F0518"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                      />
+                      <circle cx="12" cy="12" r="3.2" stroke-width="1.4" />
+                      <path d="M12 10.3v3.4" stroke-width="1.4" />
+                      <path
+                        d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
+                        stroke-width="1.4"
+                      />
+                      <!-- Corners -->
+                      <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
+                      <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
+                      <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
+                      <path d="M18.5 15.5v-1.5H17" stroke-width="1.4" />
+                    </g>
+                  </g>
+                </svg>
+                <span
+                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
+                  >Featured</span
+                >
+              </div>
+            </div>
+
+            <!-- PROJECT NAV -->
             <div id="project-nav-items" class="hidden nav-transition-set">
               <div
                 class="nav-item flex-[1] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent active"
@@ -2074,7 +3089,61 @@
                   >Back</span
                 >
               </div>
-
+              <div
+                class="nav-item flex-[2] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
+                onclick="openProjectPricing()"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  class="icon w-[24px] h-[24px] pointer-events-none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g transform="scale(0.85) translate(2, 2)">
+                    <!-- Background Card -->
+                    <g transform="rotate(-8 12 12) translate(1, -2)">
+                      <rect
+                        x="2"
+                        y="6"
+                        width="20"
+                        height="12"
+                        rx="0.5"
+                        fill="#0F0518"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                      />
+                    </g>
+                    <!-- Foreground Card -->
+                    <g transform="translate(-1, 1)">
+                      <rect
+                        x="2"
+                        y="6"
+                        width="20"
+                        height="12"
+                        rx="0.5"
+                        fill="#0F0518"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                      />
+                      <circle cx="12" cy="12" r="3.2" stroke-width="1.4" />
+                      <path d="M12 10.3v3.4" stroke-width="1.4" />
+                      <path
+                        d="M10.8 11c0-.4.3-.6 1.2-.6s1.2.2 1.2.6-.4.6-1.2.6-1.2.2-1.2.6.4.6 1.2.6 1.2-.2 1.2-.6"
+                        stroke-width="1.4"
+                      />
+                      <!-- Corners -->
+                      <path d="M5.5 8.5v1.5H7" stroke-width="1.4" />
+                      <path d="M18.5 8.5v1.5H17" stroke-width="1.4" />
+                      <path d="M5.5 15.5v-1.5H7" stroke-width="1.4" />
+                      <path d="M18.5 15.5v-1.5H17" stroke-width="1.4" />
+                    </g>
+                  </g>
+                </svg>
+                <span
+                  class="label text-[11px] font-bold text-white absolute bottom-[10px] tracking-wide pointer-events-none"
+                  >Featured</span
+                >
+              </div>
               <div
                 class="nav-item flex-[2] flex flex-col items-center justify-center cursor-pointer relative h-full bg-transparent"
                 onclick="buyProject()"
@@ -2161,21 +3230,6 @@
             "https://lh3.googleusercontent.com/d/1ogAv27qKRdh6maREq1O2HAMCruPKtAjH",
             "https://lh3.googleusercontent.com/d/1icmwDgamHf0ZQUEu_yrNKpjFQ-fo-qrl",
             "https://lh3.googleusercontent.com/d/1epd-7BSLU0S99RchlsHbbPwwF6Y5S4jH",
-          ],
-        },
-        {
-          src: "https://lh3.googleusercontent.com/d/1AtP1m-gFm19qD6uH2OUKBJydnOojGt2P",
-          title: "Beats",
-          concept:
-            "Where premium motion design meets the culture of sound. Hyper-realistic 3D rendering meets dynamic, sophisticated aesthetics in immaculate 4K. Every frame is engineered to position the Beats Studio 3 as both a performance instrument and a luxury object.",
-          video: "https://www.youtube.com/embed/kmbODlk7zCo",
-          hearts: "5.4K",
-          gallery: [
-            "https://lh3.googleusercontent.com/d/1F1nUt6gNF7X3o6nVgbcokyqNPnxKWBaW",
-            "https://lh3.googleusercontent.com/d/1x7juL-Dur6SBFZhe8t4kozzXyljXuEOs",
-            "https://lh3.googleusercontent.com/d/1Sm0KVm5fBZqDyMuuSjJZNhC8th3fJiaU",
-            "https://lh3.googleusercontent.com/d/1Jjctf0KBKmmIhQjygOsbxr_h9pmJw5bL",
-            "https://lh3.googleusercontent.com/d/1saQ7x-6_ZyrttNdUGw4dsNbWvtoUOkzV",
           ],
         },
         {
@@ -2405,11 +3459,10 @@
         allProjects.find((p) => p.title === "Prime Drink"),
         allProjects.find((p) => p.title === "ROLEX"),
         allProjects.find((p) => p.title === "Dior Sauvage"),
-      ];
+      ].filter(Boolean);
 
       const rawProjectData = [
         allProjects.find((p) => p.title === "Emporio armani"),
-        allProjects.find((p) => p.title === "Beats"),
         allProjects.find((p) => p.title === "KAYALI"),
         allProjects.find((p) => p.title === "Prada"),
         allProjects.find((p) => p.title === "Willy's"),
@@ -2418,7 +3471,7 @@
         allProjects.find((p) => p.title === "MoM-Resto"),
         allProjects.find((p) => p.title === "Chanel"),
         allProjects.find((p) => p.title === "bubly"),
-      ];
+      ].filter(Boolean);
 
       function formatCarouselTitle(title) {
         const norm = title.trim();
@@ -2453,11 +3506,11 @@
         return `<span class="truncate block max-w-[85px] text-[12px] font-medium font-sans text-white/90 whitespace-nowrap">${norm}</span>`;
       }
 
-      
+      // Dynamic Population of Featured Carousel
       const featuredCarousel = document.getElementById("featured-carousel");
       if (featuredCarousel) {
         let html = "";
-        
+        // We repeat the array 3 times for premium smooth endless scrolling
         for (let r = 0; r < 3; r++) {
           rawProjectData.forEach((prj) => {
             html += `
@@ -2479,7 +3532,7 @@
         featuredCarousel.innerHTML = html;
       }
 
-      
+      // Dynamic Population of Spatial Carousel (only four projects of spatial design)
       const spatialCarousel = document.getElementById("spatial-carousel");
       const spatialData = [
         {
@@ -2521,7 +3574,7 @@
         spatialCarousel.innerHTML = html;
       }
 
-      
+      // Cleanup old hardcoded components
       const spatialCarouselOld = document.getElementById(
         "spatial-carousel-old",
       );
@@ -2535,7 +3588,7 @@
         featuredCarouselOld.parentNode.removeChild(featuredCarouselOld);
       }
 
-      
+      // Dynamic Population of Search overlay results
       const searchResults = document.getElementById("search-results");
       if (searchResults) {
         let html = `
@@ -2575,7 +3628,7 @@
 
       lucide.createIcons();
 
-      
+      // Project transition logic
       let projectsList = [];
       let spatialProjectsList = [];
       let currentProjectIndex = 0;
@@ -2583,9 +3636,8 @@
 
       window.projectsList = projectsList;
       window.spatialProjectsList = spatialProjectsList;
-      window.activeList = activeList;
 
-      
+      // Extract projects and make cards clickable
       setTimeout(() => {
         document.querySelectorAll(".shrink-0, .search-item").forEach((card) => {
           if (
@@ -2614,7 +3666,7 @@
               const targetList = isSpatial ? spatialProjectsList : projectsList;
               const listName = isSpatial ? "spatial" : "projects";
 
-              
+              // Avoid duplicate array items in navigation index tracking
               const srcShort = imgElement.getAttribute("src");
               const alreadyExists = targetList.some((p) => p.src === srcShort);
               if (!alreadyExists) {
@@ -2765,14 +3817,14 @@
 
         function applyUpdates() {
           const title = document.getElementById("project-detail-title");
-          if (heroImg) {
+          if (heroImg && proj) {
             heroImg.src = proj.src;
           }
-          if (title) {
+          if (title && proj) {
             title.innerHTML = formatDetailTitle(proj.title);
           }
 
-          
+          // Update Concept dynamic text
           const conceptTextEl = document.getElementById(
             "project-detail-concept-text",
           );
@@ -2781,7 +3833,7 @@
               proj.concept || "The concept for this project is being updated.";
           }
 
-          
+          // Handle Video visibility and reset overlay play state
           const videoSec = document.getElementById("project-detail-video-sec");
           const iframe = document.getElementById("project-detail-video-iframe");
           const overlay = document.getElementById(
@@ -2800,7 +3852,7 @@
               "project-detail-video-text",
             );
             if (proj.video && proj.video.trim() !== "") {
-              
+              // Pre-load video source link but keep paused/hidden with overlay visible
               if (iframe && overlay) {
                 const sep = proj.video.includes("?") ? "&" : "?";
                 const newSrc = proj.video + sep + "rel=0&showinfo=0&controls=0";
@@ -2887,7 +3939,7 @@
               heroImg.style.transform = `translateX(${direction === "next" ? "50px" : "-50px"})`;
               scrollContainer.scrollTop = 0;
 
-              
+              // force reflow
               void scrollContainer.offsetWidth;
               void heroImg.offsetWidth;
 
@@ -2910,12 +3962,12 @@
             scrollContainer.style.transform = "translateX(0)";
             scrollContainer.style.opacity = "1";
           }
-          if (heroImg) {
+          if (heroImg && proj) {
             heroImg.style.transition = "opacity 0.2s";
             heroImg.style.opacity = "0";
             heroImg.style.transform = "translateX(0)";
             setTimeout(() => {
-              heroImg.src = proj.src;
+              if (proj) heroImg.src = proj.src;
               heroImg.style.opacity = "1";
             }, 200);
           }
@@ -3021,15 +4073,15 @@
             ) {
               return;
             }
-            
+            // Prepare for sliding in from right
             el.classList.remove("hidden");
             el.classList.remove("nav-set-active", "nav-set-hide-down");
             el.classList.add("nav-set-from-right");
 
-            
+            // Force layout reflow
             void el.offsetWidth;
 
-            
+            // Start the transition
             el.classList.remove("nav-set-from-right");
             el.classList.add("nav-set-active");
           } else {
@@ -3037,11 +4089,11 @@
               el.classList.contains("nav-set-active") &&
               !el.classList.contains("hidden")
             ) {
-              
+              // Sliding down & fading out
               el.classList.remove("nav-set-active");
               el.classList.add("nav-set-hide-down");
 
-              
+              // Hide after transition duration
               setTimeout(() => {
                 if (!el.classList.contains("nav-set-active")) {
                   el.classList.add("hidden");
@@ -3131,13 +4183,12 @@
             currentProjectIndex !== undefined &&
             activeList === listName
           ) {
-            
+            // Fallback
             if (index > currentProjectIndex) direction = "next";
             else if (index < currentProjectIndex) direction = "prev";
           }
           currentProjectIndex = index;
           activeList = listName;
-          window.activeList = activeList;
           updateProjectDetailView(index, listName, direction);
         }
 
@@ -3163,7 +4214,7 @@
 
       function handleProjectNavBack() {
         if (pricingViewOpen) {
-          goBackSafely("project"); 
+          goBackSafely("project"); // Close pricing and go back to project
         } else {
           goBackSafely("dashboard");
         }
@@ -3208,7 +4259,7 @@
           );
           if (iframe && overlay) {
             const sep = proj.video.includes("?") ? "&" : "?";
-            
+            // Autoplay with full audio enabled and inline setting
             const newSrc =
               proj.video +
               sep +
@@ -3228,11 +4279,10 @@
         pushRouteState("dashboard");
         projectDetailOpen = false;
         const panel = document.getElementById("project-detail");
-        if (!panel) return;
         panel.classList.add("translate-y-full", "pointer-events-none");
         panel.classList.remove("translate-y-0", "pointer-events-auto");
 
-        
+        // Clear the video iframe to pause playback
         const iframe = document.getElementById("project-detail-video-iframe");
         if (iframe) {
           const clone = iframe.cloneNode(true);
@@ -3246,15 +4296,15 @@
       let pricingViewOpen = false;
       function openPricingView() {
         pushRouteState("pricing");
-        const panel = document.getElementById("pricing-view");
         if (pricingViewOpen) {
+          const panel = document.getElementById("pricing-view");
           if (panel && !window._isPopStateHandling)
             panel.scrollTo({ top: 0, behavior: "smooth" });
           return;
         }
         triggerLoader(() => {
           pricingViewOpen = true;
-          if (!panel) return;
+          const panel = document.getElementById("pricing-view");
           panel.classList.remove("translate-y-full", "pointer-events-none");
           panel.classList.add("translate-y-0");
           updateProjectDetailNavShape();
@@ -3269,13 +4319,11 @@
       function closePricingView(returnToProject = false) {
         pricingViewOpen = false;
         const panel = document.getElementById("pricing-view");
-        if (!panel) return;
         panel.classList.remove("translate-y-0");
         panel.classList.add("translate-y-full");
         setTimeout(() => {
           panel.classList.add("pointer-events-none");
         }, 600);
-
         updateProjectDetailNavShape();
         if (!returnToProject || !projectDetailOpen) {
           goToDashboard(false);
@@ -3303,7 +4351,6 @@
         moreOpen = !moreOpen;
         const moreOverlay = document.getElementById("more-overlay");
         const moreMenu = document.getElementById("more-menu");
-        if (!moreOverlay || !moreMenu) return;
 
         if (moreOpen) {
           moreOverlay.classList.remove("opacity-0", "pointer-events-none");
@@ -3336,8 +4383,8 @@
       }
 
       function setNavActive(idx, isInstant = false, preventRouting = false) {
-        
-        
+        // If it's a modal (2 = Search, 3 = More) and we click it, don't necessarily stay there after closing?
+        // Let's just track it directly
         const activeNavId = getActiveNavId();
         const items = document.querySelectorAll(`#${activeNavId} > .nav-item`);
         if (!items || items.length === 0 || !items[idx]) return;
@@ -3364,9 +4411,9 @@
         }
         if (!navRaf) lerpNav();
 
-        
+        // Routing
         if (!isInstant && !preventRouting) {
-          
+          // Don't trigger on initial load
           if (activeNavId === "main-nav-items") {
             const wasAlreadyOnRoute = lastMainRoute === idx;
 
@@ -3392,12 +4439,19 @@
               if (pricingViewOpen) closePricingView();
               if (aboutViewOpen) closeAboutView();
             } else if (idx === 2) {
-              
+              // Talk route
               goToTalk();
               if (searchOpen) toggleSearch(false);
               if (pricingViewOpen) closePricingView();
               if (aboutViewOpen) closeAboutView();
             } else if (idx === 3) {
+              if (pricingViewOpen) {
+                return;
+              }
+              openPricingView();
+              if (searchOpen) toggleSearch(false);
+              if (aboutViewOpen) closeAboutView();
+            } else if (idx === 4) {
               if (aboutViewOpen) {
                 return;
               }
@@ -3423,7 +4477,7 @@
       const sliderTrack = document.getElementById("slider-track");
       let isDragging = false;
       let startY = 0;
-      let btnBottom = 209; 
+      let btnBottom = 209; // corresponds to bottom-[209px]
 
       function handleDragStart(y) {
         if (!sliderBtn) return;
@@ -3448,7 +4502,7 @@
         let shouldGo = false;
         if (newBottom > maxBottom) {
           newBottom = maxBottom;
-          isDragging = false; 
+          isDragging = false; // Successfully reached top
           shouldGo = true;
         }
 
@@ -3488,7 +4542,7 @@
         });
       }
 
-      
+      // Mouse events
       const landingPageNode = document.getElementById("landing");
       if (landingPageNode) {
         landingPageNode.addEventListener("mousedown", (e) => {
@@ -3503,7 +4557,7 @@
       });
       window.addEventListener("mouseup", handleDragEnd);
 
-      
+      // Touch events
       if (landingPageNode) {
         landingPageNode.addEventListener(
           "touchstart",
@@ -3556,7 +4610,7 @@
         updateProjectDetailNavShape();
       });
 
-      
+      // --- History Routing Engine ---
       window.appRouteHistory = [];
       window.appRouteHistoryIndex = -1;
       const MAX_HISTORY_STEPS = 5;
@@ -3567,9 +4621,9 @@
         const currentId = history.state?.id;
         const currentParams = JSON.stringify(history.state?.params || {});
 
-        
+        // Only push if different
         if (currentId !== routeId || currentParams !== JSON.stringify(params)) {
-          
+          // Truncate forward history if we are in the middle of the stack
           if (
             window.appRouteHistoryIndex > -1 &&
             window.appRouteHistoryIndex < window.appRouteHistory.length - 1
@@ -3582,7 +4636,7 @@
 
           window.appRouteHistory.push({ id: routeId, params });
 
-          
+          // Limit to five steps back and forth (maintaining a window)
           if (window.appRouteHistory.length > MAX_HISTORY_STEPS * 2 + 1) {
             window.appRouteHistory.shift();
           }
@@ -3605,7 +4659,7 @@
       };
 
       function goBackSafely(fallbackRoute) {
-        
+        // Use custom logic instead of browsers history back
         pushRouteState(fallbackRoute);
         if (fallbackRoute === "dashboard") {
           if (typeof closeProjectDetail === "function")
@@ -3643,7 +4697,7 @@
         const routeId = e.state ? e.state.id : "landing";
         const params = e.state ? e.state.params : {};
 
-        
+        // Close whatever is open to restore baseline
         if (routeId === "landing") {
           if (projectDetailOpen) closeProjectDetail();
           if (pricingViewOpen) closePricingView();
@@ -3675,7 +4729,7 @@
           window._isPopStateHandling = false;
         }, 50);
       });
-      
+      // -------------------------------
 
       function goToDashboard(wasAlreadyOnRoute = false) {
         pushRouteState("dashboard");
@@ -3744,14 +4798,14 @@
         }, 600);
       }
 
-      
+      // Mouse Drag-to-Scroll Logic (simulate touch testing)
       document.querySelectorAll(".drag-scroll").forEach((slider) => {
         let isDown = false;
         let startX, startY;
         let scrollLeft, scrollTop;
         let resumeTimeout = null;
 
-        
+        // Ensure no native ghost-image dragging inside these containers for clean testing
         slider
           .querySelectorAll("img")
           .forEach((img) => img.setAttribute("draggable", "false"));
@@ -3822,7 +4876,7 @@
         });
       });
 
-      
+      // Auto-scrollers
       const autoScrollers = [
         { id: "main-carousel", setWidth: (280 + 16) * 3, dir: 1, speed: 0.3 },
         {
@@ -3846,35 +4900,32 @@
           const dt = time - lastTime;
           lastTime = time;
 
-          
+          // Cap dt to avoid massive jumps if tab is inactive
           const safeDt = Math.min(dt, 50);
 
           if (
             el.dataset.pauseAnim !== "true" &&
             !el.classList.contains("active-drag")
           ) {
-            
-            
+            // Base speed is adjusted for 16.66ms frames (~60fps)
+            // so speed * (safeDt / 16.66) gives smooth identical pace at any hz
             exactScrollLeft += conf.dir * conf.speed * (safeDt / 16.66);
 
-            let didWrap = false;
-            
+            // Handle endless wrapping synchronously before applying to DOM
             if (exactScrollLeft >= conf.setWidth * 2) {
               exactScrollLeft -= conf.setWidth;
-              didWrap = true;
             } else if (exactScrollLeft <= 0) {
               exactScrollLeft += conf.setWidth;
-              didWrap = true;
             }
 
-            if (!didWrap && Math.abs(el.scrollLeft - exactScrollLeft) > 2) {
+            if (Math.abs(el.scrollLeft - exactScrollLeft) > 2) {
               exactScrollLeft = el.scrollLeft;
             } else {
               el.scrollLeft = exactScrollLeft;
             }
           } else {
             exactScrollLeft = el.scrollLeft;
-            
+            // Also need to handle wrap while passively scrolling/dragging
             if (exactScrollLeft >= conf.setWidth * 2) {
               exactScrollLeft -= conf.setWidth;
               el.scrollLeft = exactScrollLeft;
@@ -3888,11 +4939,11 @@
         requestAnimationFrame(animate);
       });
 
-      
+      // Spatial carousel loop logic (scroll only)
       {
         const spatialCarouselEl = document.getElementById("spatial-carousel");
         if (spatialCarouselEl) {
-          const spatialSetWidth = (140 + 16) * 4;
+          const spatialSetWidth = (140 + 16) * 3;
           spatialCarouselEl.scrollLeft = spatialSetWidth;
 
           function monitorSpatial() {
@@ -3906,7 +4957,7 @@
           requestAnimationFrame(monitorSpatial);
         }
       }
-      
+      // Filter search results
       const searchInput = document.getElementById("search-input");
       if (searchInput) {
         searchInput.addEventListener("input", (e) => {
@@ -3936,7 +4987,6 @@
         triggerLoader(() => {
           aboutViewOpen = true;
           const p = document.getElementById("about-view");
-          if (!p) return;
           p.classList.remove("translate-y-full");
           p.classList.remove("pointer-events-none");
           p.classList.add("translate-y-0");
@@ -3951,17 +5001,16 @@
       function closeAboutView() {
         aboutViewOpen = false;
         const p = document.getElementById("about-view");
-        if (!p) return;
         p.classList.remove("translate-y-0");
         p.classList.add("translate-y-full");
         setTimeout(() => {
-          if (p) p.classList.add("pointer-events-none");
+          p.classList.add("pointer-events-none");
         }, 600);
         updateProjectDetailNavShape();
         goToDashboard(false);
       }
 
-      
+      // Handle slow connection video playback recovery globally
       function ensureVideosPlay() {
         const videos = document.querySelectorAll("video[autoplay]");
         videos.forEach((video) => {
@@ -3982,23 +5031,23 @@
             }
           };
 
-          
+          // Try whenever data is ready
           video.addEventListener("canplay", forcePlay, { passive: true });
           video.addEventListener("loadeddata", forcePlay, { passive: true });
           video.addEventListener("waiting", () => {
-            
+            // If connection drops and video waits, listen for when it can play again
             video.addEventListener("canplay", forcePlay, {
               once: true,
               passive: true,
             });
           });
 
-          
+          // Check if it should be playing right now
           if (video.readyState >= 3 && video.paused) {
             forcePlay();
           }
 
-          
+          // Retry playing on user interactions to bypass stricter autoplay limits
           document.body.addEventListener("click", forcePlay, {
             passive: true,
           });
@@ -4006,7 +5055,7 @@
             passive: true,
           });
 
-          
+          // Re-load if video errors out due to bad connection
           video.addEventListener("error", () => {
             setTimeout(() => {
               if (navigator.onLine) {
@@ -4016,7 +5065,7 @@
           });
         });
 
-        
+        // Globally listen to connection coming back online to reload missing videos
         window.addEventListener("online", () => {
           const vids = document.querySelectorAll("video[autoplay]");
           vids.forEach((v) => {
@@ -4034,11 +5083,11 @@
         ensureVideosPlay();
       });
 
-      
+      // Periodically check for stuck videos (e.g. they paused due to slow connection and didn't resume automatically)
       setInterval(() => {
         const videos = document.querySelectorAll("video[autoplay]");
         videos.forEach((video) => {
-          
+          // readyState >= 3 means we have enough data for the current playback position
           if (video.paused && video.readyState >= 3) {
             const p = video.play();
             if (p !== undefined) p.catch(() => {});
@@ -4046,7 +5095,7 @@
             navigator.onLine &&
             (video.readyState === 0 || video.error)
           ) {
-            
+            // only load if no network state is indicating it's already loading
             if (video.networkState !== HTMLMediaElement.NETWORK_LOADING) {
               video.load();
             }
@@ -4054,7 +5103,7 @@
         });
       }, 3000);
     </script>
-
+    <!-- Fullscreen Image Viewer -->
     <div
       id="fullscreen-viewer"
       class="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-3xl hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 pointer-events-auto"
@@ -4114,7 +5163,7 @@
         updateFullscreenImage();
         const viewer = document.getElementById("fullscreen-viewer");
         viewer.classList.remove("hidden");
-        
+        // trigger reflow
         void viewer.offsetWidth;
         viewer.classList.remove("opacity-0");
         viewer.classList.add("opacity-100");
@@ -4160,7 +5209,7 @@
         }
       }
 
-      
+      // Custom Pinch-to-Zoom logic for fullscreen viewer
       document.addEventListener("DOMContentLoaded", () => {
         const viewer = document.getElementById("fullscreen-viewer");
         const img = document.getElementById("fullscreen-img");
@@ -4194,14 +5243,14 @@
           "touchmove",
           (e) => {
             if (e.touches.length === 2) {
-              e.preventDefault(); 
-              e.stopPropagation(); 
+              e.preventDefault(); // Stop native scrolling
+              e.stopPropagation(); // Prevent swipe handlers
               const dx = e.touches[0].clientX - e.touches[1].clientX;
               const dy = e.touches[0].clientY - e.touches[1].clientY;
               const distance = Math.sqrt(dx * dx + dy * dy);
               if (initialDistance) {
                 scale = currentScale * (distance / initialDistance);
-                scale = Math.min(Math.max(1, scale), 4); 
+                scale = Math.min(Math.max(1, scale), 4); // Limit zoom between 1x and 4x
                 img.style.transform = `translate(${currentPanX}px, ${currentPanY}px) scale(${scale})`;
                 window.isFullscreenZoomed = scale > 1;
               }
@@ -4211,8 +5260,8 @@
               panX = e.touches[0].clientX - startPanX;
               panY = e.touches[0].clientY - startPanY;
 
-              
-              
+              // Simple bound logic to prevent panning photo way out of view
+              // Max pan boundary roughly scales with zoom
               const maxPanX = (window.innerWidth / 2) * (currentScale - 1);
               const maxPanY = (window.innerHeight / 2) * (currentScale - 1);
 
@@ -4244,7 +5293,7 @@
           }
         });
 
-        
+        // Reset transform on close or image change
         const resetZoom = () => {
           scale = 1;
           currentScale = 1;
@@ -4269,7 +5318,7 @@
         };
       });
     </script>
-
+    <!-- I Want This Modal -->
     <div
       id="i-want-this-modal"
       class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
@@ -4618,7 +5667,7 @@
         }
       }
 
-      
+      // Auto-save listeners
       setTimeout(() => {
         [
           "req-brand-name",
@@ -4704,7 +5753,7 @@
           pkgSelect.classList.remove("opacity-50", "pointer-events-none");
         }
 
-        
+        // Clear errors
         document.getElementById(
           "req-brand-name",
         ).previousElementSibling.innerHTML = "Brand Name";
@@ -4850,7 +5899,7 @@
         closeIWantThisModal();
       }
     </script>
-
+    <!-- Spatial Want This Modal -->
     <div
       id="spatial-want-modal"
       class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
@@ -4893,6 +5942,7 @@
         <div
           class="flex flex-col gap-5 max-h-[75vh] overflow-y-auto px-2 -mx-2 hide-scrollbar pb-10"
         >
+          <!-- 1. Type of Space -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -4934,6 +5984,7 @@
             </select>
           </div>
 
+          <!-- 2. Project Goal -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -4963,6 +6014,7 @@
             </select>
           </div>
 
+          <!-- 3. Design Style -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -5004,6 +6056,7 @@
             </select>
           </div>
 
+          <!-- 4. Preferred Color Palette -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -5033,6 +6086,7 @@
             </select>
           </div>
 
+          <!-- 5. Estimated Timeline -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -5060,6 +6114,7 @@
             </select>
           </div>
 
+          <!-- 6. Additional Notes -->
           <div
             class="flex flex-col gap-1.5 focus-within:text-violet-400 transition-colors shrink-0"
           >
@@ -5158,7 +6213,7 @@
         closeSpatialWantModal();
       }
 
-      
+      // Generic Swipe Detector
       function setupSwipeHandler(
         elementId,
         onSwipeLeft,
@@ -5188,7 +6243,7 @@
           const diffX = x - startX;
           const diffY = y - startY;
 
-          
+          // Proactively detect long swipe to avoid browser cancelling it via touchcancel
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
             isDown = false;
             window.isSwiping = true;
@@ -5222,7 +6277,7 @@
           const diffX = x - startX;
           const diffY = y - startY;
 
-          
+          // Block clicks if we moved enough in ANY direction
           if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
             window.isSwiping = true;
             setTimeout(() => {
@@ -5231,7 +6286,7 @@
           }
 
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-            
+            // Horizontal swipe
             if (diffX < 0) {
               onSwipeLeft && onSwipeLeft();
             } else {
@@ -5241,14 +6296,14 @@
             Math.abs(diffY) > Math.abs(diffX) &&
             Math.abs(diffY) > 50
           ) {
-            
+            // Vertical swipe
             if (diffY > 0) {
               onSwipeDown && onSwipeDown();
             }
           }
         };
 
-        
+        // Mouse events
         element.addEventListener("mousedown", (e) => {
           if (e.button !== 0 || e.target.closest(".drag-scroll")) return;
           handleStart(e.pageX, e.pageY);
@@ -5265,7 +6320,7 @@
           isDown = false;
         });
 
-        
+        // Touch events
         element.addEventListener(
           "touchstart",
           (e) => {
@@ -5310,12 +6365,12 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        
+        // Prevent hold press context menu globally
         window.addEventListener("contextmenu", (e) => {
           e.preventDefault();
         });
 
-        
+        // Setup swipe for project detail
         setupSwipeHandler(
           "project-detail",
           () => {
@@ -5333,10 +6388,19 @@
           },
         );
 
-        
-        setupSwipeHandler("pricing-view", null, null, null);
+        // Setup swipe for pricing view
+        setupSwipeHandler("pricing-view", null, null, () => {
+          const scroller = document.getElementById("pricing-view");
+          if (scroller && scroller.scrollTop <= 0) {
+            if (typeof handlePricingNavBack === "function") {
+              handlePricingNavBack();
+            } else if (typeof closePricingView === "function") {
+              closePricingView(true);
+            }
+          }
+        });
 
-        
+        // Setup swipe for about view
         setupSwipeHandler("about-view", null, null, () => {
           const scroller = document.getElementById("about-view");
           if (scroller && scroller.scrollTop <= 0) {
@@ -5348,7 +6412,7 @@
           }
         });
 
-        
+        // Setup swipe for fullscreen image viewer
         setupSwipeHandler(
           "fullscreen-viewer",
           () => {
@@ -5369,8 +6433,8 @@
       (function () {
         function setupLoadingPlaceholders() {
           document.querySelectorAll("img").forEach((img) => {
-            
-            
+            // Target mainly the project/photo images (they usually have object-cover or are in cards)
+            // Skip tiny logos like trusted strip or icons
             if (
               img.classList.contains("object-cover") ||
               img.classList.contains("rounded-2xl") ||
@@ -5379,11 +6443,11 @@
               if (img.dataset.hasLoader) return;
               img.dataset.hasLoader = "true";
 
-              if (img.complete) return; 
+              if (img.complete) return; // If it's broken, it doesn't matter, we don't want infinite loader
 
               const parent = img.parentElement;
               if (parent) {
-                
+                // Ensure parent can trap absolute elements
                 const style = window.getComputedStyle(parent);
                 if (style.position === "static") {
                   parent.style.position = "relative";
@@ -5393,7 +6457,7 @@
                 loader.className =
                   "loader-overlay absolute inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-sm pointer-events-none transition-opacity duration-700";
 
-                
+                // Use existing styling from body / global for breathing text
                 loader.innerHTML =
                   '<span class="text-white/60 font-bold tracking-[0.2em] text-[10px] md:text-xs animate-text-breathe uppercase drop-shadow-md">JIMMY.RENDER</span>';
 
@@ -5411,11 +6475,11 @@
           });
         }
 
-        
+        // Run immediately when script loads and when DOM is fully done
         setupLoadingPlaceholders();
         document.addEventListener("DOMContentLoaded", setupLoadingPlaceholders);
 
-        
+        // Observe mutations for dynamically rendered carousels/searches
         const observer = new MutationObserver((mutations) => {
           let hasNewNodes = false;
           mutations.forEach((m) => {
@@ -5426,12 +6490,53 @@
         observer.observe(document.body, { childList: true, subtree: true });
       })();
     </script>
+
     <script>
-      document.addEventListener("dragstart", function (e) {
-        if (e.target.tagName.toLowerCase() === "img") {
-          e.preventDefault();
+      // Global restriction for right click, long press, drag, and select
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault(),
+      );
+      document.addEventListener("dragstart", (event) => event.preventDefault());
+      document.addEventListener("selectstart", (event) =>
+        event.preventDefault(),
+      );
+    </script>
+
+    <script>
+      function updateFeaturedIframeScale() {
+        const container = document.getElementById("featured-iframe-container");
+        const iframe = document.getElementById("featured-iframe");
+        if (container && iframe) {
+          const desktopWidth = 1440; // Use standard desktop width
+          const cw = container.clientWidth;
+          const ch = container.clientHeight;
+          if (cw === 0) return; // Not visible yet
+          const scale = cw / desktopWidth;
+
+          iframe.style.width = desktopWidth + "px";
+          // To fill the screen properly, we set its internal height based on scale
+          iframe.style.height = ch / scale + "px";
+          iframe.style.transform = "scale(" + scale + ")";
         }
+      }
+      window.addEventListener("resize", updateFeaturedIframeScale);
+      // Ensure we also update when the view might be shown
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === "class") {
+            updateFeaturedIframeScale();
+          }
+        });
       });
+      const pricingView = document.getElementById("pricing-view");
+      if (pricingView) {
+        observer.observe(pricingView, { attributes: true });
+      }
+      // Also poll a few times initially in case it's delayed
+      setTimeout(updateFeaturedIframeScale, 100);
+      setTimeout(updateFeaturedIframeScale, 500);
+      setTimeout(updateFeaturedIframeScale, 1000);
+      updateFeaturedIframeScale();
     </script>
   </body>
 </html>
