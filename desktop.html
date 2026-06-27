@@ -10,7 +10,7 @@
               navigator.userAgent,
             ) || window.innerWidth <= 768;
           if (isPortrait || isMobile) {
-            window.location.replace("./mobile.html" + window.location.hash);
+            window.location.replace("/mobile.html" + window.location.hash);
           }
         };
         checkAndRedirect();
@@ -19,49 +19,7 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>JIMMY.RENDER — CGI Creative Director</title>
-
-    <meta name="title" content="JIMMY.RENDER — CGI Creative Director" />
-    <meta
-      name="description"
-      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
-    />
-    <meta
-      name="keywords"
-      content="CGI, Creative Director, 3D Design, Animation, Motion Graphics, Jimmy Render, Premium Visuals, Product Rendering"
-    />
-    <meta name="author" content="JIMMY.RENDER" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <link rel="canonical" href="https://jimmyrender.com/" />
-    <meta name="theme-color" content="#0f0518" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jimmyrender.com/" />
-    <meta property="og:title" content="JIMMY.RENDER — CGI Creative Director" />
-    <meta
-      property="og:description"
-      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
-    />
-    <meta
-      property="og:image"
-      content="https://jimmyrender.com/social-thumb.png"
-    />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://jimmyrender.com/" />
-    <meta
-      property="twitter:title"
-      content="JIMMY.RENDER — CGI Creative Director"
-    />
-    <meta
-      property="twitter:description"
-      content="I'm a CGI creative director and designer focused on crafting premium cinematic visuals that help brands stand out with purpose, emotion, and precision."
-    />
-    <meta
-      property="twitter:image"
-      content="https://jimmyrender.com/social-thumb.png"
-    />
+    <title>JIMMY.RENDER Landing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -87,13 +45,6 @@
       rel="stylesheet"
     />
     <style>
-      img {
-        -webkit-user-drag: none;
-        -khtml-user-drag: none;
-        -moz-user-drag: none;
-        -o-user-drag: none;
-        user-drag: none;
-      }
       .font-montserrat {
         font-family: Montserrat, sans-serif;
       }
@@ -112,11 +63,6 @@
         background-size: 4px 4px !important;
         background-position: 0 0 !important;
       }
-      html,
-      body {
-        overscroll-behavior-y: none;
-        overscroll-behavior-x: none;
-      }
       body {
         font-family: Inter, sans-serif;
         background-color: #02050a;
@@ -124,7 +70,6 @@
         background-size: 4px 4px;
         background-position: 0 0;
         color: #fff;
-        -webkit-touch-callout: none;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -347,6 +292,15 @@
       .animate-shake-req {
         animation: shake-req 0.3s ease-in-out;
       }
+
+      body {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
     </style>
     <script>
       tailwind.config = {
@@ -374,7 +328,9 @@
     </style>
   </head>
   <body
-    class="selection:bg-violet-500/30 overflow-x-hidden min-h-screen bg-[#02050a] text-white"
+    oncontextmenu="return false;"
+    ondragstart="return false;"
+    class="selection:bg-violet-500/30 overflow-x-hidden min-h-screen bg-[#02050a] text-white select-none"
   >
     <div
       class="fixed inset-0 z-40 pointer-events-none w-full h-full"
@@ -2982,6 +2938,15 @@
                 class="hover:text-violet-400 hover:-translate-y-0.5 transition-all duration-300 inline-block"
                 >Projects</a
               >
+              <a
+                href="#"
+                onclick="
+                  showPricingPage();
+                  return false;
+                "
+                class="hover:text-violet-400 hover:-translate-y-0.5 transition-all duration-300 inline-block"
+                >Featured</a
+              >
             </div>
             <div
               id="nav-contact-group"
@@ -3024,6 +2989,7 @@
               >
             </button>
             <button
+              id="desktop-contact-btn"
               class="px-5 py-2 rounded-full bg-violet-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-violet-500 shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase"
               onclick="window.open('https://wa.me/201004113127', '_blank')"
             >
@@ -3072,9 +3038,19 @@
             class="text-gray-300 hover:text-white px-2 py-1"
             >Projects</a
           >
-
+          <a
+            href="#"
+            onclick="
+              document.getElementById('mobile-menu').classList.add('hidden');
+              showPricingPage();
+              return false;
+            "
+            class="text-gray-300 hover:text-white px-2 py-1"
+            >Featured</a
+          >
           <hr class="border-white/10" />
           <button
+            id="mobile-contact-btn"
             class="w-full px-5 py-2 rounded-full bg-violet-600 text-white font-medium shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase"
             onclick="window.open('https://wa.me/201004113127', '_blank')"
           >
@@ -3106,7 +3082,7 @@
               playsinline
               preload="auto"
             >
-              <source src="./BgVDf_3.mp4" type="video/mp4" />
+              <source src="/BgVDf_3.mp4" type="video/mp4" />
             </video>
             <script>
               function _0x3722(_0x591981, _0x1d76a1) {
@@ -3398,7 +3374,7 @@
               muted
               playsinline
             >
-              <source src="./Focus.mp4" type="video/mp4" />
+              <source src="/Focus.mp4" type="video/mp4" />
             </video>
             <script>
               function _0x46d2(_0x4091ca, _0x1752f2) {
@@ -3742,6 +3718,7 @@
         id="about-content-pages"
         class="hidden min-h-[100dvh] bg-[#0c0c0e] relative w-full overflow-y-auto block font-sans pb-24"
       >
+        <!-- Abstract Glow Backgrounds -->
         <div
           class="fixed top-0 right-0 w-[40vw] h-[40vw] bg-violet-900/20 blur-[100px] rounded-full pointer-events-none z-0"
         ></div>
@@ -3752,6 +3729,7 @@
         <div
           class="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 pt-32 lg:pt-40 relative z-10"
         >
+          <!-- Big Title Area -->
           <div
             class="relative w-full mb-12 md:mb-20 flex flex-col items-center text-center"
           >
@@ -3768,9 +3746,11 @@
             </h1>
           </div>
 
+          <!-- Bento Grid Container -->
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6 w-full"
           >
+            <!-- About Me: col-span-1 -->
             <div
               class="bg-[#111113] border border-white/5 rounded-[28px] md:rounded-[36px] p-8 md:p-10 flex flex-col hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group col-span-1"
             >
@@ -3799,6 +3779,7 @@
               </div>
             </div>
 
+            <!-- Core Strengths -->
             <div
               class="bg-[#111113] border border-white/5 rounded-[28px] md:rounded-[36px] p-8 md:p-10 flex flex-col hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group col-span-1 lg:col-span-2"
             >
@@ -3892,6 +3873,7 @@
               </div>
             </div>
 
+            <!-- Contact: col-span-1 -->
             <a
               href="https://wa.me/201004113127"
               target="_blank"
@@ -3925,6 +3907,7 @@
               </div>
             </a>
 
+            <!-- Avatar: col-span-1 -->
             <div
               class="bg-[#111113] border border-white/5 rounded-full overflow-hidden relative p-4 flex items-center justify-center shadow-2xl col-span-1 md:col-span-1 aspect-square"
             >
@@ -3932,7 +3915,7 @@
                 class="w-full h-full rounded-full overflow-hidden relative group"
               >
                 <img
-                  src="https://jimmyrender.com/social-thumb.png"
+                  src="https://drive.google.com/thumbnail?sz=w1000&id=1CNQLC1yDNqE6hIbmC9qh9PC-wJiuoPTr"
                   class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
                   alt="Jimmy Avatar"
                 />
@@ -3942,6 +3925,7 @@
               </div>
             </div>
 
+            <!-- Software: col-span-1 -->
             <div
               class="bg-[#111113] border border-white/5 rounded-[28px] md:rounded-[36px] p-8 md:p-10 flex flex-col hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group col-span-1"
             >
@@ -4089,6 +4073,7 @@
               </div>
             </div>
 
+            <!-- The 9-Step Process -->
             <div
               class="bg-[#111113] border border-white/5 rounded-[28px] md:rounded-[36px] p-8 md:p-10 flex flex-col hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group col-span-1 md:col-span-2 lg:col-span-3"
             >
@@ -4105,6 +4090,7 @@
               <div
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 relative z-10 w-full mb-6"
               >
+                <!-- Step 1 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4125,7 +4111,7 @@
                     and what success looks like.
                   </p>
                 </div>
-
+                <!-- Step 2 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4146,7 +4132,7 @@
                     find insights that shape a strong direction.
                   </p>
                 </div>
-
+                <!-- Step 3 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4167,7 +4153,7 @@
                     story in the most impactful way.
                   </p>
                 </div>
-
+                <!-- Step 4 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4188,7 +4174,7 @@
                     flow and powerful storytelling.
                   </p>
                 </div>
-
+                <!-- Step 5 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4209,7 +4195,7 @@
                     evoke emotions.
                   </p>
                 </div>
-
+                <!-- Step 6 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4230,7 +4216,7 @@
                     feeling and connection.
                   </p>
                 </div>
-
+                <!-- Step 7 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4251,7 +4237,7 @@
                     movement, and detail in mind.
                   </p>
                 </div>
-
+                <!-- Step 8 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4272,7 +4258,7 @@
                     every detail for the best result.
                   </p>
                 </div>
-
+                <!-- Step 9 -->
                 <div class="flex flex-col gap-3 group/step">
                   <div class="flex items-center gap-4">
                     <div
@@ -4298,435 +4284,2551 @@
           </div>
         </div>
       </div>
-      
-    </div>
-    <style>
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
-    <div
-      id="project-modal"
-      class="fixed inset-0 z-[100] hidden bg-[#02050a] text-white font-sans overflow-hidden opacity-0 transition-opacity duration-700"
-    >
       <div
-        id="modal-bg-track-container"
-        class="absolute inset-0 z-0 bg-[#050608] flex items-center overflow-hidden"
+        id="pricing-content-pages"
+        class="hidden relative h-screen w-full overflow-hidden bg-black font-sans"
       >
-        <div
-          id="modal-bg-track"
-          class="flex h-full items-center transition-transform duration-700 ease-in-out will-change-transform"
-          style="transform: translateX(0)"
-        ></div>
+        <iframe
+          src="/featured.html"
+          class="w-full h-full border-none pointer-events-auto"
+        ></iframe>
       </div>
       <div
-        id="modal-ui-layer"
-        class="absolute inset-0 z-10 transition-all duration-700 ease-out opacity-100 scale-100"
+        id="pricing-content-pages-old"
+        class="hidden"
+        class="hidden relative min-h-screen w-full overflow-x-hidden bg-transparent font-sans"
       >
-        <div class="absolute inset-0 pointer-events-none">
-          <div
-            class="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-[#050608] via-[#050608]/50 to-transparent"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 right-0 h-[220px] bg-gradient-to-t from-[#050608] via-[#050608]/60 to-transparent"
-          ></div>
-          <div
-            class="absolute top-0 bottom-0 left-0 w-[120px] bg-gradient-to-r from-[#050608] via-[#050608]/50 to-transparent hidden md:block"
-          ></div>
-          <div
-            class="absolute top-0 bottom-0 right-0 w-[120px] bg-gradient-to-l from-[#050608] via-[#050608]/50 to-transparent hidden md:block"
-          ></div>
+        <div
+          class="fixed top-[60%] left-[45%] -translate-x-1/2 w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] rounded-full blur-[160px] pointer-events-none z-0 opacity-80 bg-[#5b21b6]"
+        ></div>
+        <div
+          class="fixed top-[30%] left-[75%] -translate-x-1/2 w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] rounded-full blur-[140px] pointer-events-none z-0 opacity-70 bg-[#8b5cf6]"
+        ></div>
+        <div
+          class="absolute top-[26vh] md:top-[22vh] left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none flex justify-center items-center opacity-60"
+        >
+          <h1
+            class="text-[32vw] md:text-[24vw] font-black tracking-tighter leading-none select-none text-transparent bg-clip-text bg-gradient-to-b from-[#2e1065] via-[#5b21b6] to-[#a78bfa] drop-shadow-[0_0_30px_rgba(139,92,246,0.4)]"
+          >
+            Pricing
+          </h1>
         </div>
-        <div class="absolute inset-0 pointer-events-none z-10 opacity-[0.15]">
+        <div
+          class="max-w-[100rem] mx-auto px-4 sm:px-6 xl:px-8 py-12 md:py-20 relative z-10 w-full min-h-screen"
+        >
+          <div class="text-center mb-16 md:mb-24 space-y-6 pt-16">
+            <p
+              class="text-gray-300 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-sm lg:text-base font-medium drop-shadow-lg"
+            >
+              Cinematic 3D Advertising & Visual Storytelling
+            </p>
+            <p
+              class="text-gray-400 text-sm md:text-lg lg:text-xl mt-4 md:mt-8 max-w-2xl mx-auto leading-relaxed"
+            >
+              <span
+                class="text-white font-medium bg-white/10 px-2 py-0.5 rounded-md border border-white/10"
+                >One-time</span
+              >
+              premium production for brands that want to stand out.
+            </p>
+            <div
+              class="flex flex-nowrap items-center justify-start md:justify-center gap-3 md:gap-5 mt-10 md:mt-14 max-w-5xl mx-auto overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            >
+              <div
+                class="flex shrink-0 items-center border border-white/10 rounded-full px-5 py-2.5 md:px-6 md:py-3 bg-white/[0.02] backdrop-blur-xl transition-all hover:bg-white/[0.05]"
+              >
+                <span
+                  class="text-[10px] md:text-sm uppercase tracking-[0.15em] font-medium text-gray-300 whitespace-nowrap"
+                  >One-Time Payment</span
+                >
+              </div>
+              <div
+                class="flex shrink-0 items-center border border-white/10 rounded-full px-5 py-2.5 md:px-6 md:py-3 bg-white/[0.02] backdrop-blur-xl transition-all hover:bg-white/[0.05]"
+              >
+                <span
+                  class="text-[10px] md:text-sm uppercase tracking-[0.15em] font-medium text-gray-300 whitespace-nowrap"
+                  >No Subscriptions</span
+                >
+              </div>
+              <div
+                class="flex shrink-0 items-center border border-white/10 rounded-full px-5 py-2.5 md:px-6 md:py-3 bg-white/[0.02] backdrop-blur-xl transition-all hover:bg-white/[0.05]"
+              >
+                <span
+                  class="text-[10px] md:text-sm uppercase tracking-[0.15em] font-medium text-gray-300 whitespace-nowrap"
+                  >Premium Quality</span
+                >
+              </div>
+              <div
+                class="flex shrink-0 items-center border border-white/10 rounded-full px-5 py-2.5 md:px-6 md:py-3 bg-white/[0.02] backdrop-blur-xl transition-all hover:bg-white/[0.05]"
+              >
+                <span
+                  class="text-[10px] md:text-sm uppercase tracking-[0.15em] font-medium text-gray-300 whitespace-nowrap"
+                  >Cinematic Visuals</span
+                >
+              </div>
+            </div>
+          </div>
           <div
-            class="absolute top-[80px] left-0 right-0 h-[1px] bg-white"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 auto-rows-fr relative z-20"
+            id="pricing-container"
           ></div>
           <div
-            class="absolute top-[80px] bottom-0 left-[80px] w-[1px] bg-white hidden md:block"
-          ></div>
+            class="grid grid-cols-1 xl:grid-cols-12 gap-8 md:gap-12 mt-20 md:mt-32 w-full relative z-20"
+          >
+            <div class="xl:col-span-5 flex flex-col h-full w-full">
+              <h2
+                class="text-xl md:text-2xl font-medium tracking-[0.1em] uppercase text-white mb-8"
+              >
+                Foundation Pack
+              </h2>
+              <div
+                class="glass-card rounded-[2.5rem] p-8 sm:p-10 flex-grow flex flex-col relative overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] hover:border-[#8b5cf6]/40 group cursor-pointer"
+                onclick="buyPackage('Foundation')"
+              >
+                <div
+                  class="absolute -left-20 -top-20 w-64 h-64 bg-[#5b21b6]/20 blur-[80px] rounded-full pointer-events-none transition-all duration-700 group-hover:scale-110 group-hover:bg-[#8b5cf6]/30"
+                ></div>
+                <div
+                  class="flex flex-col sm:flex-row items-center sm:items-start gap-6 md:gap-8 mb-8 relative z-10 w-full text-center sm:text-left"
+                >
+                  <div
+                    class="flex flex-col justify-center items-center sm:items-start"
+                  >
+                    <p
+                      class="text-gray-400 font-medium tracking-[0.15em] text-[10px] md:text-xs mb-2 uppercase"
+                    >
+                      New Business Essentials
+                    </p>
+                    <h3
+                      class="text-3xl md:text-4xl font-medium text-white mb-3 tracking-tight leading-none"
+                    >
+                      FOUNDATION
+                    </h3>
+                    <div
+                      class="flex flex-nowrap items-center justify-center sm:justify-start gap-3 sm:gap-4 mt-1"
+                    >
+                      <span
+                        class="text-3xl sm:text-4xl md:text-5xl font-medium text-white whitespace-nowrap"
+                        >15,000
+                        <span class="text-gray-400 text-xl sm:text-2xl ml-1"
+                          >EGP</span
+                        ></span
+                      >
+                      <div
+                        class="border border-white/10 text-white text-[10px] md:text-xs font-semibold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#8b5cf6]/20 backdrop-blur-md shadow-[0_0_15px_rgba(139,92,246,0.3)] uppercase tracking-widest inline-block whitespace-nowrap shrink-0"
+                      >
+                        20% OFF
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full h-[1px] bg-white/10 mb-8 z-10"></div>
+                <div class="space-y-4 md:space-y-5 relative z-10">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="mt-0.5 rounded-full bg-white/10 p-0.5 flex shrink-0"
+                    >
+                      <i
+                        data-lucide="check"
+                        stroke-width="3"
+                        class="w-3.5 h-3.5 md:w-4 md:h-4 text-white"
+                      ></i>
+                    </div>
+                    <span class="text-gray-300 text-sm md:text-base font-medium"
+                      >Logo design</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="mt-0.5 rounded-full bg-white/10 p-0.5 flex shrink-0"
+                    >
+                      <i
+                        data-lucide="check"
+                        stroke-width="3"
+                        class="w-3.5 h-3.5 md:w-4 md:h-4 text-white"
+                      ></i>
+                    </div>
+                    <span class="text-gray-300 text-sm md:text-base font-medium"
+                      >Color palette and design foundation for the brand</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="mt-0.5 rounded-full bg-white/10 p-0.5 flex shrink-0"
+                    >
+                      <i
+                        data-lucide="check"
+                        stroke-width="3"
+                        class="w-3.5 h-3.5 md:w-4 md:h-4 text-white"
+                      ></i>
+                    </div>
+                    <span class="text-gray-300 text-sm md:text-base font-medium"
+                      >2 branded social media posts</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="mt-0.5 rounded-full bg-white/10 p-0.5 flex shrink-0"
+                    >
+                      <i
+                        data-lucide="check"
+                        stroke-width="3"
+                        class="w-3.5 h-3.5 md:w-4 md:h-4 text-white"
+                      ></i>
+                    </div>
+                    <span class="text-gray-300 text-sm md:text-base font-medium"
+                      >Menus/card designs</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="xl:col-span-7 flex flex-col h-full w-full">
+              <h2
+                class="text-xl md:text-2xl font-medium tracking-[0.1em] uppercase text-white mb-8"
+              >
+                Solo Services
+              </h2>
+              <div
+                class="flex flex-col gap-4 flex-grow"
+                id="solo-container"
+              ></div>
+            </div>
+          </div>
+          <div class="mt-20 md:mt-32 w-full relative z-20">
+            <h2
+              class="text-xl md:text-2xl font-medium tracking-[0.1em] uppercase text-white mb-8 text-center md:text-left"
+            >
+              INTERIOR DESIGN
+            </h2>
+            <div
+              class="grid grid-cols-1 xl:grid-cols-2 gap-4 flex-grow w-full"
+              id="interior-container"
+            ></div>
+          </div>
           <div
-            class="absolute top-[80px] bottom-0 right-[80px] w-[1px] bg-white hidden md:block"
-          ></div>
+            class="group mt-20 md:mt-32 glass-card rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-stretch justify-between gap-10 relative overflow-hidden z-20 transition-all hover:bg-white/[0.03]"
+          >
+            <div
+              class="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#5b21b6]/20 blur-[100px] rounded-full pointer-events-none transition-all duration-700 group-hover:bg-[#8b5cf6]/20 group-hover:scale-110"
+            ></div>
+            <div
+              class="flex-1 text-center md:text-left z-10 flex flex-col items-center md:items-start space-y-6 md:pr-8"
+            >
+              <div class="flex flex-col items-center md:items-start gap-1">
+                <h3
+                  class="text-xl md:text-2xl lg:text-3xl font-medium text-gray-300 tracking-widest uppercase"
+                >
+                  New Business Welcome Offer
+                </h3>
+                <div
+                  class="text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[8rem] whitespace-nowrap leading-none font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8b5cf6] drop-shadow-[0_0_40px_rgba(139,92,246,0.3)]"
+                >
+                  20% OFF
+                </div>
+              </div>
+              <p
+                class="text-gray-300 text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed"
+              >
+                Starting a new venture? Get an exclusive discount on your first
+                order on any package or solo service.
+                <span
+                  class="text-gray-400 text-[10px] md:text-xs mt-4 block uppercase tracking-widest"
+                  >Valid for first-time business owners only.</span
+                >
+              </p>
+            </div>
+            <button
+              class="group/btn flex-1 w-full flex flex-col items-center justify-center gap-4 md:gap-6 rounded-[2rem] border border-[#8b5cf6]/30 bg-white/[0.02] backdrop-blur-xl p-10 transition-all duration-500 hover:border-[#8b5cf6]/60 hover:shadow-[0_0_60px_rgba(139,92,246,0.2)] hover:bg-[#8b5cf6]/10 relative overflow-hidden z-10 cursor-pointer min-h-[16rem] md:min-h-full drop-shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+              onclick="buyPackage('Welcome Offer')"
+            >
+              <div
+                class="absolute inset-0 transition-all duration-500 group-hover/btn:bg-[#8b5cf6]/5"
+              ></div>
+              <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#8b5cf6]/20 blur-[50px] rounded-full transition-all duration-500 group-hover/btn:w-56 group-hover/btn:h-56"
+              ></div>
+              <span
+                class="relative z-10 text-2xl md:text-4xl font-bold text-[#a78bfa] tracking-widest uppercase flex items-center gap-4 drop-shadow-[0_0_12px_rgba(167,139,250,0.6)]"
+                >Claim Offer
+                <i
+                  data-lucide="arrow-right"
+                  class="w-8 h-8 md:w-10 md:h-10 text-[#a78bfa] transition-transform duration-500 group-hover/btn:translate-x-4 drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]"
+                ></i> </span
+              ><span
+                class="relative z-10 text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.3em] group-hover/btn:text-[#8b5cf6] transition-colors"
+                >Unlock Premium Now</span
+              >
+            </button>
+          </div>
+          <footer
+            class="mt-24 md:mt-32 pt-10 pb-16 lg:pb-24 border-t border-white/10 relative w-full z-20"
+          >
+            <div
+              class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-8 w-full max-w-6xl mx-auto px-4"
+            >
+              <div
+                class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8 text-center lg:text-left text-xs text-gray-500 uppercase tracking-widest font-medium w-full"
+              >
+                <div
+                  class="flex flex-col gap-1 items-center lg:items-start justify-center"
+                >
+                  <span class="mb-1 text-gray-600">Currency</span>
+                  <span class="text-gray-300">Egyptian Pounds (EGP)</span>
+                </div>
+                <div
+                  class="flex flex-col gap-1 items-center lg:items-start justify-center"
+                >
+                  <span class="mb-1 text-gray-600">Billing</span>
+                  <span class="text-gray-300">One-Time Payment</span>
+                </div>
+                <div
+                  class="flex flex-col gap-1 items-center lg:items-start justify-center"
+                >
+                  <span class="mb-1 text-gray-600">Process</span>
+                  <span class="text-gray-300"
+                    >Revisions Stated Per Package</span
+                  >
+                </div>
+              </div>
+            </div>
+          </footer>
         </div>
-        <header
-          class="absolute top-0 left-0 right-0 h-[80px] flex items-center z-40 bg-transparent backdrop-blur-sm shadow-none border-b border-white/5 saturate-100"
+        <script>
+          const _0x3309d7 = _0x573b;
+          (function (_0x4e3f70, _0x416e1d) {
+            const _0x15699f = _0x573b,
+              _0x4cc434 = _0x4e3f70();
+            while (!![]) {
+              try {
+                const _0x199b82 =
+                  -parseInt(_0x15699f(0x1d0)) /
+                    (0x58f * 0x7 + -0x1526 + -0x11c2) +
+                  (parseInt(_0x15699f(0x3c9)) /
+                    (-0x1109 + -0x1a * -0xa + -0x1 * -0x1007)) *
+                    (-parseInt(_0x15699f(0x2d5)) /
+                      (-0x895 + -0x3d * -0x3 + -0x7e1 * -0x1)) +
+                  (parseInt(_0x15699f(0x346)) / (0xd3d + -0x214b + 0x1412)) *
+                    (-parseInt(_0x15699f(0x36c)) /
+                      (-0x1 * 0x16ca + -0x145 * -0x1b + -0xb78)) +
+                  (parseInt(_0x15699f(0x3ea)) /
+                    (0xd93 + -0x1772 * 0x1 + 0x9e5)) *
+                    (-parseInt(_0x15699f(0x320)) /
+                      (0xd79 * 0x2 + -0x22c7 + 0x2 * 0x3ee)) +
+                  -parseInt(_0x15699f(0x1ea)) /
+                    (0x1 * -0x1e32 + 0xb72 + 0x12c8) +
+                  parseInt(_0x15699f(0x207)) /
+                    (-0x12 * -0x24 + 0x234 + -0x4b3) +
+                  (-parseInt(_0x15699f(0x329)) /
+                    (0x12d0 + 0xadd + 0x1da3 * -0x1)) *
+                    (-parseInt(_0x15699f(0x275)) /
+                      (0x2 * -0x909 + 0x14a4 + -0x287));
+                if (_0x199b82 === _0x416e1d) break;
+                else _0x4cc434["push"](_0x4cc434["shift"]());
+              } catch (_0x515ec6) {
+                _0x4cc434["push"](_0x4cc434["shift"]());
+              }
+            }
+          })(_0x16e6, 0x1444e * 0x3 + 0x17898 + -0x24c43);
+          function _0x573b(_0x213f5c, _0x2befe3) {
+            _0x213f5c = _0x213f5c - (-0x1853 + -0x1 * 0x425 + 0x1e17);
+            const _0x5ed6b2 = _0x16e6();
+            let _0x373c64 = _0x5ed6b2[_0x213f5c];
+            return _0x373c64;
+          }
+          function _0x16e6() {
+            const _0x3aecc2 = [
+              "tracking-t",
+              "cf6]/20\x20to",
+              "xt-[14px]\x20",
+              "\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20",
+              "f]\x20border-",
+              "\x20\x20\x20\x20\x20\x20\x20</b",
+              "ss=\x22text-g",
+              "session",
+              "nctional\x20w",
+              "ndle\x20every",
+              "e\x20text-xl\x20",
+              "cf6]\x20to-[#",
+              "video",
+              "a78bfa]\x20te",
+              "WEB\x20DESIGN",
+              "hlight\x20cli",
+              "uto\x20relati",
+              "l\x20duration",
+              "perSqMeter",
+              "=\x22text-xl\x20",
+              "\x20videos",
+              "\x20\x20\x20\x20\x20\x20<div",
+              "map",
+              "\x20revisions",
+              "ePFpg",
+              "d\x20interior",
+              "ssional\x20ed",
+              "IXQPz",
+              "ex-col\x20tra",
+              "IGN",
+              "verflow-hi",
+              "ow\x20items-c",
+              "46,0.5)]\x22>",
+              "arent\x20roun",
+              ",92,246,0.",
+              "Loaded",
+              "ull\x20produc",
+              "4,999",
+              "er-white/1",
+              "RmFDu",
+              "over:shado",
+              "ounded-ful",
+              "le-105\x22>\x0a\x20",
+              "GTmFB",
+              "Unlimited\x20",
+              "15px]\x20sm:t",
+              "md:text-2x",
+              "identity,\x20",
+              "\x20rounded-[",
+              "</div>\x0a\x20\x20\x20",
+              "Ad\x20account",
+              "Thoughtful",
+              "2\x20rounds\x20o",
+              "ext-5xl\x20fo",
+              "\x20backdrop-",
+              "lex-col\x20p-",
+              "2×15-Sec.\x20",
+              "\x22relative\x20",
+              "A\x20complete",
+              "9192jwofQl",
+              "\x20md:text-x",
+              "Strategic\x20",
+              "VIDEO\x20EDIT",
+              "ket\x20analys",
+              "Perfect\x20fi",
+              "signed\x20pos",
+              "forEach",
+              "_blank",
+              "ics\x20for\x20mo",
+              "\x20order\x20and",
+              "ded-[2.5re",
+              "<div\x20class",
+              "ontainer",
+              "sm:text-sm",
+              "0_0_50px_r",
+              "or-pointer",
+              "\x20\x20\x20\x20\x20\x20\x20\x20\x20",
+              "dden\x20trans",
+              "addEventLi",
+              "join",
+              "ont-medium",
+              "-[15px]\x20tr",
+              "cy.",
+              "ve\x20design,",
+              "gba(139,92",
+              "revisions\x20",
+              "y-center\x22>",
+              "ull\x20bg-sla",
+              "te-200\x20fle",
+              "s=\x22text-gr",
+              "motional\x20v",
+              "TML\x20file.",
+              "rt,\x20functi",
+              "t-medium\x20t",
+              "1,000",
+              "children",
+              "flex\x20flex-",
+              "title",
+              "p-2\x20sm:lin",
+              "racking-ti",
+              "1\x20bonus\x205-",
+              "radient-to",
+              "ideo",
+              "ampaign\x20th",
+              "e-y-2\x20hove",
+              "L\x20SPACES",
+              "x\x20items-ba",
+              "blur-xl\x20te",
+              "ray-400\x20te",
+              "ext-lg\x20fon",
+              "interior-c",
+              "business\x20d",
+              "a(139,92,2",
+              "Full\x20compe",
+              "ccvNH",
+              "\x20\x20\x20\x20\x20\x20",
+              "build\x20a\x20re",
+              "\x20hover:bor",
+              "-l\x20border-",
+              "\x20Spaces",
+              "xisting\x20fo",
+              "8b5cf6]/10",
+              "EGP",
+              "\x20<span\x20cla",
+              "AxIPC",
+              "text-right",
+              "\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20",
+              "t\x20computer",
+              "DxDpT",
+              "b-1\x22>",
+              "nclick=\x22bu",
+              "createElem",
+              "x\x20shrink-0",
+              "short\x20form",
+              "390418KrDgiz",
+              "wDOPQ",
+              "3px]\x20md:te",
+              "\x20pl-2\x20sm:p",
+              "isPopular",
+              "WcYNS",
+              "\x20\x20\x20\x20\x20\x20\x20</s",
+              "x-grow\x20fle",
+              "XYbic",
+              "30RUMyNv",
+              "Square\x20Met",
+              "ient-to-b\x20",
+              "div",
+              "xt-[11px]\x20",
+              "High-impac",
+              "buyPackage",
+              "or\x20brands\x20",
+              "appendChil",
+              "l\x20font-sem",
+              "onality,\x20a",
+              "\x27)\x22\x20class=",
+              "suals,\x20ref",
+              "SHOOT\x20&\x20ED",
+              "1.5\x20rounde",
+              "hen\x20brand\x20",
+              ":text-[10p",
+              "teps\x20for\x20p",
+              "length",
+              "y-to-use\x20H",
+              "20\x20flex\x20fl",
+              "bg-[#1e1b4",
+              "stener",
+              "nt\x20rounded",
+              "GWtwO",
+              "the\x20next\x20s",
+              "d\x20px-6\x20py-",
+              "ercase\x20tra",
+              ".2)]\x20z-30",
+              "4lhROhO",
+              "=\x22shrink-0",
+              "ng-tight\x20m",
+              "within\x2010\x20",
+              ":-translat",
+              "ext-white\x20",
+              "s\x20font-bol",
+              "h-full\x20rou",
+              "l-4\x20border",
+              "&\x20sound\x20de",
+              "9,92,246,0",
+              "ext-[10px]",
+              "currency",
+              "ext-lg\x20md:",
+              "\x20space",
+              "\x20visuals\x20a",
+              "ass=\x22text-",
+              "PROFESSION",
+              "he\x20digital",
+              "adow-[0_4p",
+              "r\x20w-full",
+              "pture\x20comb",
+              "nd\x20visual\x20",
+              "e-clamp-no",
+              "onclick",
+              "20\x20profess",
+              "azTjy",
+              "DqdOu",
+              "2.5\x20h-2.5\x20",
+              "On-locatio",
+              "enter\x20just",
+              "real\x20resul",
+              "ibold\x20text",
+              "OdapD",
+              "KClhD",
+              "nsition-al",
+              "=\x22absolute",
+              "SEtYj",
+              "1570145vuNSvq",
+              "Hello\x20Jimm",
+              "-end\x20justi",
+              "nded-[2.5r",
+              "\x20SPACES",
+              "x_rgba(139",
+              "iner",
+              "e\x20customer",
+              "113127?tex",
+              "adow-2xl",
+              "\x20\x20\x20\x20\x20<p\x20cl",
+              "t\x20gap-4\x22>\x0a",
+              "\x20Could\x20you",
+              "n\x20manageme",
+              "payments\x20n",
+              "<span\x20clas",
+              "\x20items-cen",
+              "\x20sm:max-w-",
+              "\x20experienc",
+              "1.5rem]\x20p-",
+              "FULL\x20BRAND",
+              "\x20leading-r",
+              "utton>\x0a\x20\x20\x20",
+              "within\x2014\x20",
+              "percase\x20mb",
+              "GO\x20PREMIUM",
+              "for\x2014\x20day",
+              "/div>\x0a\x20\x20\x20\x20",
+              "sm:text-3x",
+              "A\x20fully\x20fu",
+              "otage.\x20Col",
+              "Lixzq",
+              "BPtJu",
+              "\x20</div>\x0a\x0a\x20",
+              "der-[#8b5c",
+              "n-300\x20mt-a",
+              "PVbZT",
+              "QnuhC",
+              "ot\x20include",
+              "</p>\x0a\x20\x20\x20\x20\x20",
+              "within\x205\x20b",
+              "getElement",
+              "\x20\x20<span\x20cl",
+              "Most\x20Popul",
+              "relative\x20h",
+              "ient-to-r\x20",
+              "gVCdw",
+              "\x20as\x20a\x20read",
+              "bg-[#0f0f0",
+              "open",
+              "ver:bg-gra",
+              "eWfZz",
+              "Fpuwi",
+              "tive\x20z-10\x20",
+              "xt-[10px]\x20",
+              "\x20class=\x22mt",
+              "12\x20flex-gr",
+              "entering\x20t",
+              "2,000",
+              "ow-[0_0_60",
+              "f\x20revision",
+              "\x20\x20\x20</div>\x0a",
+              "sign.",
+              "argeting",
+              ":gap-6\x20tra",
+              "the\x20“",
+              "24,999",
+              "\x20to\x20enhanc",
+              "d\x20responsi",
+              "ve\x20z-10\x20bg",
+              "ays",
+              "ent?\x0a\x0aThan",
+              "MWJoL",
+              "yynhy",
+              "CINEMATIC",
+              "g-wider\x20up",
+              "x]\x20trackin",
+              "ition-all\x20",
+              "t-1/2\x20-tra",
+              "OzgqN",
+              "Profession",
+              "\x20class=\x22w-",
+              "XRnqQ",
+              "ohndX",
+              "ined\x20with\x20",
+              "6]/40\x20shad",
+              "CGI\x20/\x20VFX\x20",
+              "ested\x20in\x20p",
+              "-events-no",
+              ",246,0.1)]",
+              "KOrVw",
+              "ansition-a",
+              "n\x20gap-3\x20sm",
+              "222TLostW",
+              "nd\x20aesthet",
+              "pointer-ev",
+              "*Platform\x20",
+              "b]/40\x20bord",
+              "dPtZz",
+              "Ideal\x20for\x20",
+              "gwwLd",
+              "className",
+              "or\x20grading",
+              "ll\x20duratio",
+              "ght\x22>\x0a\x20\x20\x20\x20",
+              ".me/201004",
+              "START\x20SMAL",
+              "\x20inset-x-0",
+              "yssfr",
+              "ntainer",
+              "span\x20class",
+              "text-xl\x22>",
+              "\x20ready\x20to\x20",
+              "e-y-4\x20hove",
+              "STARTER\x20PA",
+              "3,000",
+              "ass=\x22relat",
+              "3.5\x20px-6\x20r",
+              "yPackage(\x27",
+              "iting.",
+              "\x20justify-c",
+              "text-black",
+              "-t\x20from-[#",
+              "\x20\x20\x20\x20\x20<div\x20",
+              "ENTRY",
+              "BUILD\x20PRES",
+              "6BCNoGJ",
+              "r:z-40\x20gro",
+              "hite\x20track",
+              "-left\x20h-fu",
+              "COMMERCIAL",
+              "hover:bord",
+              "urchasing\x20",
+              "\x20\x20\x20\x20\x20",
+              "hAcGH",
+              "st\x20z-40\x20sh",
+              "white/5\x22>\x0a",
+              "\x20\x20\x20\x20<p\x20cla",
+              "\x0aI’m\x20inter",
+              "LGcsV",
+              "\x20ml-0.5\x22>E",
+              "-width=\x224\x22",
+              "descriptio",
+              "\x20\x20\x20\x20\x20\x20\x20\x20\x20<",
+              "x_15px_rgb",
+              "onally\x20des",
+              "ap-y-5\x20mb-",
+              "r\x20whitespa",
+              "8\x20lg:p-10\x20",
+              "-[2.5rem]\x20",
+              "ce-nowrap\x20",
+              "120",
+              "t\x20me\x20know\x20",
+              "\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20",
+              "\x20to-transp",
+              "ent",
+              "f]/60\x20bord",
+              "XXdNa",
+              "m]\x20pointer",
+              "elaxed\x20mb-",
+              "JqrLf",
+              "KStoW",
+              "y-200\x20curs",
+              "\x20\x20\x20\x20\x20\x20<spa",
+              "features",
+              "-white\x20tex",
+              "-generated",
+              "-0.5\x22>Per\x20",
+              "y\x20session",
+              "-500\x20hover",
+              "ss=\x22text-[",
+              "3\x20rounds\x20o",
+              "omotional\x20",
+              "ansitions\x20",
+              "GROWTH",
+              "MGUFO",
+              "</h4>\x0a\x20\x20\x20\x20",
+              "s\x20that\x20bal",
+              "g\x20the\x20paym",
+              "premium\x20vi",
+              "pan>\x0a\x20\x20\x20\x20\x20",
+              "\x22></i>\x0a\x20\x20\x20",
+              "Personaliz",
+              "r:shadow-[",
+              "cVulJ",
+              "BRAND\x20FILM",
+              "ents-none\x22",
+              "e,\x20strengt",
+              "sition,\x20an",
+              "PREMIUM",
+              "ium\x20mb-1\x20t",
+              "\x20\x20\x20\x20<span\x20",
+              "\x20<button\x20o",
+              "e\x20efficien",
+              "\x22w-[80%]\x20m",
+              "\x20rounded-f",
+              "class=\x22fle",
+              "fy-center\x20",
+              "d-b-xl\x20upp",
+              "FnaDa",
+              "qCxMf",
+              "ting\x20From<",
+              "seline\x20gap",
+              "Residentia",
+              "l\x20Spaces",
+              "s\x20included",
+              "items-star",
+              "second\x20hig",
+              "\x20shadow-lg",
+              "-transpare",
+              "4\x20professi",
+              "dern\x20livin",
+              "nslate-x-1",
+              "Delivered\x20",
+              "58877MpIgaa",
+              "x-auto\x20py-",
+              "0\x22>\x0a\x20\x20\x20\x20\x20\x20",
+              "00\x20group-h",
+              "price",
+              "></div>",
+              "\x20\x20\x20<h4\x20cla",
+              "ined\x20compo",
+              "nt\x20—\x20we\x20ha",
+              "\x20top-0\x20lef",
+              "\x20uppercase",
+              "10,000",
+              "white/5\x20sh",
+              "\x20\x20\x20\x20<div\x20c",
+              "ght\x22>",
+              "ive\x20flex\x20f",
+              "\x20content\x20c",
+              "\x20top-0\x20h-1",
+              "ed\x20strateg",
+              "h-1/2\x20bg-g",
+              "w-[0_0_50p",
+              "/2\x20bg-grad",
+              "cFFwf",
+              "e\x20workplac",
+              "undefined",
+              "al\x20editing",
+              "2172664fMUVJm",
+              "oVrVM",
+              "xt-white\x20t",
+              "\x20included",
+              "presence",
+              "iv>\x0a\x0a\x20\x20\x20\x20\x20",
+              "col\x20mb-8\x22>",
+              "0\x20shadow-[",
+              "GFvMC",
+              "ly\x20designe",
+              "ne\x22>\x0a\x20\x20\x20\x20\x20",
+              "tion\x20video",
+              ",\x20cuts,\x20tr",
+              "15-Sec.\x20pr",
+              "nvironment",
+              "ohFSQ",
+              "-col\x20items",
+              "usiness\x20da",
+              "businesses",
+              "at\x20drives\x20",
+              "ance\x20comfo",
+              "ass=\x22flex\x20",
+              "ById",
+              "\x20completin",
+              "f]/80\x20bord",
+              "ne\x22></div>",
+              "8,999",
+              "\x20EXPERIENC",
+              "ebsite\x20cra",
+              "1251225XoNbaL",
+              "startingFr",
+              "t-white\x22>",
+              "setAttribu",
+              "thing",
+              "vdFzC",
+              "-relaxed\x20f",
+              "ighter\x20tex",
+              "-0.5\x22>Star",
+              "ay-400\x20tex",
+              "ENCE",
+              "fpbLc",
+              "n\x20class=\x22t",
+              "\x20bottom-0\x20",
+              "t-4xl\x20md:t",
+              "\x20of\x20your\x20e",
+              "flex-col\x20g",
+              "createIcon",
+              "5-Sec.\x20pro",
+              "ing-tighte",
+              "ext-gray-3",
+              "lass=\x22rela",
+              "er-white/5",
+              "category",
+              "sor-pointe",
+              "xt-white\x20o",
+              "-1\x20w-4\x20h-4",
+              "\x20\x20\x20\x20",
+              "ow\x22>\x0a\x20\x20\x20\x20\x20",
+              "\x20\x20\x20\x20\x20\x20\x20</d",
+              "ext-[13px]",
+              "\x20setup\x20&\x20t",
+              "gray-400\x20t",
+              "div>\x0a\x20\x20\x20\x20\x20",
+              "lacing\x20the",
+              "al\x20online\x20",
+              "”\x20package.",
+              "s\x20designed",
+              "RESIDENTIA",
+              "rst\x20step\x20f",
+              "and\x20improv",
+              "ify-betwee",
+              "from-[#8b5",
+              "JpcuD",
+              "t-black\x20ho",
+              "\x20please\x20le",
+              "innerHTML",
+              "\x20\x20\x20\x20\x20\x20\x20\x20",
+              "ne\x22>",
+              "ce\x20campaig",
+              "er-[#8b5cf",
+              "solo-conta",
+              "-[105%]\x20z-",
+              "md\x20leading",
+              "fuazl",
+              "\x20\x20\x20<div\x20cl",
+              "px_rgba(13",
+              "f6]/40\x20cur",
+              "leading-no",
+              "\x20\x20\x20\x20\x20\x20\x20</p",
+              "nt-medium\x20",
+              "ium\x20text-w",
+              "eyMwU",
+              ">\x0a\x0a\x20\x20\x20\x20\x20\x20\x20",
+              "interior\x20e",
+              "HNyym",
+              "cking-wide",
+              "div\x20class=",
+              "lex\x20flex-r",
+              "y\x20Render,\x0a",
+              "hfuqW",
+              "pricing-co",
+              "effects.",
+              "ucide=\x22che",
+              "enter\x20text",
+              "er</span>",
+              "\x20<i\x20data-l",
+              "JmYaA",
+              "ll\x22>\x0a\x20\x20\x20\x20\x20",
+              "e\x20z-10\x20h-1",
+              "\x20line-clam",
+              "LiDDf",
+              "1-minute\x20f",
+              "30-Sec.\x20pr",
+              "\x20flex\x20flex",
+              "1\x20round\x20of",
+              "GP</span>\x0a",
+              "Commercial",
+              "\x22text-whit",
+              "10\x20profess",
+              "ING",
+              "titors\x20mar",
+              "00\x20text-[1",
+              "ight\x20leadi",
+              "em]\x20border",
+              "lHpsu",
+              "span>\x0a\x20\x20\x20\x20",
+              "ionally\x20de",
+              "glass-card",
+              "fted\x20with\x20",
+              "function",
+              "x\x20flex-col",
+              "class=\x22tex",
+              "https://wa",
+              "2\x20professi",
+              "Free",
+              "4)]\x20group-",
+              "FULL\x20CAMPA",
+              "\x20delivered",
+              "oRmHW",
+              "4019477iPVvBw",
+              ",246,0.3)]",
+              "4\x20sm:p-6\x20f",
+              "ck\x22\x20stroke",
+              "VIDEO",
+              "0_0_40px_r",
+              "ar</div>",
+              "k\x20you.",
+              "ZhLyw",
+              "leading-ti",
+              "z-10\x20flex\x20",
+              "\x20hover:sca",
+              "Full-servi",
+              "6]/50\x22>\x0a\x20\x20",
+              "full\x20profe",
+              "DOMContent",
+              "ctaText",
+              "10\x20relativ",
+              "ng\x20advice\x20",
+              "n\x20video\x20ca",
+              "ter\x20justif",
+              "ZKmRT",
+              "\x20<p\x20class=",
+              "gGdLO",
+              "ed\x20marketi",
+              "</span>\x0a\x20\x20",
+              "\x20\x20\x20\x20\x20\x20\x20",
+              "l\x20font-med",
+              "\x20\x20\x20\x20\x20\x20\x20\x20</",
+              "QSQXV",
+              "duration-5",
+              "999",
+              "iv>\x0a\x20\x20\x20\x20\x20\x20",
+              "t-[9px]\x20sm",
+              "igned\x20post",
+              "/span>",
+              "-1\x20mt-1\x22>\x0a",
+            ];
+            _0x16e6 = function () {
+              return _0x3aecc2;
+            };
+            return _0x16e6();
+          }
+          function buyPackage(_0x4cf92d) {
+            const _0x20ea02 = _0x573b,
+              _0x3eb982 = {
+                cFFwf: function (_0x5d7f36, _0x4f6663) {
+                  return _0x5d7f36 === _0x4f6663;
+                },
+                ZhLyw: _0x20ea02(0x3ee) + _0x20ea02(0x370),
+                JmYaA: _0x20ea02(0x22d) + _0x20ea02(0x303),
+                OdapD: _0x20ea02(0x25e) + _0x20ea02(0x311),
+                ohFSQ: _0x20ea02(0x1c5) + _0x20ea02(0x1c6),
+                fuazl: _0x20ea02(0x26b),
+                LiDDf: function (_0x5d3385, _0x73726f) {
+                  return _0x5d3385(_0x73726f);
+                },
+                KClhD: _0x20ea02(0x2dd),
+              };
+            if (
+              _0x3eb982[_0x20ea02(0x1e6)](
+                _0x4cf92d,
+                _0x3eb982[_0x20ea02(0x27d)],
+              ) ||
+              _0x3eb982[_0x20ea02(0x1e6)](
+                _0x4cf92d,
+                _0x3eb982[_0x20ea02(0x254)],
+              ) ||
+              _0x3eb982[_0x20ea02(0x1e6)](
+                _0x4cf92d,
+                _0x3eb982[_0x20ea02(0x367)],
+              ) ||
+              _0x3eb982[_0x20ea02(0x1e6)](
+                _0x4cf92d,
+                _0x3eb982[_0x20ea02(0x1f9)],
+              )
+            ) {
+              if (
+                _0x3eb982[_0x20ea02(0x1e6)](
+                  typeof openSpatialWantModal,
+                  _0x3eb982[_0x20ea02(0x23d)],
+                )
+              ) {
+                _0x3eb982[_0x20ea02(0x258)](openSpatialWantModal, _0x4cf92d);
+                return;
+              }
+            }
+            if (
+              _0x3eb982[_0x20ea02(0x1e6)](
+                typeof openIWantThisModal,
+                _0x3eb982[_0x20ea02(0x23d)],
+              )
+            )
+              _0x3eb982[_0x20ea02(0x258)](openIWantThisModal, _0x4cf92d);
+            else {
+              const _0x35cad0 =
+                _0x20ea02(0x36d) +
+                _0x20ea02(0x24c) +
+                _0x20ea02(0x3f6) +
+                _0x20ea02(0x3c3) +
+                _0x20ea02(0x3f0) +
+                _0x20ea02(0x3ad) +
+                _0x4cf92d +
+                (_0x20ea02(0x22b) +
+                  _0x20ea02(0x378) +
+                  _0x20ea02(0x234) +
+                  _0x20ea02(0x404) +
+                  _0x20ea02(0x342) +
+                  _0x20ea02(0x33a) +
+                  _0x20ea02(0x229) +
+                  _0x20ea02(0x2df) +
+                  _0x20ea02(0x201) +
+                  _0x20ea02(0x1ac) +
+                  _0x20ea02(0x3b3) +
+                  _0x20ea02(0x27c));
+              window[_0x20ea02(0x39d)](
+                _0x20ea02(0x26e) +
+                  _0x20ea02(0x3d5) +
+                  _0x20ea02(0x374) +
+                  "t=" +
+                  _0x3eb982[_0x20ea02(0x258)](encodeURIComponent, _0x35cad0),
+                _0x3eb982[_0x20ea02(0x368)],
+              );
+            }
+          }
+          const pricingTiers = [
+              {
+                number: "01",
+                category: _0x3309d7(0x3e8),
+                title: _0x3309d7(0x3de) + "CK",
+                description:
+                  _0x3309d7(0x2da) +
+                  _0x3309d7(0x22e) +
+                  _0x3309d7(0x330) +
+                  _0x3309d7(0x3a5) +
+                  _0x3309d7(0x358) +
+                  _0x3309d7(0x354),
+                features: [
+                  _0x3309d7(0x219) + _0x3309d7(0x2f4) + _0x3309d7(0x300),
+                  _0x3309d7(0x26f) + _0x3309d7(0x3fd) + _0x3309d7(0x297) + "s",
+                  _0x3309d7(0x25c) + _0x3309d7(0x2b1) + _0x3309d7(0x1ed),
+                  _0x3309d7(0x1cf) + _0x3309d7(0x394) + _0x3309d7(0x1fb) + "ys",
+                ],
+                price: _0x3309d7(0x294),
+                currency: _0x3309d7(0x314),
+                ctaText: _0x3309d7(0x3d6) + "L",
+              },
+              {
+                number: "02",
+                category: _0x3309d7(0x1a8),
+                title: _0x3309d7(0x3b6),
+                description:
+                  _0x3309d7(0x3cf) +
+                  _0x3309d7(0x1fc) +
+                  _0x3309d7(0x3dc) +
+                  _0x3309d7(0x30e) +
+                  _0x3309d7(0x22a) +
+                  _0x3309d7(0x1ee),
+                features: [
+                  _0x3309d7(0x1f7) + _0x3309d7(0x1a6) + _0x3309d7(0x2a6),
+                  _0x3309d7(0x1cc) + _0x3309d7(0x3fd) + _0x3309d7(0x297) + "s",
+                  _0x3309d7(0x1b0) +
+                    _0x3309d7(0x28d) +
+                    _0x3309d7(0x287) +
+                    _0x3309d7(0x2a1),
+                  _0x3309d7(0x2ce) + _0x3309d7(0x3a8) + _0x3309d7(0x1c7),
+                  _0x3309d7(0x1cf) +
+                    _0x3309d7(0x349) +
+                    _0x3309d7(0x309) +
+                    _0x3309d7(0x3b2),
+                ],
+                price: _0x3309d7(0x2bf),
+                currency: _0x3309d7(0x314),
+                ctaText: _0x3309d7(0x3e9) + _0x3309d7(0x211),
+              },
+              {
+                number: "03",
+                category: _0x3309d7(0x357) + "AL",
+                title: _0x3309d7(0x1b7),
+                description:
+                  _0x3309d7(0x2d4) +
+                  _0x3309d7(0x1e0) +
+                  _0x3309d7(0x301) +
+                  _0x3309d7(0x1fd) +
+                  _0x3309d7(0x365) +
+                  "ts",
+                isPopular: !![],
+                features: [
+                  _0x3309d7(0x25a) + _0x3309d7(0x1a6) + _0x3309d7(0x2a6),
+                  _0x3309d7(0x2fe) + _0x3309d7(0x1c9) + _0x3309d7(0x2a9) + "p",
+                  _0x3309d7(0x260) + _0x3309d7(0x268) + _0x3309d7(0x2db) + "ts",
+                  _0x3309d7(0x1b0) +
+                    _0x3309d7(0x28d) +
+                    _0x3309d7(0x287) +
+                    _0x3309d7(0x2a1),
+                  _0x3309d7(0x1a5) + _0x3309d7(0x3a8) + _0x3309d7(0x1c7),
+                  _0x3309d7(0x1cf) +
+                    _0x3309d7(0x349) +
+                    _0x3309d7(0x309) +
+                    _0x3309d7(0x3b2),
+                ],
+                price: _0x3309d7(0x204),
+                currency: _0x3309d7(0x314),
+                ctaText: _0x3309d7(0x385),
+              },
+              {
+                number: "04",
+                category: _0x3309d7(0x272) + _0x3309d7(0x2b7),
+                title: _0x3309d7(0x1b3),
+                description:
+                  _0x3309d7(0x281) +
+                  _0x3309d7(0x238) +
+                  _0x3309d7(0x379) +
+                  _0x3309d7(0x1d8) +
+                  _0x3309d7(0x2a3) +
+                  _0x3309d7(0x20b),
+                features: [
+                  _0x3309d7(0x259) + _0x3309d7(0x2be) + _0x3309d7(0x1f5),
+                  _0x3309d7(0x2d2) + _0x3309d7(0x31f) + _0x3309d7(0x2ae),
+                  _0x3309d7(0x35f) + _0x3309d7(0x268) + _0x3309d7(0x2db) + "ts",
+                  _0x3309d7(0x1b0) + _0x3309d7(0x1e2) + _0x3309d7(0x1a2),
+                  _0x3309d7(0x30b) + _0x3309d7(0x262) + _0x3309d7(0x2d9) + "is",
+                  _0x3309d7(0x2cc) + _0x3309d7(0x226) + _0x3309d7(0x3ab),
+                  _0x3309d7(0x2c6) + _0x3309d7(0x2ef) + _0x3309d7(0x386) + "s",
+                  _0x3309d7(0x1cf) +
+                    _0x3309d7(0x383) +
+                    _0x3309d7(0x309) +
+                    _0x3309d7(0x3b2),
+                  _0x3309d7(0x3cc) + _0x3309d7(0x37a) + _0x3309d7(0x392) + "d",
+                ],
+                price: _0x3309d7(0x3ae),
+                currency: _0x3309d7(0x314),
+                ctaText: _0x3309d7(0x380) + _0x3309d7(0x205) + "E",
+              },
+            ],
+            soloServices = [
+              {
+                title: _0x3309d7(0x2a8),
+                description:
+                  _0x3309d7(0x389) +
+                  _0x3309d7(0x2a2) +
+                  _0x3309d7(0x206) +
+                  _0x3309d7(0x26a) +
+                  _0x3309d7(0x1ad) +
+                  _0x3309d7(0x335) +
+                  _0x3309d7(0x1d7) +
+                  _0x3309d7(0x1b6) +
+                  _0x3309d7(0x3b0) +
+                  _0x3309d7(0x2ed) +
+                  _0x3309d7(0x273) +
+                  _0x3309d7(0x39b) +
+                  _0x3309d7(0x33c) +
+                  _0x3309d7(0x2f5),
+                price: _0x3309d7(0x1db),
+                startingFrom: !![],
+              },
+              {
+                title: _0x3309d7(0x3c2) + _0x3309d7(0x279),
+                description:
+                  _0x3309d7(0x32e) +
+                  _0x3309d7(0x319) +
+                  _0x3309d7(0x1a0) +
+                  _0x3309d7(0x355) +
+                  _0x3309d7(0x35c) +
+                  _0x3309d7(0x24f),
+                price: _0x3309d7(0x3df),
+                startingFrom: !![],
+              },
+              {
+                title: _0x3309d7(0x336) + "IT",
+                description:
+                  _0x3309d7(0x363) +
+                  _0x3309d7(0x288) +
+                  _0x3309d7(0x35b) +
+                  _0x3309d7(0x3c0) +
+                  _0x3309d7(0x283) +
+                  _0x3309d7(0x2b4) +
+                  _0x3309d7(0x3e3),
+                price: _0x3309d7(0x3a6),
+                startingFrom: !![],
+              },
+              {
+                title: _0x3309d7(0x2d8) + _0x3309d7(0x261),
+                description:
+                  _0x3309d7(0x3bc) +
+                  _0x3309d7(0x1e9) +
+                  _0x3309d7(0x216) +
+                  _0x3309d7(0x312) +
+                  _0x3309d7(0x38a) +
+                  _0x3309d7(0x3d2) +
+                  _0x3309d7(0x1f6) +
+                  _0x3309d7(0x1a7) +
+                  _0x3309d7(0x34f) +
+                  _0x3309d7(0x3aa),
+                price: _0x3309d7(0x2f8),
+                startingFrom: !![],
+              },
+            ],
+            interiorServices = [
+              {
+                title: _0x3309d7(0x22d) + _0x3309d7(0x303),
+                description:
+                  _0x3309d7(0x2cd) +
+                  _0x3309d7(0x1f3) +
+                  _0x3309d7(0x2b3) +
+                  _0x3309d7(0x1ab) +
+                  _0x3309d7(0x1fe) +
+                  _0x3309d7(0x2f6) +
+                  _0x3309d7(0x333) +
+                  _0x3309d7(0x3ca) +
+                  _0x3309d7(0x2de) +
+                  _0x3309d7(0x1cd) +
+                  "g.",
+                price: "80",
+                perSqMeter: !![],
+              },
+              {
+                title: _0x3309d7(0x3ee) + _0x3309d7(0x370),
+                description:
+                  _0x3309d7(0x2d7) +
+                  _0x3309d7(0x247) +
+                  _0x3309d7(0x1f8) +
+                  _0x3309d7(0x22c) +
+                  _0x3309d7(0x3af) +
+                  _0x3309d7(0x373) +
+                  _0x3309d7(0x37e) +
+                  _0x3309d7(0x1b5) +
+                  _0x3309d7(0x338) +
+                  _0x3309d7(0x2c9) +
+                  _0x3309d7(0x22f) +
+                  _0x3309d7(0x1e7) +
+                  _0x3309d7(0x1bb) +
+                  _0x3309d7(0x2ec),
+                price: _0x3309d7(0x403),
+                perSqMeter: !![],
+              },
+            ];
+          function renderPricing() {
+            const _0x3166d0 = _0x3309d7,
+              _0x3bb0d2 = {
+                lHpsu: _0x3166d0(0x39c) + _0x3166d0(0x202) + _0x3166d0(0x21d),
+                wDOPQ: _0x3166d0(0x32c),
+                azTjy:
+                  _0x3166d0(0x398) +
+                  _0x3166d0(0x23b) +
+                  _0x3166d0(0x33d) +
+                  _0x3166d0(0x2b6) +
+                  _0x3166d0(0x369) +
+                  _0x3166d0(0x2ab) +
+                  _0x3166d0(0x1a3) +
+                  _0x3166d0(0x34a) +
+                  _0x3166d0(0x3dd) +
+                  _0x3166d0(0x3eb) +
+                  "up",
+                cVulJ:
+                  _0x3166d0(0x39c) +
+                  _0x3166d0(0x29e) +
+                  _0x3166d0(0x1dc) +
+                  _0x3166d0(0x375),
+                oRmHW: function (_0x24fc63, _0x1c386c) {
+                  return _0x24fc63 === _0x1c386c;
+                },
+                SEtYj: _0x3166d0(0x357) + "AL",
+                FnaDa: function (_0x39dce3, _0x322692) {
+                  return _0x39dce3 === _0x322692;
+                },
+                hAcGH: _0x3166d0(0x1b7),
+                ZKmRT:
+                  _0x3166d0(0x33e) +
+                  _0x3166d0(0x3cd) +
+                  _0x3166d0(0x239) +
+                  _0x3166d0(0x3c1) +
+                  _0x3166d0(0x3a7) +
+                  _0x3166d0(0x23f) +
+                  _0x3166d0(0x350) +
+                  _0x3166d0(0x345),
+                gwwLd:
+                  _0x3166d0(0x2e1) +
+                  _0x3166d0(0x36a) +
+                  _0x3166d0(0x3d7) +
+                  _0x3166d0(0x1e1) +
+                  _0x3166d0(0x1e5) +
+                  _0x3166d0(0x32b) +
+                  _0x3166d0(0x231) +
+                  _0x3166d0(0x29b) +
+                  _0x3166d0(0x1cb) +
+                  _0x3166d0(0x340) +
+                  _0x3166d0(0x401) +
+                  _0x3166d0(0x3cb) +
+                  _0x3166d0(0x1b4) +
+                  _0x3166d0(0x1d5),
+                yssfr: _0x3166d0(0x3b6),
+                ohndX: _0x3166d0(0x1a8),
+                JpcuD:
+                  _0x3166d0(0x39c) +
+                  _0x3166d0(0x408) +
+                  _0x3166d0(0x2c0) +
+                  _0x3166d0(0x1f1) +
+                  _0x3166d0(0x2e4) +
+                  _0x3166d0(0x2ee) +
+                  _0x3166d0(0x3c5),
+                LGcsV:
+                  _0x3166d0(0x2e1) +
+                  _0x3166d0(0x36a) +
+                  _0x3166d0(0x3d7) +
+                  _0x3166d0(0x214) +
+                  _0x3166d0(0x1e3) +
+                  _0x3166d0(0x2ff) +
+                  _0x3166d0(0x3e6) +
+                  _0x3166d0(0x313) +
+                  _0x3166d0(0x406) +
+                  _0x3166d0(0x2bb) +
+                  _0x3166d0(0x2e0) +
+                  _0x3166d0(0x40a) +
+                  _0x3166d0(0x3c4) +
+                  _0x3166d0(0x203),
+                RmFDu: function (_0x259438, _0x5b9b63) {
+                  return _0x259438 === _0x5b9b63;
+                },
+                qCxMf: _0x3166d0(0x20c),
+                QSQXV: _0x3166d0(0x30c),
+                GFvMC: function (_0x176096, _0x181a92) {
+                  return _0x176096 === _0x181a92;
+                },
+                QnuhC: _0x3166d0(0x1eb),
+                DqdOu:
+                  _0x3166d0(0x2e1) +
+                  _0x3166d0(0x36a) +
+                  _0x3166d0(0x1d9) +
+                  _0x3166d0(0x3ba) +
+                  _0x3166d0(0x1ce) +
+                  _0x3166d0(0x1e5) +
+                  _0x3166d0(0x399) +
+                  _0x3166d0(0x231) +
+                  _0x3166d0(0x2a5) +
+                  _0x3166d0(0x2a7) +
+                  _0x3166d0(0x1ec) +
+                  _0x3166d0(0x351) +
+                  _0x3166d0(0x2d6) +
+                  _0x3166d0(0x34c) +
+                  _0x3166d0(0x343) +
+                  _0x3166d0(0x337) +
+                  _0x3166d0(0x1c0) +
+                  _0x3166d0(0x344) +
+                  _0x3166d0(0x249) +
+                  _0x3166d0(0x3f3) +
+                  _0x3166d0(0x359) +
+                  _0x3166d0(0x3fc) +
+                  _0x3166d0(0x30a) +
+                  _0x3166d0(0x2ba) +
+                  _0x3166d0(0x397) +
+                  _0x3166d0(0x27b),
+                KOrVw: function (_0x348468, _0x76f17c) {
+                  return _0x348468 !== _0x76f17c;
+                },
+                XYbic: _0x3166d0(0x270),
+                HNyym: function (_0x59f588, _0x5738fe) {
+                  return _0x59f588 !== _0x5738fe;
+                },
+                PVbZT: function (_0x2a8af3, _0xb61457) {
+                  return _0x2a8af3 + _0xb61457;
+                },
+                JqrLf: _0x3166d0(0x28c),
+                AxIPC: _0x3166d0(0x39a),
+                MGUFO:
+                  _0x3166d0(0x269) +
+                  _0x3166d0(0x2ca) +
+                  _0x3166d0(0x37f) +
+                  _0x3166d0(0x277) +
+                  _0x3166d0(0x24b) +
+                  _0x3166d0(0x2b9) +
+                  _0x3166d0(0x364) +
+                  _0x3166d0(0x230) +
+                  _0x3166d0(0x3c8) +
+                  _0x3166d0(0x3ac) +
+                  _0x3166d0(0x369) +
+                  _0x3166d0(0x2ab) +
+                  _0x3166d0(0x1a3) +
+                  _0x3166d0(0x34a) +
+                  _0x3166d0(0x302) +
+                  _0x3166d0(0x1b1) +
+                  _0x3166d0(0x27a) +
+                  _0x3166d0(0x2ee) +
+                  _0x3166d0(0x276) +
+                  _0x3166d0(0x30f) +
+                  _0x3166d0(0x38e) +
+                  _0x3166d0(0x240) +
+                  _0x3166d0(0x21f) +
+                  "r",
+                eWfZz: _0x3166d0(0x35e),
+                GWtwO:
+                  _0x3166d0(0x37b) +
+                  _0x3166d0(0x2f3) +
+                  _0x3166d0(0x210) +
+                  _0x3166d0(0x296) +
+                  _0x3166d0(0x339) +
+                  _0x3166d0(0x3b8) +
+                  _0x3166d0(0x3b7) +
+                  _0x3166d0(0x384) +
+                  _0x3166d0(0x20f) +
+                  _0x3166d0(0x1c3) +
+                  _0x3166d0(0x298),
+                Fpuwi:
+                  _0x3166d0(0x269) +
+                  _0x3166d0(0x2ca) +
+                  _0x3166d0(0x37f) +
+                  _0x3166d0(0x277) +
+                  _0x3166d0(0x24b) +
+                  _0x3166d0(0x2b9) +
+                  _0x3166d0(0x364) +
+                  _0x3166d0(0x230) +
+                  _0x3166d0(0x3c8) +
+                  _0x3166d0(0x3ac) +
+                  _0x3166d0(0x369) +
+                  _0x3166d0(0x2ab) +
+                  _0x3166d0(0x1a3) +
+                  _0x3166d0(0x34a) +
+                  _0x3166d0(0x302) +
+                  _0x3166d0(0x1b1) +
+                  _0x3166d0(0x27a) +
+                  _0x3166d0(0x2ee) +
+                  _0x3166d0(0x276) +
+                  _0x3166d0(0x30f) +
+                  _0x3166d0(0x38e) +
+                  _0x3166d0(0x240) +
+                  _0x3166d0(0x21f) +
+                  _0x3166d0(0x35a),
+                dPtZz:
+                  _0x3166d0(0x37b) +
+                  _0x3166d0(0x2f3) +
+                  _0x3166d0(0x210) +
+                  _0x3166d0(0x296) +
+                  _0x3166d0(0x339) +
+                  _0x3166d0(0x3b8) +
+                  _0x3166d0(0x3b7) +
+                  _0x3166d0(0x384) +
+                  _0x3166d0(0x1a1) +
+                  _0x3166d0(0x32a) +
+                  _0x3166d0(0x252),
+                ePFpg: function (_0x2b8dd1, _0x2400f2) {
+                  return _0x2b8dd1(_0x2400f2);
+                },
+                KStoW: _0x3166d0(0x2dd),
+                XRnqQ: _0x3166d0(0x24e) + _0x3166d0(0x3d9),
+                GTmFB: function (_0x3329b3, _0x3e3ef6) {
+                  return _0x3329b3 === _0x3e3ef6;
+                },
+                fpbLc: _0x3166d0(0x38c),
+                Lixzq: _0x3166d0(0x23a) + _0x3166d0(0x372),
+                DxDpT: _0x3166d0(0x308) + _0x3166d0(0x2e2),
+                eyMwU: function (_0x3d53a8, _0x432591) {
+                  return _0x3d53a8 !== _0x432591;
+                },
+                OzgqN: _0x3166d0(0x2b5),
+                yynhy: _0x3166d0(0x409),
+                MWJoL: function (_0x5ad862, _0x5904ae) {
+                  return _0x5ad862 !== _0x5904ae;
+                },
+                WcYNS: _0x3166d0(0x1e8),
+              },
+              _0x23b32f = document[_0x3166d0(0x395) + _0x3166d0(0x200)](
+                _0x3bb0d2[_0x3166d0(0x3be)],
+              );
+            if (
+              _0x23b32f &&
+              _0x3bb0d2[_0x3166d0(0x1c1)](
+                _0x23b32f[_0x3166d0(0x2f9)][_0x3166d0(0x33b)],
+                -0x871 + 0x26ec + -0x1e7b,
+              )
+            ) {
+              if (
+                _0x3bb0d2[_0x3166d0(0x2c5)](
+                  _0x3bb0d2[_0x3166d0(0x212)],
+                  _0x3bb0d2[_0x3166d0(0x212)],
+                )
+              ) {
+                pricingTiers[_0x3166d0(0x2dc)]((_0x1cdfec) => {
+                  const _0x27d704 = _0x3166d0,
+                    _0x3cc63e = document[_0x27d704(0x31d) + _0x27d704(0x407)](
+                      _0x3bb0d2[_0x27d704(0x321)],
+                    );
+                  _0x3cc63e[_0x27d704(0x3d1)] = _0x3bb0d2[_0x27d704(0x360)];
+                  const _0x1d85af = _0x1cdfec[_0x27d704(0x410)]
+                    [_0x27d704(0x2b0)](
+                      (_0x143fc1) =>
+                        _0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x23e) +
+                        _0x27d704(0x1ff) +
+                        _0x27d704(0x1c8) +
+                        _0x27d704(0x377) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x2af) +
+                        _0x27d704(0x3a3) +
+                        _0x27d704(0x221) +
+                        _0x27d704(0x1bd) +
+                        _0x27d704(0x2f1) +
+                        _0x27d704(0x2f2) +
+                        _0x27d704(0x31e) +
+                        _0x27d704(0x37c) +
+                        _0x27d704(0x289) +
+                        _0x27d704(0x2f0) +
+                        _0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x253) +
+                        _0x27d704(0x250) +
+                        _0x27d704(0x278) +
+                        _0x27d704(0x3f9) +
+                        _0x27d704(0x3bd) +
+                        _0x27d704(0x362) +
+                        _0x27d704(0x3e5) +
+                        _0x27d704(0x1af) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x3a9) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x40f) +
+                        _0x27d704(0x213) +
+                        _0x27d704(0x21b) +
+                        _0x27d704(0x263) +
+                        _0x27d704(0x322) +
+                        _0x27d704(0x29c) +
+                        _0x27d704(0x27e) +
+                        _0x27d704(0x3d4) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x30d) +
+                        _0x143fc1 +
+                        (_0x27d704(0x318) +
+                          _0x27d704(0x405) +
+                          _0x27d704(0x326) +
+                          _0x27d704(0x1ae) +
+                          _0x27d704(0x405) +
+                          _0x27d704(0x224) +
+                          _0x27d704(0x295) +
+                          _0x27d704(0x405) +
+                          "\x20\x20"),
+                    )
+                    [_0x27d704(0x2e9)]("");
+                  let _0x594697 = _0x3bb0d2[_0x27d704(0x1b2)],
+                    _0x31a119 = "";
+                  if (
+                    _0x3bb0d2[_0x27d704(0x274)](
+                      _0x1cdfec[_0x27d704(0x21e)],
+                      _0x3bb0d2[_0x27d704(0x36b)],
+                    ) ||
+                    _0x3bb0d2[_0x27d704(0x1c1)](
+                      _0x1cdfec[_0x27d704(0x2fb)],
+                      _0x3bb0d2[_0x27d704(0x3f2)],
+                    ) ||
+                    _0x1cdfec[_0x27d704(0x324)]
+                  )
+                    ((_0x594697 = _0x3bb0d2[_0x27d704(0x28a)]),
+                      (_0x31a119 = _0x3bb0d2[_0x27d704(0x3d0)]));
+                  else
+                    _0x3bb0d2[_0x27d704(0x1c1)](
+                      _0x1cdfec[_0x27d704(0x2fb)],
+                      _0x3bb0d2[_0x27d704(0x3d8)],
+                    ) ||
+                    _0x3bb0d2[_0x27d704(0x1c1)](
+                      _0x1cdfec[_0x27d704(0x21e)],
+                      _0x3bb0d2[_0x27d704(0x3bf)],
+                    )
+                      ? ((_0x594697 = _0x3bb0d2[_0x27d704(0x232)]),
+                        (_0x31a119 = _0x3bb0d2[_0x27d704(0x3f7)]))
+                      : _0x3bb0d2[_0x27d704(0x2c1)](
+                            _0x3bb0d2[_0x27d704(0x1c2)],
+                            _0x3bb0d2[_0x27d704(0x292)],
+                          )
+                        ? _0x426f87[_0x27d704(0x218) + "s"]()
+                        : (_0x594697 = _0x3bb0d2[_0x27d704(0x266)]);
+                  let _0x377a84 = "";
+                  (_0x1cdfec[_0x27d704(0x324)] &&
+                    (_0x3bb0d2[_0x27d704(0x1f2)](
+                      _0x3bb0d2[_0x27d704(0x391)],
+                      _0x3bb0d2[_0x27d704(0x391)],
+                    )
+                      ? (_0x377a84 = _0x3bb0d2[_0x27d704(0x361)])
+                      : (_0x42774c = _0x3bb0d2[_0x27d704(0x266)])),
+                    (_0x3cc63e[_0x27d704(0x235)] =
+                      _0x27d704(0x318) +
+                      _0x27d704(0x405) +
+                      _0x27d704(0x23e) +
+                      _0x27d704(0x3e0) +
+                      _0x27d704(0x1df) +
+                      _0x27d704(0x2d1) +
+                      _0x27d704(0x400) +
+                      _0x27d704(0x34d) +
+                      _0x27d704(0x36f) +
+                      _0x27d704(0x265) +
+                      "\x20" +
+                      _0x594697 +
+                      (_0x27d704(0x2d0) +
+                        _0x27d704(0x305) +
+                        _0x27d704(0x220) +
+                        _0x27d704(0x2b8) +
+                        _0x27d704(0x2e7) +
+                        _0x27d704(0x3b9) +
+                        _0x27d704(0x293) +
+                        _0x27d704(0x1d3) +
+                        _0x27d704(0x2c2) +
+                        _0x27d704(0x1e4) +
+                        _0x27d704(0x371) +
+                        _0x27d704(0x2bc) +
+                        _0x27d704(0x271) +
+                        _0x27d704(0x3ef) +
+                        _0x27d704(0x239) +
+                        _0x27d704(0x282) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x222)) +
+                      _0x377a84 +
+                      (_0x27d704(0x318) + _0x27d704(0x405) + _0x27d704(0x28f)) +
+                      _0x31a119 +
+                      (_0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x29d) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x1dd) +
+                        _0x27d704(0x21c) +
+                        _0x27d704(0x3a1) +
+                        _0x27d704(0x2fa) +
+                        _0x27d704(0x1f0) +
+                        _0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x28b) +
+                        _0x27d704(0x25f) +
+                        _0x27d704(0x2a4) +
+                        _0x27d704(0x2c8) +
+                        _0x27d704(0x290) +
+                        _0x27d704(0x1b8) +
+                        _0x27d704(0x2fd) +
+                        _0x27d704(0x1de)) +
+                      _0x1cdfec[_0x27d704(0x2fb)] +
+                      (_0x27d704(0x393) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x3e7) +
+                        _0x27d704(0x1be) +
+                        _0x27d704(0x304) +
+                        _0x27d704(0x1c4) +
+                        _0x27d704(0x299) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x1b9) +
+                        _0x27d704(0x26d) +
+                        _0x27d704(0x215) +
+                        _0x27d704(0x2cf) +
+                        _0x27d704(0x243) +
+                        _0x27d704(0x29a) +
+                        _0x27d704(0x20e) +
+                        _0x27d704(0x209)) +
+                      (_0x3bb0d2[_0x27d704(0x3c6)](
+                        _0x1cdfec[_0x27d704(0x1d4)],
+                        _0x3bb0d2[_0x27d704(0x328)],
+                      )
+                        ? _0x1cdfec[_0x27d704(0x1d4)]
+                        : _0x3bb0d2[_0x27d704(0x328)]) +
+                      (_0x27d704(0x28e) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x396) +
+                        _0x27d704(0x356) +
+                        _0x27d704(0x227) +
+                        _0x27d704(0x353) +
+                        _0x27d704(0x3db)) +
+                      (_0x3bb0d2[_0x27d704(0x248)](
+                        _0x1cdfec[_0x27d704(0x1d4)],
+                        _0x3bb0d2[_0x27d704(0x328)],
+                      )
+                        ? _0x3bb0d2[_0x27d704(0x390)](
+                            "/",
+                            _0x1cdfec[_0x27d704(0x352)],
+                          )
+                        : "") +
+                      (_0x27d704(0x28e) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x291) +
+                        _0x27d704(0x228) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x38d) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x376) +
+                        _0x27d704(0x356) +
+                        _0x27d704(0x227) +
+                        _0x27d704(0x225) +
+                        _0x27d704(0x381) +
+                        _0x27d704(0x40b) +
+                        _0x27d704(0x286) +
+                        _0x27d704(0x256) +
+                        _0x27d704(0x1d2) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x222)) +
+                      _0x1cdfec[_0x27d704(0x3fa) + "n"] +
+                      (_0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x242) +
+                        _0x27d704(0x246) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x3fb) +
+                        _0x27d704(0x24a) +
+                        _0x27d704(0x2d3) +
+                        _0x27d704(0x27f) +
+                        _0x27d704(0x217) +
+                        _0x27d704(0x3fe) +
+                        _0x27d704(0x3a4) +
+                        _0x27d704(0x223) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x3f1)) +
+                      _0x1d85af +
+                      (_0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x224) +
+                        _0x27d704(0x1ef) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x1ba) +
+                        _0x27d704(0x31c) +
+                        _0x27d704(0x3e2)) +
+                      _0x1cdfec[_0x27d704(0x2fb)] +
+                      (_0x27d704(0x334) +
+                        _0x27d704(0x1bc) +
+                        _0x27d704(0x1d1) +
+                        _0x27d704(0x3e1) +
+                        _0x27d704(0x2c3) +
+                        _0x27d704(0x332) +
+                        _0x27d704(0x366) +
+                        _0x27d704(0x2eb) +
+                        _0x27d704(0x3c7) +
+                        _0x27d704(0x3d3) +
+                        _0x27d704(0x38f) +
+                        _0x27d704(0x2aa) +
+                        _0x27d704(0x3b1) +
+                        _0x27d704(0x19f) +
+                        _0x27d704(0x233) +
+                        _0x27d704(0x39e) +
+                        _0x27d704(0x40e) +
+                        _0x27d704(0x2e5) +
+                        _0x27d704(0x1da) +
+                        _0x27d704(0x1ca) +
+                        _0x27d704(0x280) +
+                        _0x27d704(0x2c4) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x2e6)) +
+                      _0x1cdfec[_0x27d704(0x285)] +
+                      (_0x27d704(0x318) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x29f) +
+                        _0x27d704(0x382) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x3fb) +
+                        _0x27d704(0x387) +
+                        _0x27d704(0x405) +
+                        _0x27d704(0x222))),
+                    _0x23b32f[_0x27d704(0x331) + "d"](_0x3cc63e));
+                });
+                const _0x421f58 = document[_0x3166d0(0x395) + _0x3166d0(0x200)](
+                  _0x3bb0d2[_0x3166d0(0x38b)],
+                );
+                _0x421f58 &&
+                  soloServices[_0x3166d0(0x2dc)]((_0x54c24b) => {
+                    const _0x4150ae = _0x3166d0;
+                    if (
+                      _0x3bb0d2[_0x4150ae(0x248)](
+                        _0x3bb0d2[_0x4150ae(0x40c)],
+                        _0x3bb0d2[_0x4150ae(0x316)],
+                      )
+                    ) {
+                      const _0x31a685 = document[
+                        _0x4150ae(0x31d) + _0x4150ae(0x407)
+                      ](_0x3bb0d2[_0x4150ae(0x321)]);
+                      ((_0x31a685[_0x4150ae(0x3d1)] =
+                        _0x3bb0d2[_0x4150ae(0x1a9)]),
+                        _0x31a685[_0x4150ae(0x20a) + "te"](
+                          _0x3bb0d2[_0x4150ae(0x39f)],
+                          _0x4150ae(0x32f) +
+                            "(\x27" +
+                            _0x54c24b[_0x4150ae(0x2fb)] +
+                            "\x27)",
+                        ),
+                        (_0x31a685[_0x4150ae(0x235)] =
+                          _0x4150ae(0x318) +
+                          _0x4150ae(0x405) +
+                          _0x4150ae(0x3e7) +
+                          _0x4150ae(0x1be) +
+                          _0x4150ae(0x327) +
+                          _0x4150ae(0x26c) +
+                          _0x4150ae(0x3e4) +
+                          _0x4150ae(0x251) +
+                          _0x4150ae(0x3ed) +
+                          _0x4150ae(0x255) +
+                          _0x4150ae(0x405) +
+                          _0x4150ae(0x405) +
+                          _0x4150ae(0x1d6) +
+                          _0x4150ae(0x1a4) +
+                          _0x4150ae(0x2c7) +
+                          _0x4150ae(0x307) +
+                          _0x4150ae(0x2f7) +
+                          _0x4150ae(0x34b) +
+                          _0x4150ae(0x29a) +
+                          _0x4150ae(0x264) +
+                          _0x4150ae(0x348) +
+                          _0x4150ae(0x31b) +
+                          _0x54c24b[_0x4150ae(0x2fb)] +
+                          (_0x4150ae(0x1aa) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x3f5) +
+                            _0x4150ae(0x2a0) +
+                            _0x4150ae(0x306) +
+                            _0x4150ae(0x32d) +
+                            _0x4150ae(0x2e3) +
+                            _0x4150ae(0x37d) +
+                            _0x4150ae(0x23c) +
+                            _0x4150ae(0x20d) +
+                            _0x4150ae(0x2ea) +
+                            _0x4150ae(0x257) +
+                            _0x4150ae(0x2fc) +
+                            _0x4150ae(0x35d) +
+                            _0x4150ae(0x237)) +
+                          _0x54c24b[_0x4150ae(0x3fa) + "n"] +
+                          (_0x4150ae(0x393) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x3fb) +
+                            _0x4150ae(0x387) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x2e1) +
+                            _0x4150ae(0x347) +
+                            _0x4150ae(0x25b) +
+                            _0x4150ae(0x1fa) +
+                            _0x4150ae(0x36e) +
+                            _0x4150ae(0x1bf) +
+                            _0x4150ae(0x317) +
+                            _0x4150ae(0x323) +
+                            _0x4150ae(0x34e) +
+                            _0x4150ae(0x310) +
+                            _0x4150ae(0x3f4) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x236)) +
+                          (_0x54c24b[_0x4150ae(0x208) + "om"]
+                            ? _0x3bb0d2[_0x4150ae(0x341)]
+                            : "") +
+                          (_0x4150ae(0x318) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x3fb) +
+                            _0x4150ae(0x3da) +
+                            _0x4150ae(0x2ad) +
+                            _0x4150ae(0x388) +
+                            _0x4150ae(0x290) +
+                            _0x4150ae(0x244) +
+                            _0x4150ae(0x3ec) +
+                            _0x4150ae(0x21a) +
+                            _0x4150ae(0x3ff) +
+                            _0x4150ae(0x402) +
+                            _0x4150ae(0x241) +
+                            _0x4150ae(0x1f4) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x28f)) +
+                          _0x54c24b[_0x4150ae(0x1d4)] +
+                          (_0x4150ae(0x315) +
+                            _0x4150ae(0x2a0) +
+                            _0x4150ae(0x306) +
+                            _0x4150ae(0x3a2) +
+                            _0x4150ae(0x2e3) +
+                            _0x4150ae(0x3f8) +
+                            _0x4150ae(0x25d) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x291) +
+                            _0x4150ae(0x267) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x2cb) +
+                            _0x4150ae(0x405) +
+                            _0x4150ae(0x28f))),
+                        _0x421f58[_0x4150ae(0x331) + "d"](_0x31a685));
+                    } else
+                      ((_0xde71a5 = _0x3bb0d2[_0x4150ae(0x28a)]),
+                        (_0x3d62c7 = _0x3bb0d2[_0x4150ae(0x3d0)]));
+                  });
+                const _0x592c8e = document[_0x3166d0(0x395) + _0x3166d0(0x200)](
+                  _0x3bb0d2[_0x3166d0(0x31a)],
+                );
+                (_0x592c8e &&
+                  (_0x3bb0d2[_0x3166d0(0x245)](
+                    _0x3bb0d2[_0x3166d0(0x3bb)],
+                    _0x3bb0d2[_0x3166d0(0x3b5)],
+                  )
+                    ? interiorServices[_0x3166d0(0x2dc)]((_0x4fde8b) => {
+                        const _0x4c992b = _0x3166d0,
+                          _0xe6f119 = document[
+                            _0x4c992b(0x31d) + _0x4c992b(0x407)
+                          ](_0x3bb0d2[_0x4c992b(0x321)]);
+                        ((_0xe6f119[_0x4c992b(0x3d1)] =
+                          _0x3bb0d2[_0x4c992b(0x3a0)]),
+                          _0xe6f119[_0x4c992b(0x20a) + "te"](
+                            _0x3bb0d2[_0x4c992b(0x39f)],
+                            _0x4c992b(0x32f) +
+                              "(\x27" +
+                              _0x4fde8b[_0x4c992b(0x2fb)] +
+                              "\x27)",
+                          ),
+                          (_0xe6f119[_0x4c992b(0x235)] =
+                            _0x4c992b(0x318) +
+                            _0x4c992b(0x405) +
+                            _0x4c992b(0x3e7) +
+                            _0x4c992b(0x1be) +
+                            _0x4c992b(0x327) +
+                            _0x4c992b(0x26c) +
+                            _0x4c992b(0x3e4) +
+                            _0x4c992b(0x251) +
+                            _0x4c992b(0x3ed) +
+                            _0x4c992b(0x255) +
+                            _0x4c992b(0x405) +
+                            _0x4c992b(0x405) +
+                            _0x4c992b(0x1d6) +
+                            _0x4c992b(0x1a4) +
+                            _0x4c992b(0x2c7) +
+                            _0x4c992b(0x307) +
+                            _0x4c992b(0x2f7) +
+                            _0x4c992b(0x34b) +
+                            _0x4c992b(0x29a) +
+                            _0x4c992b(0x264) +
+                            _0x4c992b(0x348) +
+                            _0x4c992b(0x31b) +
+                            _0x4fde8b[_0x4c992b(0x2fb)] +
+                            (_0x4c992b(0x1aa) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x3f5) +
+                              _0x4c992b(0x2a0) +
+                              _0x4c992b(0x306) +
+                              _0x4c992b(0x32d) +
+                              _0x4c992b(0x2e3) +
+                              _0x4c992b(0x37d) +
+                              _0x4c992b(0x23c) +
+                              _0x4c992b(0x20d) +
+                              _0x4c992b(0x2ea) +
+                              _0x4c992b(0x257) +
+                              _0x4c992b(0x2fc) +
+                              _0x4c992b(0x35d) +
+                              _0x4c992b(0x237)) +
+                            _0x4fde8b[_0x4c992b(0x3fa) + "n"] +
+                            (_0x4c992b(0x393) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x3fb) +
+                              _0x4c992b(0x387) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x2e1) +
+                              _0x4c992b(0x347) +
+                              _0x4c992b(0x25b) +
+                              _0x4c992b(0x1fa) +
+                              _0x4c992b(0x36e) +
+                              _0x4c992b(0x1bf) +
+                              _0x4c992b(0x317) +
+                              _0x4c992b(0x323) +
+                              _0x4c992b(0x34e) +
+                              _0x4c992b(0x310) +
+                              _0x4c992b(0x3f4) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x236)) +
+                            (_0x4fde8b[_0x4c992b(0x2ac)]
+                              ? _0x3bb0d2[_0x4c992b(0x3ce)]
+                              : "") +
+                            (_0x4c992b(0x318) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x3fb) +
+                              _0x4c992b(0x3da) +
+                              _0x4c992b(0x2ad) +
+                              _0x4c992b(0x388) +
+                              _0x4c992b(0x290) +
+                              _0x4c992b(0x244) +
+                              _0x4c992b(0x3ec) +
+                              _0x4c992b(0x21a) +
+                              _0x4c992b(0x3ff) +
+                              _0x4c992b(0x402) +
+                              _0x4c992b(0x241) +
+                              _0x4c992b(0x1f4) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x28f)) +
+                            _0x4fde8b[_0x4c992b(0x1d4)] +
+                            (_0x4c992b(0x315) +
+                              _0x4c992b(0x2a0) +
+                              _0x4c992b(0x306) +
+                              _0x4c992b(0x3a2) +
+                              _0x4c992b(0x2e3) +
+                              _0x4c992b(0x3f8) +
+                              _0x4c992b(0x25d) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x291) +
+                              _0x4c992b(0x267) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x2cb) +
+                              _0x4c992b(0x405) +
+                              _0x4c992b(0x28f))),
+                          _0x592c8e[_0x4c992b(0x331) + "d"](_0xe6f119));
+                      })
+                    : (_0x57c547 = _0x3bb0d2[_0x3166d0(0x361)])),
+                  _0x3bb0d2[_0x3166d0(0x3b4)](
+                    typeof lucide,
+                    _0x3bb0d2[_0x3166d0(0x325)],
+                  ) && lucide[_0x3166d0(0x218) + "s"]());
+              } else {
+                const _0x2e8de5 =
+                  _0x3166d0(0x36d) +
+                  _0x3166d0(0x24c) +
+                  _0x3166d0(0x3f6) +
+                  _0x3166d0(0x3c3) +
+                  _0x3166d0(0x3f0) +
+                  _0x3166d0(0x3ad) +
+                  _0x17b593 +
+                  (_0x3166d0(0x22b) +
+                    _0x3166d0(0x378) +
+                    _0x3166d0(0x234) +
+                    _0x3166d0(0x404) +
+                    _0x3166d0(0x342) +
+                    _0x3166d0(0x33a) +
+                    _0x3166d0(0x229) +
+                    _0x3166d0(0x2df) +
+                    _0x3166d0(0x201) +
+                    _0x3166d0(0x1ac) +
+                    _0x3166d0(0x3b3) +
+                    _0x3166d0(0x27c));
+                _0xd13940[_0x3166d0(0x39d)](
+                  _0x3166d0(0x26e) +
+                    _0x3166d0(0x3d5) +
+                    _0x3166d0(0x374) +
+                    "t=" +
+                    JPseXx[_0x3166d0(0x2b2)](_0x378f86, _0x2e8de5),
+                  JPseXx[_0x3166d0(0x40d)],
+                );
+              }
+            }
+          }
+          window[_0x3309d7(0x2e8) + _0x3309d7(0x33f)](
+            _0x3309d7(0x284) + _0x3309d7(0x2bd),
+            () => {
+              const _0x180053 = _0x3309d7,
+                _0x4bbed0 = {
+                  hfuqW: function (_0x3ade35) {
+                    return _0x3ade35();
+                  },
+                };
+              _0x4bbed0[_0x180053(0x24d)](renderPricing);
+            },
+          );
+        </script>
+      </div>
+      <style>
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      </style>
+      <div
+        id="project-modal"
+        class="fixed inset-0 z-[100] hidden bg-[#02050a] text-white font-sans overflow-hidden opacity-0 transition-opacity duration-700"
+      >
+        <div
+          id="modal-bg-track-container"
+          class="absolute inset-0 z-0 bg-[#050608] flex items-center overflow-hidden"
         >
           <div
-            class="w-auto px-8 md:px-12 h-full flex-shrink-0 md:border-r border-white/10 flex items-center justify-center hidden md:flex"
-          >
-            <span
-              onclick="window.goBackSafely('dashboard')"
-              class="font-semibold text-lg md:text-xl tracking-wide text-white hover:text-gray-200 transition-colors cursor-pointer drop-shadow-md pr-4 whitespace-nowrap overflow-visible block uppercase"
-              >JIMMY.RENDER</span
-            >
+            id="modal-bg-track"
+            class="flex h-full items-center transition-transform duration-700 ease-in-out will-change-transform"
+            style="transform: translateX(0)"
+          ></div>
+        </div>
+        <div
+          id="modal-ui-layer"
+          class="absolute inset-0 z-10 transition-all duration-700 ease-out opacity-100 scale-100"
+        >
+          <div class="absolute inset-0 pointer-events-none">
+            <div
+              class="absolute top-0 left-0 right-0 h-[120px] bg-gradient-to-b from-[#050608] via-[#050608]/50 to-transparent"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 right-0 h-[220px] bg-gradient-to-t from-[#050608] via-[#050608]/60 to-transparent"
+            ></div>
+            <div
+              class="absolute top-0 bottom-0 left-0 w-[120px] bg-gradient-to-r from-[#050608] via-[#050608]/50 to-transparent hidden md:block"
+            ></div>
+            <div
+              class="absolute top-0 bottom-0 right-0 w-[120px] bg-gradient-to-l from-[#050608] via-[#050608]/50 to-transparent hidden md:block"
+            ></div>
           </div>
-          <div class="flex-1 px-6 md:px-10 flex justify-center items-center">
-            <span
-              onclick="window.goBackSafely('dashboard')"
-              class="font-semibold text-lg md:text-xl md:hidden tracking-wide text-white hover:text-gray-200 transition-colors cursor-pointer drop-shadow-md pr-4 whitespace-nowrap overflow-visible block uppercase"
-              >JIMMY.RENDER</span
+          <div class="absolute inset-0 pointer-events-none z-10 opacity-[0.15]">
+            <div
+              class="absolute top-[80px] left-0 right-0 h-[1px] bg-white"
+            ></div>
+            <div
+              class="absolute top-[80px] bottom-0 left-[80px] w-[1px] bg-white hidden md:block"
+            ></div>
+            <div
+              class="absolute top-[80px] bottom-0 right-[80px] w-[1px] bg-white hidden md:block"
+            ></div>
+          </div>
+          <header
+            class="absolute top-0 left-0 right-0 h-[80px] flex items-center z-40 bg-transparent backdrop-blur-sm shadow-none border-b border-white/5 saturate-100"
+          >
+            <div
+              class="w-auto px-8 md:px-12 h-full flex-shrink-0 md:border-r border-white/10 flex items-center justify-center hidden md:flex"
             >
-            <nav
-              class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-12 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-white ml-0 transition-all duration-300 drop-shadow-md"
+              <span
+                onclick="window.goBackSafely('dashboard')"
+                class="font-semibold text-lg md:text-xl tracking-wide text-white hover:text-gray-200 transition-colors cursor-pointer drop-shadow-md pr-4 whitespace-nowrap overflow-visible block uppercase"
+                >JIMMY.RENDER</span
+              >
+            </div>
+            <div class="flex-1 px-6 md:px-10 flex justify-center items-center">
+              <span
+                onclick="window.goBackSafely('dashboard')"
+                class="font-semibold text-lg md:text-xl md:hidden tracking-wide text-white hover:text-gray-200 transition-colors cursor-pointer drop-shadow-md pr-4 whitespace-nowrap overflow-visible block uppercase"
+                >JIMMY.RENDER</span
+              >
+              <nav
+                class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-12 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-white ml-0 transition-all duration-300 drop-shadow-md"
+              >
+                <a
+                  href="#"
+                  onclick="
+                    document
+                      .getElementById('modal-scroll-container')
+                      .scrollTo({ top: 0, behavior: 'smooth' });
+                    return false;
+                  "
+                  id="nav-modal-home"
+                  class="font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
+                  >Home</a
+                >
+                <a
+                  href="#"
+                  onclick="
+                    const c = document.getElementById('modal-scroll-container');
+                    c.scrollTo({ top: c.clientHeight, behavior: 'smooth' });
+                    return false;
+                  "
+                  id="nav-modal-concept"
+                  class="font-bold hover:text-white text-white transition-all drop-shadow-md"
+                  >CONCEPT</a
+                >
+                <a
+                  href="#"
+                  onclick="
+                    const c = document.getElementById('modal-scroll-container');
+                    c.scrollTo({ top: c.clientHeight * 2, behavior: 'smooth' });
+                    return false;
+                  "
+                  id="nav-modal-video"
+                  class="font-bold hover:text-white text-white transition-all drop-shadow-md"
+                  >VIDEO</a
+                >
+                <a
+                  href="#"
+                  onclick="
+                    const c = document.getElementById('modal-scroll-container');
+                    c.scrollTo({ top: c.clientHeight * 3, behavior: 'smooth' });
+                    return false;
+                  "
+                  id="nav-modal-gallery"
+                  class="font-bold hover:text-white text-white transition-all drop-shadow-md"
+                  >GALLERY</a
+                >
+              </nav>
+            </div>
+            <div
+              class="w-[60px] md:w-[80px] h-full flex-shrink-0 md:border-l border-white/20 flex items-center justify-center ml-auto"
             >
-              <a
-                href="#"
+              <button
+                onclick="window.goBackSafely('dashboard')"
+                class="w-10 h-10 flex flex-col items-center justify-center gap-[6px] focus:outline-none group hover:opacity-80 transition-opacity drop-shadow-md"
+              >
+                <span
+                  class="w-7 h-[2px] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.9)] transform transition-transform group-hover:bg-white"
+                ></span>
+                <span
+                  class="w-7 h-[2px] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.9)] transform transition-transform group-hover:bg-white"
+                ></span>
+              </button>
+            </div>
+          </header>
+          <div
+            class="absolute left-0 top-[80px] bottom-0 w-[80px] flex-col items-center justify-center z-20 border-r border-white/10 text-white hidden md:flex drop-shadow-md bg-black/10 backdrop-blur-sm"
+          >
+            <div
+              id="modal-nav-dots"
+              class="flex flex-col gap-5 mb-24 text-[8px]"
+            >
+              <span
                 onclick="
                   document
                     .getElementById('modal-scroll-container')
-                    .scrollTo({ top: 0, behavior: 'smooth' });
-                  return false;
+                    .scrollTo({ top: 0, behavior: 'smooth' })
                 "
-                id="nav-modal-home"
-                class="font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
-                >Home</a
-              >
-              <a
-                href="#"
+                class="modal-dot w-[8px] h-[8px] rounded-full border-2 border-white transition-colors hover:bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+              ></span>
+              <span
                 onclick="
                   const c = document.getElementById('modal-scroll-container');
                   c.scrollTo({ top: c.clientHeight, behavior: 'smooth' });
-                  return false;
                 "
-                id="nav-modal-concept"
-                class="font-bold hover:text-white text-white transition-all drop-shadow-md"
-                >CONCEPT</a
-              >
-              <a
-                href="#"
+                class="modal-dot w-[8px] h-[8px] rounded-full bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+              ></span>
+              <span
                 onclick="
                   const c = document.getElementById('modal-scroll-container');
                   c.scrollTo({ top: c.clientHeight * 2, behavior: 'smooth' });
-                  return false;
                 "
-                id="nav-modal-video"
-                class="font-bold hover:text-white text-white transition-all drop-shadow-md"
-                >VIDEO</a
-              >
-              <a
-                href="#"
+                class="modal-dot w-[8px] h-[8px] rounded-full bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+              ></span>
+              <span
                 onclick="
                   const c = document.getElementById('modal-scroll-container');
                   c.scrollTo({ top: c.clientHeight * 3, behavior: 'smooth' });
-                  return false;
                 "
-                id="nav-modal-gallery"
-                class="font-bold hover:text-white text-white transition-all drop-shadow-md"
-                >GALLERY</a
-              >
-            </nav>
-          </div>
-          <div
-            class="w-[60px] md:w-[80px] h-full flex-shrink-0 md:border-l border-white/20 flex items-center justify-center ml-auto"
-          >
-            <button
-              onclick="window.goBackSafely('dashboard')"
-              class="w-10 h-10 flex flex-col items-center justify-center gap-[6px] focus:outline-none group hover:opacity-80 transition-opacity drop-shadow-md"
-            >
-              <span
-                class="w-7 h-[2px] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.9)] transform transition-transform group-hover:bg-white"
+                class="modal-dot w-[8px] h-[8px] rounded-full bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               ></span>
-              <span
-                class="w-7 h-[2px] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.9)] transform transition-transform group-hover:bg-white"
-              ></span>
-            </button>
-          </div>
-        </header>
-        <div
-          class="absolute left-0 top-[80px] bottom-0 w-[80px] flex-col items-center justify-center z-20 border-r border-white/10 text-white hidden md:flex drop-shadow-md bg-black/10 backdrop-blur-sm"
-        >
-          <div id="modal-nav-dots" class="flex flex-col gap-5 mb-24 text-[8px]">
-            <span
-              onclick="
-                document
-                  .getElementById('modal-scroll-container')
-                  .scrollTo({ top: 0, behavior: 'smooth' })
-              "
-              class="modal-dot w-[8px] h-[8px] rounded-full border-2 border-white transition-colors hover:bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-            ></span>
-            <span
-              onclick="
-                const c = document.getElementById('modal-scroll-container');
-                c.scrollTo({ top: c.clientHeight, behavior: 'smooth' });
-              "
-              class="modal-dot w-[8px] h-[8px] rounded-full bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-            ></span>
-            <span
-              onclick="
-                const c = document.getElementById('modal-scroll-container');
-                c.scrollTo({ top: c.clientHeight * 2, behavior: 'smooth' });
-              "
-              class="modal-dot w-[8px] h-[8px] rounded-full bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-            ></span>
-            <span
-              onclick="
-                const c = document.getElementById('modal-scroll-container');
-                c.scrollTo({ top: c.clientHeight * 3, behavior: 'smooth' });
-              "
-              class="modal-dot w-[8px] h-[8px] rounded-full bg-white cursor-pointer shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-            ></span>
-          </div>
-          <div
-            class="transform -rotate-90 flex items-center gap-4 text-[9px] font-bold tracking-[0.4em] uppercase w-[240px] justify-between absolute bottom-[180px]"
-          >
-            <span>Scroll Down</span>
+            </div>
             <div
-              class="w-12 h-[1.5px] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-            ></div>
-            <div
-              class="w-5 h-7 border-2 border-white rounded-full flex justify-center items-start pt-[4px] rotate-90 shadow-[0_2px_4px_rgba(0,0,0,0.8)] bg-black/20 backdrop-blur-md"
+              class="transform -rotate-90 flex items-center gap-4 text-[9px] font-bold tracking-[0.4em] uppercase w-[240px] justify-between absolute bottom-[180px]"
             >
+              <span>Scroll Down</span>
               <div
-                class="w-[2.5px] h-[5px] bg-white rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
+                class="w-12 h-[1.5px] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               ></div>
+              <div
+                class="w-5 h-7 border-2 border-white rounded-full flex justify-center items-start pt-[4px] rotate-90 shadow-[0_2px_4px_rgba(0,0,0,0.8)] bg-black/20 backdrop-blur-md"
+              >
+                <div
+                  class="w-[2.5px] h-[5px] bg-white rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
+                ></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          class="absolute right-0 top-[80px] bottom-[80px] w-[80px] flex-col items-center justify-center gap-8 z-20 border-l border-white/10 hidden md:flex drop-shadow-md bg-black/10 backdrop-blur-sm"
-        >
-          <a
-            href="https://www.facebook.com/profile.php?id=61579645400520"
-            target="_blank"
-            class="text-white hover:text-gray-200 transition-colors drop-shadow-md"
-            ><svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
-              <path
-                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
-              /></svg></a
-          ><a
-            href="https://www.instagram.com/jimmy_renders/"
-            target="_blank"
-            class="text-white hover:text-gray-200 transition-colors drop-shadow-md"
-            ><svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
-              <path
-                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-              /></svg></a
-          ><a
-            href="https://www.tiktok.com/@jimmy_render?is_from_webapp=1&sender_device=pc"
-            target="_blank"
-            class="text-white hover:text-gray-200 transition-colors drop-shadow-md"
-            ><svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
-              <path
-                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a5.63 5.63 0 0 1-1.04-.1z"
-              /></svg
-          ></a>
-        </div>
-        <button
-          onclick="
-            document
-              .getElementById('modal-scroll-container')
-              .scrollTo({ top: 0, behavior: 'smooth' })
-          "
-          class="absolute right-0 bottom-0 w-[80px] h-[80px] items-center justify-center z-20 text-xs font-semibold tracking-widest bg-black/10 backdrop-blur-md border-t border-white/10 hidden md:flex hover:bg-white/10 transition-colors pointer-events-auto cursor-pointer"
-        >
-          <i data-lucide="chevron-up" class="w-6 h-6 text-white/70"></i>
-        </button>
+          <div
+            class="absolute right-0 top-[80px] bottom-[80px] w-[80px] flex-col items-center justify-center gap-8 z-20 border-l border-white/10 hidden md:flex drop-shadow-md bg-black/10 backdrop-blur-sm"
+          >
+            <a
+              href="https://www.facebook.com/profile.php?id=61579645400520"
+              target="_blank"
+              class="text-white hover:text-gray-200 transition-colors drop-shadow-md"
+              ><svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
+                <path
+                  d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+                /></svg></a
+            ><a
+              href="https://www.instagram.com/jimmy_renders/"
+              target="_blank"
+              class="text-white hover:text-gray-200 transition-colors drop-shadow-md"
+              ><svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                /></svg></a
+            ><a
+              href="https://www.tiktok.com/@jimmy_render?is_from_webapp=1&sender_device=pc"
+              target="_blank"
+              class="text-white hover:text-gray-200 transition-colors drop-shadow-md"
+              ><svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a5.63 5.63 0 0 1-1.04-.1z"
+                /></svg
+            ></a>
+          </div>
+          <button
+            onclick="
+              document
+                .getElementById('modal-scroll-container')
+                .scrollTo({ top: 0, behavior: 'smooth' })
+            "
+            class="absolute right-0 bottom-0 w-[80px] h-[80px] items-center justify-center z-20 text-xs font-semibold tracking-widest bg-black/10 backdrop-blur-md border-t border-white/10 hidden md:flex hover:bg-white/10 transition-colors pointer-events-auto cursor-pointer"
+          >
+            <i data-lucide="chevron-up" class="w-6 h-6 text-white/70"></i>
+          </button>
 
-        <div
-          class="absolute bottom-[20px] left-[20px] md:left-[100px] right-[80px] md:right-[120px] z-[60] pointer-events-none"
-        >
-          <div class="overflow-x-auto pb-6 hide-scrollbar pointer-events-auto">
-            <div
-              class="flex items-end gap-4 md:gap-5 w-max"
-              id="modal-thumbs"
-            ></div>
-          </div>
-        </div>
-        <div
-          id="modal-scroll-container"
-          class="absolute inset-0 z-[15] overflow-y-auto snap-y snap-mandatory scroll-smooth hide-scrollbar pointer-events-auto"
-        >
           <div
-            id="modal-sec-home"
-            class="relative w-full h-full snap-start snap-always pointer-events-none"
+            class="absolute bottom-[20px] left-[20px] md:left-[100px] right-[80px] md:right-[120px] z-[60] pointer-events-none"
           >
             <div
-              class="absolute top-1/2 mt-[95px] -translate-y-[60%] md:-translate-y-1/2 left-[30px] md:left-[140px] right-[30px] md:right-[120px] z-20 pointer-events-none"
+              class="overflow-x-auto pb-6 hide-scrollbar pointer-events-auto"
             >
-              <div class="max-w-7xl pr-4">
-                <div
-                  id="modal-index"
-                  class="text-[180px] md:text-[240px] lg:text-[280px] font-serif text-white/30 opacity-70 mb-[-90px] md:mb-[-140px] font-light tracking-wider leading-none ml-[-10px] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]"
-                >
-                  02
-                </div>
-                <h1
-                  id="modal-title"
-                  class="text-6xl sm:text-[80px] md:text-[100px] lg:text-[140px] font-serif font-normal leading-[1.05] mb-12 md:mb-16 tracking-tight drop-shadow-2xl max-w-full pointer-events-auto [-webkit-text-stroke:1px_rgba(0,0,0,0.8)]"
-                >
-                  And so the adventure<br />begins.....
-                </h1>
-              </div>
               <div
-                id="modal-buttons-wrapper"
-                class="flex flex-col xl:flex-row xl:items-center justify-between gap-6 pointer-events-auto mt-2 pr-4 md:pr-10"
+                class="flex items-end gap-4 md:gap-5 w-max"
+                id="modal-thumbs"
+              ></div>
+            </div>
+          </div>
+          <div
+            id="modal-scroll-container"
+            class="absolute inset-0 z-[15] overflow-y-auto snap-y snap-mandatory scroll-smooth hide-scrollbar pointer-events-auto"
+          >
+            <div
+              id="modal-sec-home"
+              class="relative w-full h-full snap-start snap-always pointer-events-none"
+            >
+              <div
+                class="absolute top-1/2 mt-[95px] -translate-y-[60%] md:-translate-y-1/2 left-[30px] md:left-[140px] right-[30px] md:right-[120px] z-20 pointer-events-none"
               >
+                <div class="max-w-7xl pr-4">
+                  <div
+                    id="modal-index"
+                    class="text-[180px] md:text-[240px] lg:text-[280px] font-serif text-white/30 opacity-70 mb-[-90px] md:mb-[-140px] font-light tracking-wider leading-none ml-[-10px] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]"
+                  >
+                    02
+                  </div>
+                  <h1
+                    id="modal-title"
+                    class="text-6xl sm:text-[80px] md:text-[100px] lg:text-[140px] font-serif font-normal leading-[1.05] mb-12 md:mb-16 tracking-tight drop-shadow-2xl max-w-full pointer-events-auto [-webkit-text-stroke:1px_rgba(0,0,0,0.8)]"
+                  >
+                    And so the adventure<br />begins.....
+                  </h1>
+                </div>
                 <div
-                  class="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full sm:w-auto"
+                  id="modal-buttons-wrapper"
+                  class="flex flex-col xl:flex-row xl:items-center justify-between gap-6 pointer-events-auto mt-2 pr-4 md:pr-10"
                 >
-                  <a
-                    href="#"
-                    onclick="
-                      const c = document.getElementById(
-                        'modal-scroll-container',
-                      );
-                      c.scrollTo({ top: c.clientHeight, behavior: 'smooth' });
-                      return false;
-                    "
-                    class="inline-flex flex-1 sm:flex-none w-full sm:w-[180px] h-[48px] items-center justify-center bg-white text-black border border-white text-[10px] tracking-[0.25em] font-medium uppercase hover:bg-gray-200 transition-colors duration-300 rounded-[2px] backdrop-blur-sm pointer-events-auto"
-                    >Learn More </a
-                  ><a
-                    href="#"
-                    onclick="
-                      if (window.currentModalListType === 'spatial') {
-                        if (typeof openSpatialWantModal === 'function')
-                          openSpatialWantModal();
-                      } else {
-                        openIWantThisModal();
-                      }
-                      return false;
-                    "
-                    class="inline-flex flex-1 sm:flex-none w-full sm:w-[180px] h-[48px] items-center justify-center bg-violet-600/90 backdrop-blur-md border border-violet-500/50 shadow-[0_0_20px_rgba(139,92,246,0.5)] text-white text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.8)] hover:scale-105 rounded-[2px] pointer-events-auto gap-2"
-                    >I WANT THIS
-                    <svg
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      class="w-3.5 h-3.5 translate-y-[0.5px]"
+                  <div
+                    class="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full sm:w-auto"
+                  >
+                    <a
+                      href="#"
+                      onclick="
+                        const c = document.getElementById(
+                          'modal-scroll-container',
+                        );
+                        c.scrollTo({ top: c.clientHeight, behavior: 'smooth' });
+                        return false;
+                      "
+                      class="inline-flex flex-1 sm:flex-none w-full sm:w-[180px] h-[48px] items-center justify-center bg-white text-black border border-white text-[10px] tracking-[0.25em] font-medium uppercase hover:bg-gray-200 transition-colors duration-300 rounded-[2px] backdrop-blur-sm pointer-events-auto"
+                      >Learn More </a
+                    ><a
+                      href="#"
+                      onclick="
+                        if (window.currentModalListType === 'spatial') {
+                          if (typeof openSpatialWantModal === 'function')
+                            openSpatialWantModal();
+                        } else {
+                          openIWantThisModal();
+                        }
+                        return false;
+                      "
+                      class="inline-flex flex-1 sm:flex-none w-full sm:w-[180px] h-[48px] items-center justify-center bg-violet-600/90 backdrop-blur-md border border-violet-500/50 shadow-[0_0_20px_rgba(139,92,246,0.5)] text-white text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.8)] hover:scale-105 rounded-[2px] pointer-events-auto gap-2"
+                      >I WANT THIS
+                      <svg
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        class="w-3.5 h-3.5 translate-y-[0.5px]"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path></svg
+                    ></a>
+                  </div>
+                  <div
+                    class="flex items-center gap-3 w-full sm:w-auto ml-auto xl:ml-0 mt-6 xl:mt-0"
+                  >
+                    <button
+                      onclick="window.prevProjectModal()"
+                      class="flex-1 sm:flex-none sm:w-[180px] h-[48px] flex items-center justify-center bg-white/30 backdrop-blur-xl border border-white/50 text-white hover:bg-white/50 transition-all rounded-[2px] cursor-pointer pointer-events-auto group"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      ></path></svg
-                  ></a>
-                </div>
-                <div
-                  class="flex items-center gap-3 w-full sm:w-auto ml-auto xl:ml-0 mt-6 xl:mt-0"
-                >
-                  <button
-                    onclick="window.prevProjectModal()"
-                    class="flex-1 sm:flex-none sm:w-[180px] h-[48px] flex items-center justify-center bg-white/30 backdrop-blur-xl border border-white/50 text-white hover:bg-white/50 transition-all rounded-[2px] cursor-pointer pointer-events-auto group"
-                  >
-                    <i
-                      data-lucide="chevron-left"
-                      class="w-5 h-5 group-hover:-translate-x-1 transition-transform"
-                    ></i>
-                  </button>
-                  <button
-                    onclick="window.nextProjectModal()"
-                    class="flex-1 sm:flex-none sm:w-[180px] h-[48px] flex items-center justify-center bg-white/30 backdrop-blur-xl border border-white/50 text-white hover:bg-white/50 transition-all rounded-[2px] cursor-pointer pointer-events-auto group"
-                  >
-                    <i
-                      data-lucide="chevron-right"
-                      class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    ></i>
-                  </button>
+                      <i
+                        data-lucide="chevron-left"
+                        class="w-5 h-5 group-hover:-translate-x-1 transition-transform"
+                      ></i>
+                    </button>
+                    <button
+                      onclick="window.nextProjectModal()"
+                      class="flex-1 sm:flex-none sm:w-[180px] h-[48px] flex items-center justify-center bg-white/30 backdrop-blur-xl border border-white/50 text-white hover:bg-white/50 transition-all rounded-[2px] cursor-pointer pointer-events-auto group"
+                    >
+                      <i
+                        data-lucide="chevron-right"
+                        class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      ></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            id="modal-sec-concept"
-            class="relative w-full h-full snap-start snap-always flex flex-col items-center justify-center pointer-events-none mt-0 px-6 md:px-20 text-center"
-          >
             <div
-              class="pointer-events-auto max-w-4xl space-y-6 md:space-y-10 opacity-80 backdrop-blur-sm bg-black/10 p-8 md:p-12 rounded-lg border border-white/5 shadow-2xl"
+              id="modal-sec-concept"
+              class="relative w-full h-full snap-start snap-always flex flex-col items-center justify-center pointer-events-none mt-0 px-6 md:px-20 text-center"
             >
-              <h2
-                class="text-3xl md:text-5xl font-serif tracking-widest text-white/90 drop-shadow-lg uppercase"
-              >
-                The Concept
-              </h2>
-              <p
-                id="modal-concept-text"
-                class="text-sm md:text-xl font-light text-white/70 leading-relaxed max-w-3xl mx-auto whitespace-pre-wrap"
-              >
-                A culmination of vision and creativity. Exploring the boundaries
-                of design to bring bold ideas into reality. This conceptual
-                iteration defines a new standard of aesthetics.
-              </p>
-              <div class="w-16 h-[1px] bg-white/30 mx-auto mt-8"></div>
-            </div>
-          </div>
-          <div
-            id="modal-sec-video"
-            class="relative w-full h-full snap-start snap-always flex flex-col items-center justify-center pointer-events-none mt-0 px-6"
-          >
-            <div
-              id="modal-trailer-btn"
-              onclick="window.playTrailer()"
-              class="relative w-full max-w-5xl aspect-video bg-black/40 backdrop-blur-md border border-white/10 rounded-[4px] flex flex-col items-center justify-center pointer-events-auto overflow-hidden group cursor-pointer hover:bg-black/50 transition-colors"
-            >
-              <iframe
-                id="modal-video-iframe"
-                class="absolute inset-0 w-full h-full z-0 pointer-events-none"
-                frameborder="0"
-                allow="
-                  accelerometer;
-                  autoplay;
-                  clipboard-write;
-                  encrypted-media;
-                  gyroscope;
-                  picture-in-picture;
-                "
-                allowfullscreen
-              ></iframe>
               <div
-                id="modal-trailer-content"
-                class="absolute inset-0 bg-white/5 backdrop-blur-xl flex flex-col items-center justify-center transition-all duration-700 z-20 hover:bg-white/10"
+                class="pointer-events-auto max-w-4xl space-y-6 md:space-y-10 opacity-80 backdrop-blur-sm bg-black/10 p-8 md:p-12 rounded-lg border border-white/5 shadow-2xl"
               >
-                <div
-                  id="modal-trailer-icon-wrapper"
-                  class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center border border-white/20 group-hover:scale-110 group-hover:bg-white/20 transition-all"
-                >
-                  <svg
-                    class="w-10 h-10 md:w-12 md:h-12 fill-white ml-[3px] md:ml-[4px] drop-shadow-2xl"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
                 <h2
-                  id="modal-trailer-text"
-                  class="mt-8 text-xl md:text-2xl font-serif tracking-widest text-white/90 drop-shadow-lg uppercase"
+                  class="text-3xl md:text-5xl font-serif tracking-widest text-white/90 drop-shadow-lg uppercase"
                 >
-                  WATCH TRAILER
+                  The Concept
                 </h2>
+                <p
+                  id="modal-concept-text"
+                  class="text-sm md:text-xl font-light text-white/70 leading-relaxed max-w-3xl mx-auto whitespace-pre-wrap"
+                >
+                  A culmination of vision and creativity. Exploring the
+                  boundaries of design to bring bold ideas into reality. This
+                  conceptual iteration defines a new standard of aesthetics.
+                </p>
+                <div class="w-16 h-[1px] bg-white/30 mx-auto mt-8"></div>
               </div>
             </div>
-          </div>
-          <div
-            id="modal-sec-gallery"
-            class="relative w-full h-full snap-start snap-always flex flex-col pointer-events-none pt-[110px] pb-[10px] px-[80px] lg:px-[15%] xl:px-[15%]"
-          >
             <div
-              id="modal-gallery-grid"
-              class="pointer-events-auto w-full h-full grid grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 gap-6 md:gap-8 lg:gap-6 xl:gap-[30px]"
+              id="modal-sec-video"
+              class="relative w-full h-full snap-start snap-always flex flex-col items-center justify-center pointer-events-none mt-0 px-6"
             >
               <div
-                class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px]"
-              ></div>
+                id="modal-trailer-btn"
+                onclick="window.playTrailer()"
+                class="relative w-full max-w-5xl aspect-video bg-black/40 backdrop-blur-md border border-white/10 rounded-[4px] flex flex-col items-center justify-center pointer-events-auto overflow-hidden group cursor-pointer hover:bg-black/50 transition-colors"
+              >
+                <iframe
+                  id="modal-video-iframe"
+                  class="absolute inset-0 w-full h-full z-0 pointer-events-none"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                ></iframe>
+                <div
+                  id="modal-trailer-content"
+                  class="absolute inset-0 bg-white/5 backdrop-blur-xl flex flex-col items-center justify-center transition-all duration-700 z-20 hover:bg-white/10"
+                >
+                  <div
+                    id="modal-trailer-icon-wrapper"
+                    class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center border border-white/20 group-hover:scale-110 group-hover:bg-white/20 transition-all"
+                  >
+                    <svg
+                      class="w-10 h-10 md:w-12 md:h-12 fill-white ml-[3px] md:ml-[4px] drop-shadow-2xl"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                  <h2
+                    id="modal-trailer-text"
+                    class="mt-8 text-xl md:text-2xl font-serif tracking-widest text-white/90 drop-shadow-lg uppercase"
+                  >
+                    WATCH TRAILER
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div
+              id="modal-sec-gallery"
+              class="relative w-full h-full snap-start snap-always flex flex-col pointer-events-none pt-[110px] pb-[10px] px-[80px] lg:px-[15%] xl:px-[15%]"
+            >
               <div
-                class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px]"
-              ></div>
-              <div
-                class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
-              ></div>
-              <div
-                class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
-              ></div>
-              <div
-                class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
-              ></div>
-              <div
-                class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
-              ></div>
+                id="modal-gallery-grid"
+                class="pointer-events-auto w-full h-full grid grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 gap-6 md:gap-8 lg:gap-6 xl:gap-[30px]"
+              >
+                <div
+                  class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px]"
+                ></div>
+                <div
+                  class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px]"
+                ></div>
+                <div
+                  class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
+                ></div>
+                <div
+                  class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
+                ></div>
+                <div
+                  class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
+                ></div>
+                <div
+                  class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[2px] hidden lg:block"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -4734,7 +6836,7 @@
     </div>
     <script>
       (function () {
-        
+        // Project Data
         const projectData = [
           {
             src: "https://lh3.googleusercontent.com/d/1JTxYCbUf3cLvn32_YsUZb0d9QQ8IACuf",
@@ -4778,20 +6880,6 @@
               "https://lh3.googleusercontent.com/d/1ogAv27qKRdh6maREq1O2HAMCruPKtAjH",
               "https://lh3.googleusercontent.com/d/1icmwDgamHf0ZQUEu_yrNKpjFQ-fo-qrl",
               "https://lh3.googleusercontent.com/d/1epd-7BSLU0S99RchlsHbbPwwF6Y5S4jH",
-            ],
-          },
-          {
-            src: "https://lh3.googleusercontent.com/d/1AtP1m-gFm19qD6uH2OUKBJydnOojGt2P",
-            title: "Beats",
-            concept:
-              "Where premium motion design meets the culture of sound. Hyper-realistic 3D rendering meets dynamic, sophisticated aesthetics in immaculate 4K. Every frame is engineered to position the Beats Studio 3 as both a performance instrument and a luxury object.",
-            video: "https://www.youtube.com/embed/kmbODlk7zCo",
-            gallery: [
-              "https://lh3.googleusercontent.com/d/1F1nUt6gNF7X3o6nVgbcokyqNPnxKWBaW",
-              "https://lh3.googleusercontent.com/d/1x7juL-Dur6SBFZhe8t4kozzXyljXuEOs",
-              "https://lh3.googleusercontent.com/d/1Sm0KVm5fBZqDyMuuSjJZNhC8th3fJiaU",
-              "https://lh3.googleusercontent.com/d/1Jjctf0KBKmmIhQjygOsbxr_h9pmJw5bL",
-              "https://lh3.googleusercontent.com/d/1saQ7x-6_ZyrttNdUGw4dsNbWvtoUOkzV",
             ],
           },
           {
@@ -5006,7 +7094,7 @@
         ];
         window.projectData = projectData;
 
-        
+        // 1. Render Marquee Logos dynamically (to save tokens)
         const marqueeContent = document.getElementById("marquee-content");
         if (marqueeContent) {
           let html = "";
@@ -5028,11 +7116,11 @@
           marqueeContent.innerHTML = html;
         }
 
-        
+        // 2. Render Project Grid dynamically
         const gridContainer = document.getElementById("projects-grid");
         if (gridContainer) {
           let gridHtml = "";
-          projectData.slice(0, 13).forEach((prj, i) => {
+          projectData.slice(0, 12).forEach((prj, i) => {
             const hiddenClass = i >= 3 ? "hidden" : "";
             gridHtml +=
               `
@@ -5084,8 +7172,8 @@
         const spatialGridContainer = document.getElementById("spatial-grid");
         if (spatialGridContainer) {
           let spatialHtml = "";
-          
-          const spatialIndices = [13, 14, 15];
+          // 12 is REHAB_New-Assuit, 13 is Downtown_Assuit-City, 14 is Workspace_mobica-test
+          const spatialIndices = [12, 13, 14];
           spatialIndices.forEach((origIndex, i) => {
             const prj = projectData[origIndex];
             spatialHtml +=
@@ -5133,8 +7221,8 @@
           spatialGridContainer.innerHTML = spatialHtml;
         }
 
-        const featuredDataArray = projectData.slice(0, 13);
-        const spatialDataArray = projectData.slice(13, 16);
+        const featuredDataArray = projectData.slice(0, 12);
+        const spatialDataArray = projectData.slice(12, 15);
         window.currentModalListType = "featured";
         window.currentModalData = featuredDataArray;
 
@@ -5177,7 +7265,7 @@
           }
         };
 
-        
+        // Initial setup for the background tracks
         window.renderModalTracks();
 
         window.currentProjectIndex = 0;
@@ -5191,9 +7279,9 @@
           track.style.transform = `translateX(${translateX}vw)`;
 
           const isMobile = window.innerWidth < 768;
-          
+          // Calculate scale and translation distances based on device width
           const S = isMobile ? 0.65 : 0.45;
-          const X = isMobile ? 31 : 50; 
+          const X = isMobile ? 31 : 50; // Distance modifier
 
           document.querySelectorAll(".project-slide").forEach((el, i) => {
             const isCurrent = i === index;
@@ -5207,13 +7295,13 @@
               el.style.borderRadius = "0px";
             }
 
-            
+            // Show up to 2 adjacent slides when zoomed out
             el.style.opacity = Math.abs(diff) <= 2 ? "1" : "0";
 
             const overlay = document.getElementById(`slide-overlay-${i}`);
             if (overlay) {
               if (isShrunk) {
-                
+                // Dim non-current slides slightly more to create depth
                 overlay.style.opacity = isCurrent ? "0" : "0.5";
               } else {
                 overlay.style.opacity = isCurrent ? "0" : "0.8";
@@ -5291,88 +7379,34 @@
             const galleryGrid = document.getElementById("modal-gallery-grid");
             const gallerySec = document.getElementById("modal-sec-gallery");
             if (galleryGrid) {
+              // Apply featured project gallery styling to ALL
+              galleryGrid.classList.add(
+                "grid-rows-3",
+                "lg:grid-rows-2",
+                "h-full",
+              );
+              galleryGrid.classList.remove(
+                "overflow-y-auto",
+                "hide-scrollbar",
+                "auto-rows-[150px]",
+                "md:auto-rows-[250px]",
+                "lg:auto-rows-[350px]",
+                "pb-[60px]",
+                "pb-[120px]",
+              );
+              if (gallerySec) {
+                gallerySec.classList.add("h-full", "snap-always", "snap-start");
+                gallerySec.classList.remove("min-h-full", "min-h-[100vh]");
+              }
               const modalScroll = document.getElementById(
                 "modal-scroll-container",
               );
-
-              const modalSecHome = document.getElementById("modal-sec-home");
-              const modalSecConcept =
-                document.getElementById("modal-sec-concept");
-              const modalSecVideo = document.getElementById("modal-sec-video");
-
-              if (window.currentModalListType === "spatial") {
-                galleryGrid.classList.remove(
-                  "grid-rows-3",
-                  "lg:grid-rows-2",
-                  "h-full",
-                );
-                galleryGrid.classList.add(
-                  "overflow-y-auto",
-                  "hide-scrollbar",
-                  "auto-rows-[150px]",
-                  "md:auto-rows-[250px]",
-                  "lg:auto-rows-[350px]",
-                  "pb-[60px]",
-                );
-                if (gallerySec) {
-                  gallerySec.classList.remove(
-                    "h-full",
-                    "snap-always",
-                    "snap-start",
-                  );
-                  gallerySec.classList.add("min-h-full", "min-h-[100vh]");
-                }
-                if (modalSecHome)
-                  modalSecHome.classList.remove("snap-always", "snap-start");
-                if (modalSecConcept)
-                  modalSecConcept.classList.remove("snap-always", "snap-start");
-                if (modalSecVideo)
-                  modalSecVideo.classList.remove("snap-always", "snap-start");
-
-                if (modalScroll) {
-                  modalScroll.classList.remove(
-                    "snap-y",
-                    "snap-mandatory",
-                    "snap-proximity",
-                  );
-                }
-              } else {
-                galleryGrid.classList.add(
-                  "grid-rows-3",
-                  "lg:grid-rows-2",
-                  "h-full",
-                );
-                galleryGrid.classList.remove(
-                  "overflow-y-auto",
-                  "hide-scrollbar",
-                  "auto-rows-[150px]",
-                  "md:auto-rows-[250px]",
-                  "lg:auto-rows-[350px]",
-                  "pb-[60px]",
-                  "pb-[120px]",
-                );
-                if (gallerySec) {
-                  gallerySec.classList.add(
-                    "h-full",
-                    "snap-always",
-                    "snap-start",
-                  );
-                  gallerySec.classList.remove("min-h-full", "min-h-[100vh]");
-                }
-                if (modalSecHome)
-                  modalSecHome.classList.add("snap-always", "snap-start");
-                if (modalSecConcept)
-                  modalSecConcept.classList.add("snap-always", "snap-start");
-                if (modalSecVideo)
-                  modalSecVideo.classList.add("snap-always", "snap-start");
-
-                if (modalScroll) {
-                  modalScroll.classList.add("snap-y", "snap-mandatory");
-                  modalScroll.classList.remove("snap-proximity");
-                }
+              if (modalScroll) {
+                modalScroll.classList.add("snap-mandatory");
+                modalScroll.classList.remove("snap-proximity");
               }
 
-              galleryGrid.innerHTML = ""; 
+              galleryGrid.innerHTML = ""; // Clear existing placeholders
               if (proj.gallery && proj.gallery.length > 0) {
                 proj.gallery.forEach((imgSrc, i) => {
                   galleryGrid.innerHTML += `
@@ -5386,7 +7420,7 @@
                     `;
                 });
               } else {
-                
+                // Fallback placeholders if no gallery
                 for (let i = 0; i < 6; i++) {
                   galleryGrid.innerHTML += `<div class="h-full w-full bg-white/0 border border-white/20 hover:bg-white/5 transition-colors cursor-pointer rounded-[4px]"></div>`;
                 }
@@ -5494,7 +7528,7 @@
             document.body.style.overflow = "hidden";
           } else {
             if (window.currentProjectIndex === index) {
-              
+              // just scroll to concept if needed
               const scrollContainer = document.getElementById(
                 "modal-scroll-container",
               );
@@ -5508,7 +7542,7 @@
             }
 
             isModalAnimating = true;
-            
+            // Stop video
             const iframe = document.getElementById("modal-video-iframe");
             if (iframe) {
               iframe.classList.add("pointer-events-none");
@@ -5570,11 +7604,11 @@
               iframeUpdate.src = prjVideo + sep + "rel=0&showinfo=0&controls=0";
             }
 
-            
+            // 1. Shrink current
             updateModalTrack(window.currentProjectIndex, true);
 
             setTimeout(() => {
-              
+              // 2. Slide to next
               window.currentProjectIndex = index;
               updateModalTrack(window.currentProjectIndex, true);
 
@@ -5638,13 +7672,13 @@
               });
 
               setTimeout(() => {
-                
+                // 3. Expand Next
                 updateModalTrack(window.currentProjectIndex, false);
                 setTimeout(() => {
                   isModalAnimating = false;
                 }, 750);
-              }, 700); 
-            }, 700); 
+              }, 700); // Wait for shrink/slide
+            }, 700); // Wait for initial shrink
           }
         };
 
@@ -5700,7 +7734,7 @@
             modal.classList.add("hidden");
             document.body.style.overflow = "";
 
-            
+            // Stop the playing video on modal close
             const iframe = document.getElementById("modal-video-iframe");
             if (iframe) {
               const clone = iframe.cloneNode(true);
@@ -5767,7 +7801,7 @@
               }
             });
 
-            
+            // Also hide the "Next" button and scroll down hint if not in home section
             const nextBtn = document.getElementById("btn-next-project");
             if (nextBtn) {
               nextBtn.style.opacity = idx === 0 ? "1" : "0";
@@ -5776,7 +7810,7 @@
           });
         }
 
-        
+        // Topbar scroll animation
         const updateNav = () => {
           const logoText = document.getElementById("nav-logo-text");
           const contactGroup = document.getElementById("nav-contact-group");
@@ -5787,7 +7821,14 @@
           );
           const baseLinks = document.getElementById("nav-base-links");
 
-          if (window.scrollY > 120) {
+          const pricingPages = document.getElementById("pricing-content-pages");
+          const isFeaturedActive =
+            pricingPages && !pricingPages.classList.contains("hidden");
+          const scrollYVal =
+            isFeaturedActive && window._fakeScrollY !== undefined
+              ? window._fakeScrollY
+              : window.scrollY;
+          if (scrollYVal > 120) {
             if (navGlassContainer) {
               navGlassContainer.style.opacity = "0";
             }
@@ -5878,7 +7919,7 @@
         };
         window.addEventListener("scroll", updateNav);
         updateNav();
-        
+        // --- Drag to Scroll for Thumbnails ---
         const thumbsElement = document.querySelector("#modal-thumbs");
         const thumbsScrollContainer = thumbsElement
           ? thumbsElement.parentElement
@@ -5937,13 +7978,13 @@
 
         if (thumbsScrollContainer) {
           thumbsScrollContainer.style.cursor = "grab";
-          thumbsScrollContainer.style.scrollBehavior = "auto"; 
+          thumbsScrollContainer.style.scrollBehavior = "auto"; // Prevent lag from CSS smooth scrolling
 
           thumbsScrollContainer.addEventListener("mousedown", (e) => {
             isDown = true;
             clearTimeout(dragSnapTimeout);
             thumbsScrollContainer.style.cursor = "grabbing";
-            document.body.style.userSelect = "none"; 
+            document.body.style.userSelect = "none"; // Prevent text selection globally while dragging
             startX = e.pageX - thumbsScrollContainer.offsetLeft;
             scrollLeft = thumbsScrollContainer.scrollLeft;
           });
@@ -5968,7 +8009,7 @@
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - thumbsScrollContainer.offsetLeft;
-            const walk = (x - startX) * 1.5; 
+            const walk = (x - startX) * 1.5; // scroll speed multiplier
             thumbsScrollContainer.scrollLeft = scrollLeft - walk;
           });
 
@@ -6001,7 +8042,7 @@
         }
       }
 
-      
+      // --- History Routing Engine ---
       window.appRouteHistory = [];
       window.appRouteHistoryIndex = -1;
       const MAX_HISTORY_STEPS = 5;
@@ -6012,9 +8053,9 @@
         const currentId = history.state?.id;
         const currentParams = JSON.stringify(history.state?.params || {});
 
-        
+        // Only push if different
         if (currentId !== routeId || currentParams !== JSON.stringify(params)) {
-          
+          // Truncate forward history if we are in the middle of the stack
           if (
             window.appRouteHistoryIndex > -1 &&
             window.appRouteHistoryIndex < window.appRouteHistory.length - 1
@@ -6027,7 +8068,7 @@
 
           window.appRouteHistory.push({ id: routeId, params });
 
-          
+          // Limit to five steps back and forth (maintaining a window)
           if (window.appRouteHistory.length > MAX_HISTORY_STEPS * 2 + 1) {
             window.appRouteHistory.shift();
           }
@@ -6050,12 +8091,12 @@
       };
 
       window.goBackSafely = function (fallbackRoute) {
-        
+        // Use custom logic instead of browsers history back
         if (typeof window.closeProjectModal === "function") {
           window.closeProjectModal();
         }
 
-        
+        // If no history, use the fallback route
         pushRouteState(fallbackRoute);
         if (fallbackRoute === "home") showHomePage(false);
         else if (fallbackRoute === "dashboard") goToDashboard(false);
@@ -6107,7 +8148,7 @@
           window._isPopStateHandling = false;
         }, 50);
       });
-      
+      // -------------------------------
 
       function showHomePage(scrollToTop = true, skipPushState = false) {
         if (!skipPushState) pushRouteState("home");
@@ -6129,7 +8170,7 @@
               ?.classList.add("hidden");
             content.classList.remove("hidden");
 
-            
+            // Pause heavy resources
             pauseSectionVideos("about-content-pages");
             pauseSectionVideos("pricing-content-pages");
             playSectionVideos("main-content-pages");
@@ -6161,7 +8202,7 @@
           }
         } else {
           showHomePage(false, true);
-          
+          // triggerLoader waits for layout settling
           setTimeout(() => {
             const projectsSection = document.getElementById("projects-section");
             if (projectsSection) {
@@ -6268,7 +8309,7 @@
       }
 
       function initAboutScripts() {
-        
+        // Force play the background videos as some browsers suspend autoplay
         const bgVid = document.getElementById("bg-vid");
         if (bgVid) {
           bgVid.defaultMuted = true;
@@ -6288,7 +8329,7 @@
           });
         }
 
-        
+        // Initial setup for horizontal scroll animations
         handleAboutHorizontalScroll();
       }
 
@@ -6311,12 +8352,12 @@
         container.style.transform = `translateX(-${scrollProgress * maxTranslate}px)`;
 
         const viewWidth = window.innerWidth;
-        
+        // Animate in the header
         const headerAnim = container.querySelector(".about-header-anim");
         if (headerAnim) {
           const rect = headerAnim.getBoundingClientRect();
           if (rect.left < viewWidth * 0.95) {
-            
+            // Trigger slightly earlier than cards
             headerAnim.classList.remove("opacity-0", "-translate-x-10");
             headerAnim.classList.add("opacity-100", "translate-x-0");
           }
@@ -6325,7 +8366,7 @@
         const animCards = container.querySelectorAll(".about-step-anim");
         animCards.forEach((card) => {
           const rect = card.getBoundingClientRect();
-          
+          // If the card has entered the screen by 15%
           if (rect.left < viewWidth * 0.85) {
             card.classList.remove("opacity-0", "translate-y-20");
             card.classList.add("opacity-100", "translate-y-0");
@@ -6365,7 +8406,7 @@
           linkTarget = 160;
         }
 
-        const cW = w < 768 ? 16 : 24; 
+        const cW = w < 768 ? 16 : 24; // Curve transition width
 
         let wWLeft, wWRight;
 
@@ -6385,7 +8426,7 @@
           }
 
           const edgePadding = 50;
-          const curveStartOffset = 0; 
+          const curveStartOffset = 0; // Curve begins right at the edge of the text
 
           wWLeft = edgePadding + logoContentWidth + cW + curveStartOffset;
           wWRight = edgePadding + ctaContentWidth + cW + curveStartOffset;
@@ -6422,7 +8463,7 @@
 
       window.addEventListener("resize", drawNavShape);
 
-      
+      // Handle slow connection video playback recovery globally
       function ensureVideosPlay() {
         const videos = document.querySelectorAll("video[autoplay]");
         videos.forEach((video) => {
@@ -6441,23 +8482,23 @@
             }
           };
 
-          
+          // Try whenever data is ready
           video.addEventListener("canplay", forcePlay, { passive: true });
           video.addEventListener("loadeddata", forcePlay, { passive: true });
           video.addEventListener("waiting", () => {
-            
+            // If connection drops and video waits, listen for when it can play again
             video.addEventListener("canplay", forcePlay, {
               once: true,
               passive: true,
             });
           });
 
-          
+          // Check if it should be playing right now
           if (video.readyState >= 3 && video.paused) {
             forcePlay();
           }
 
-          
+          // Retry playing on user interactions to bypass stricter autoplay limits
           document.body.addEventListener("click", forcePlay, {
             once: true,
             passive: true,
@@ -6471,7 +8512,7 @@
             passive: true,
           });
 
-          
+          // Re-load if video errors out due to bad connection or stalls
           video.addEventListener("error", () => {
             setTimeout(() => {
               if (navigator.onLine) {
@@ -6486,7 +8527,7 @@
           });
         });
 
-        
+        // Globally listen to connection coming back online to reload missing videos
         window.addEventListener("online", () => {
           const vids = document.querySelectorAll("video[autoplay]");
           vids.forEach((v) => {
@@ -6511,7 +8552,7 @@
           lucide.createIcons();
         }
 
-        
+        // Keep URL updated based on scroll position so back button behavior is logical
         const projectsSection = document.getElementById("projects-section");
         if (projectsSection) {
           const observer = new IntersectionObserver(
@@ -6555,11 +8596,11 @@
         }
       });
 
-      
+      // Periodically check for stuck videos (e.g. they paused due to slow connection and didn't resume automatically)
       setInterval(() => {
         const videos = document.querySelectorAll("video[autoplay]");
         videos.forEach((video) => {
-          
+          // readyState >= 3 means we have enough data for the current playback position
           if (video.paused && video.readyState >= 3) {
             const p = video.play();
             if (p !== undefined) p.catch(() => {});
@@ -6567,7 +8608,7 @@
             navigator.onLine &&
             (video.readyState < 3 || video.error)
           ) {
-            
+            // only load if no network state is indicating it's already loading
             if (video.networkState !== HTMLMediaElement.NETWORK_LOADING) {
               video.load();
             }
@@ -9129,7 +11170,7 @@
         closeSpatialWantModal();
       }
 
-      
+      // DESKTOP SEARCH LOGIC
       let desktopSearchOpen = false;
 
       function toggleDesktopSearch() {
@@ -9174,16 +11215,16 @@
 
         filtered.forEach((prj) => {
           let originalIndex = window.projectData.indexOf(prj);
-          
+          // figure out which list this project belongs to (spatial or featured)
           let listType = "featured";
-          let spatialDataArray = window.projectData.slice(13, 16);
+          let spatialDataArray = window.projectData.slice(12, 15);
           if (spatialDataArray.includes(prj)) {
             listType = "spatial";
           }
 
           let adjustedIndex = originalIndex;
           if (listType === "spatial") {
-            adjustedIndex -= 13;
+            adjustedIndex -= 12;
           }
 
           html += `
@@ -9244,8 +11285,8 @@
       (function () {
         function setupLoadingPlaceholders() {
           document.querySelectorAll("img").forEach((img) => {
-            
-            
+            // Target mainly the project/photo images (they usually have object-cover or are in cards)
+            // Skip tiny logos like trusted strip or icons
             if (
               img.classList.contains("object-cover") ||
               img.classList.contains("rounded-2xl") ||
@@ -9254,11 +11295,11 @@
               if (img.dataset.hasLoader) return;
               img.dataset.hasLoader = "true";
 
-              if (img.complete) return; 
+              if (img.complete) return; // If it's broken, it doesn't matter, we don't want infinite loader
 
               const parent = img.parentElement;
               if (parent) {
-                
+                // Ensure parent can trap absolute elements
                 const style = window.getComputedStyle(parent);
                 if (style.position === "static") {
                   parent.style.position = "relative";
@@ -9268,7 +11309,7 @@
                 loader.className =
                   "loader-overlay absolute inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-sm pointer-events-none transition-opacity duration-700";
 
-                
+                // Use existing styling from body / global for breathing text
                 loader.innerHTML =
                   '<span class="text-white/60 font-bold tracking-[0.2em] text-[10px] md:text-xs animate-text-breathe uppercase drop-shadow-md">JIMMY.RENDER</span>';
 
@@ -9286,11 +11327,11 @@
           });
         }
 
-        
+        // Run immediately when script loads and when DOM is fully done
         setupLoadingPlaceholders();
         document.addEventListener("DOMContentLoaded", setupLoadingPlaceholders);
 
-        
+        // Observe mutations for dynamically rendered carousels/searches
         const observer = new MutationObserver((mutations) => {
           let hasNewNodes = false;
           mutations.forEach((m) => {
@@ -9301,15 +11342,88 @@
         observer.observe(document.body, { childList: true, subtree: true });
       })();
     </script>
+
     <script>
-      window.addEventListener("contextmenu", (e) => e.preventDefault());
-    </script>
-    <script>
-      document.addEventListener("dragstart", function (e) {
-        if (e.target.tagName.toLowerCase() === "img") {
-          e.preventDefault();
+      window.addEventListener("message", (e) => {
+        if (e.data && e.data.type === "scroll") {
+          window._fakeScrollY = e.data.scrollY;
+          window.dispatchEvent(new Event("scroll"));
+        }
+        if (e.data && e.data.type === "mousemove") {
+          window.dispatchEvent(
+            new MouseEvent("mousemove", {
+              clientX: e.data.clientX,
+              clientY: e.data.clientY,
+              bubbles: true,
+            }),
+          );
+          document.dispatchEvent(
+            new MouseEvent("mousemove", {
+              clientX: e.data.clientX,
+              clientY: e.data.clientY,
+              bubbles: true,
+            }),
+          );
+          document.body.dispatchEvent(
+            new MouseEvent("mousemove", {
+              clientX: e.data.clientX,
+              clientY: e.data.clientY,
+              bubbles: true,
+            }),
+          );
         }
       });
+    </script>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const pricingPages = document.getElementById("pricing-content-pages");
+        const smokeCanvas = document.getElementById("smoke-canvas");
+        if (pricingPages && smokeCanvas) {
+          const observer = new MutationObserver(() => {
+            if (!pricingPages.classList.contains("hidden")) {
+              smokeCanvas.style.filter = "hue-rotate(110deg) saturate(2)";
+              const desktopBtn = document.getElementById("desktop-contact-btn");
+              const mobileBtn = document.getElementById("mobile-contact-btn");
+              if (desktopBtn) {
+                desktopBtn.className =
+                  "px-5 py-2 rounded-full bg-red-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] border border-red-500 transition-all duration-300 uppercase";
+              }
+              if (mobileBtn) {
+                mobileBtn.className =
+                  "w-full px-5 py-2 rounded-full bg-red-600 text-white font-medium shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] border border-red-500 transition-all duration-300 uppercase";
+              }
+            } else {
+              smokeCanvas.style.filter = "";
+              const desktopBtn = document.getElementById("desktop-contact-btn");
+              const mobileBtn = document.getElementById("mobile-contact-btn");
+              if (desktopBtn) {
+                desktopBtn.className =
+                  "px-5 py-2 rounded-full bg-violet-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-violet-500 shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase";
+              }
+              if (mobileBtn) {
+                mobileBtn.className =
+                  "w-full px-5 py-2 rounded-full bg-violet-600 text-white font-medium shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase";
+              }
+            }
+          });
+          observer.observe(pricingPages, {
+            attributes: true,
+            attributeFilter: ["class"],
+          });
+        }
+      });
+    </script>
+
+    <script>
+      // Global restriction for right click, long press, drag, and select
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault(),
+      );
+      document.addEventListener("dragstart", (event) => event.preventDefault());
+      document.addEventListener("selectstart", (event) =>
+        event.preventDefault(),
+      );
     </script>
   </body>
 </html>
