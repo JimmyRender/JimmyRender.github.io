@@ -381,8 +381,16 @@
     </section>
 
     <!-- SECTION 3.5: PHOTO HOLDER -->
-    <section class="relative w-full bg-[#050505] flex items-center justify-center py-6 px-6 lg:px-12 z-20">
-      <div class="w-full max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group mt-12 mb-12">
+    <section class="relative w-full bg-[#050505] flex flex-col items-center justify-center py-6 px-6 lg:px-12 z-20">
+      <!-- Color Palette -->
+      <div class="w-full max-w-7xl mx-auto flex h-16 md:h-24 mt-12 mb-8 scroll-animate opacity-0 translate-y-4 transition-all duration-1000">
+        <div class="flex-1 bg-[#101b23] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#101b23</div>
+        <div class="flex-1 bg-[#1c415c] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#1c415c</div>
+        <div class="flex-1 bg-[#3d8dac] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#3d8dac</div>
+        <div class="flex-1 bg-[#ac0b4c] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#ac0b4c</div>
+      </div>
+
+      <div class="w-full max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group mb-12">
         <img src="SCRSHTS.png" alt="Featured Photo" class="w-full h-auto object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-700 block" />
       </div>
     </section>
