@@ -216,7 +216,7 @@
       .glass-card:hover {
         background-color: rgba(255, 255, 255, 0.04);
       }
-      .pricing-card:hover {
+      .featured-card:hover {
         transform: translateY(-8px);
       }
       .popular-card {
@@ -2941,7 +2941,7 @@
               <a
                 href="#"
                 onclick="
-                  showPricingPage();
+                  showFeaturedPage();
                   return false;
                 "
                 class="hover:text-violet-400 hover:-translate-y-0.5 transition-all duration-300 inline-block"
@@ -3042,7 +3042,7 @@
             href="#"
             onclick="
               document.getElementById('mobile-menu').classList.add('hidden');
-              showPricingPage();
+              showFeaturedPage();
               return false;
             "
             class="text-gray-300 hover:text-white px-2 py-1"
@@ -4285,7 +4285,7 @@
         </div>
       </div>
       <div
-        id="pricing-content-pages"
+        id="featured-content-pages"
         class="hidden relative h-screen w-full overflow-hidden bg-black font-sans"
       >
         <iframe
@@ -4294,7 +4294,7 @@
         ></iframe>
       </div>
       <div
-        id="pricing-content-pages-old"
+        id="featured-content-pages-old"
         class="hidden"
         class="hidden relative min-h-screen w-full overflow-x-hidden bg-transparent font-sans"
       >
@@ -4310,7 +4310,7 @@
           <h1
             class="text-[32vw] md:text-[24vw] font-black tracking-tighter leading-none select-none text-transparent bg-clip-text bg-gradient-to-b from-[#2e1065] via-[#5b21b6] to-[#a78bfa] drop-shadow-[0_0_30px_rgba(139,92,246,0.4)]"
           >
-            Pricing
+            Featured
           </h1>
         </div>
         <div
@@ -4370,7 +4370,7 @@
           </div>
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 auto-rows-fr relative z-20"
-            id="pricing-container"
+            id="featured-container"
           ></div>
           <div
             class="grid grid-cols-1 xl:grid-cols-12 gap-8 md:gap-12 mt-20 md:mt-32 w-full relative z-20"
@@ -5188,7 +5188,7 @@
               "lex\x20flex-r",
               "y\x20Render,\x0a",
               "hfuqW",
-              "pricing-co",
+              "featured-co",
               "effects.",
               "ucide=\x22che",
               "enter\x20text",
@@ -5352,7 +5352,7 @@
               );
             }
           }
-          const pricingTiers = [
+          const featuredTiers = [
               {
                 number: "01",
                 category: _0x3309d7(0x3e8),
@@ -5564,7 +5564,7 @@
                 perSqMeter: !![],
               },
             ];
-          function renderPricing() {
+          function renderFeatured() {
             const _0x3166d0 = _0x3309d7,
               _0x3bb0d2 = {
                 lHpsu: _0x3166d0(0x39c) + _0x3166d0(0x202) + _0x3166d0(0x21d),
@@ -5803,7 +5803,7 @@
                   _0x3bb0d2[_0x3166d0(0x212)],
                 )
               ) {
-                pricingTiers[_0x3166d0(0x2dc)]((_0x1cdfec) => {
+                featuredTiers[_0x3166d0(0x2dc)]((_0x1cdfec) => {
                   const _0x27d704 = _0x3166d0,
                     _0x3cc63e = document[_0x27d704(0x31d) + _0x27d704(0x407)](
                       _0x3bb0d2[_0x27d704(0x321)],
@@ -6391,7 +6391,7 @@
                     return _0x3ade35();
                   },
                 };
-              _0x4bbed0[_0x180053(0x24d)](renderPricing);
+              _0x4bbed0[_0x180053(0x24d)](renderFeatured);
             },
           );
         </script>
@@ -7821,9 +7821,9 @@
           );
           const baseLinks = document.getElementById("nav-base-links");
 
-          const pricingPages = document.getElementById("pricing-content-pages");
+          const featuredPages = document.getElementById("featured-content-pages");
           const isFeaturedActive =
-            pricingPages && !pricingPages.classList.contains("hidden");
+            featuredPages && !featuredPages.classList.contains("hidden");
           const scrollYVal =
             isFeaturedActive && window._fakeScrollY !== undefined
               ? window._fakeScrollY
@@ -8100,7 +8100,7 @@
         pushRouteState(fallbackRoute);
         if (fallbackRoute === "home") showHomePage(false);
         else if (fallbackRoute === "dashboard") goToDashboard(false);
-        else if (fallbackRoute === "pricing") showPricingPage(false);
+        else if (fallbackRoute === "featured") showFeaturedPage(false);
         else if (fallbackRoute === "about") showAboutPage(false);
       };
 
@@ -8134,10 +8134,10 @@
           if (params && params.index !== undefined) {
             window.openProjectModal(params.index, false, params.listName);
           }
-        } else if (routeId === "pricing") {
+        } else if (routeId === "featured") {
           if (typeof window.closeProjectModal === "function")
             window.closeProjectModal();
-          showPricingPage(false);
+          showFeaturedPage(false);
         } else if (routeId === "about") {
           if (typeof window.closeProjectModal === "function")
             window.closeProjectModal();
@@ -8166,13 +8166,13 @@
               .getElementById("about-content-pages")
               ?.classList.add("hidden");
             document
-              .getElementById("pricing-content-pages")
+              .getElementById("featured-content-pages")
               ?.classList.add("hidden");
             content.classList.remove("hidden");
 
             // Pause heavy resources
             pauseSectionVideos("about-content-pages");
-            pauseSectionVideos("pricing-content-pages");
+            pauseSectionVideos("featured-content-pages");
             playSectionVideos("main-content-pages");
 
             if (scrollToTop && !window._isPopStateHandling)
@@ -8232,12 +8232,12 @@
               .getElementById("main-content-pages")
               ?.classList.add("hidden");
             document
-              .getElementById("pricing-content-pages")
+              .getElementById("featured-content-pages")
               ?.classList.add("hidden");
             content.classList.remove("hidden");
 
             pauseSectionVideos("main-content-pages");
-            pauseSectionVideos("pricing-content-pages");
+            pauseSectionVideos("featured-content-pages");
             playSectionVideos("about-content-pages");
 
             if (typeof aboutViewOpen !== "undefined") aboutViewOpen = true;
@@ -8258,10 +8258,10 @@
         }
       }
 
-      function showPricingPage(scrollToTop = true, skipPushState = false) {
-        if (!skipPushState) pushRouteState("pricing");
-        if (document.getElementById("pricing-content-pages")) {
-          const content = document.getElementById("pricing-content-pages");
+      function showFeaturedPage(scrollToTop = true, skipPushState = false) {
+        if (!skipPushState) pushRouteState("featured");
+        if (document.getElementById("featured-content-pages")) {
+          const content = document.getElementById("featured-content-pages");
           if (!content.classList.contains("hidden")) {
             if (scrollToTop && !window._isPopStateHandling)
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -8281,9 +8281,9 @@
 
             pauseSectionVideos("main-content-pages");
             pauseSectionVideos("about-content-pages");
-            playSectionVideos("pricing-content-pages");
+            playSectionVideos("featured-content-pages");
 
-            if (typeof renderPricing === "function") renderPricing();
+            if (typeof renderFeatured === "function") renderFeatured();
 
             if (scrollToTop && !window._isPopStateHandling)
               window.scrollTo({ top: 0, behavior: "instant" });
@@ -11377,11 +11377,11 @@
 
     <script>
       window.addEventListener("DOMContentLoaded", () => {
-        const pricingPages = document.getElementById("pricing-content-pages");
+        const featuredPages = document.getElementById("featured-content-pages");
         const smokeCanvas = document.getElementById("smoke-canvas");
-        if (pricingPages && smokeCanvas) {
+        if (featuredPages && smokeCanvas) {
           const observer = new MutationObserver(() => {
-            if (!pricingPages.classList.contains("hidden")) {
+            if (!featuredPages.classList.contains("hidden")) {
               smokeCanvas.style.filter = "hue-rotate(110deg) saturate(2)";
               const desktopBtn = document.getElementById("desktop-contact-btn");
               const mobileBtn = document.getElementById("mobile-contact-btn");
@@ -11407,7 +11407,7 @@
               }
             }
           });
-          observer.observe(pricingPages, {
+          observer.observe(featuredPages, {
             attributes: true,
             attributeFilter: ["class"],
           });
