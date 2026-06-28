@@ -390,6 +390,41 @@
         <div class="flex-1 bg-[#ac0b4c] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#ac0b4c</div>
       </div>
 
+      <!-- Carousel -->
+      <style>
+        .custom-scrollbar::-webkit-scrollbar {
+          height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.4);
+        }
+      </style>
+      <div class="w-[100vw] relative left-1/2 -translate-x-1/2 flex overflow-x-auto gap-4 md:gap-8 px-6 md:px-12 lg:px-24 pb-8 mb-12 scroll-animate opacity-0 translate-y-4 transition-all duration-1000 snap-x snap-mandatory custom-scrollbar">
+        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img src="https://lh3.googleusercontent.com/d/1SrAskrOCwuu6stcUvCpZ4koV08Mt9WpP" alt="Photo 1" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        </div>
+        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img src="https://lh3.googleusercontent.com/d/1AtYfAcQRgddUD76L-KRDJkbx2O_njmKV" alt="Photo 2" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        </div>
+        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img src="https://lh3.googleusercontent.com/d/1AcuNb6gCvU3luzcLpATPzx0E-_-xWQ5z" alt="Photo 3" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        </div>
+        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img src="https://lh3.googleusercontent.com/d/1YyKTyuZ55v6T0VEDPHsd1OWoV1jEsAJp" alt="Photo 4" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        </div>
+        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img src="https://lh3.googleusercontent.com/d/1V-VpmopfAOhFBOX48boX0LylccI1JYJF" alt="Photo 5" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        </div>
+      </div>
+
       <div class="w-full max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group mb-12">
         <img src="SCRSHTS.png" alt="Featured Photo" class="w-full h-auto object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-700 block" />
       </div>
