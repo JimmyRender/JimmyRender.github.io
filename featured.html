@@ -193,8 +193,22 @@
       <div class="relative z-20 w-[calc(100%-20px)] ml-[20px] pr-4 sm:pr-8 mt-[10px] mb-[-28%] md:mb-[-10%] lg:mb-[-8.5%] flex flex-col md:flex-row gap-6 lg:gap-8 items-stretch scale-[0.85] origin-top-left">
         
         <!-- Left: Center Video Player -->
-        <div class="w-full md:w-[65%] lg:w-[80%] shrink-0 aspect-video rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10 bg-black/50 scroll-animate translate-y-10 opacity-0 transition-all duration-1000 relative">
-           <div id="youtube-player" class="w-full h-full"></div>
+        <div class="w-full md:w-[65%] lg:w-[80%] shrink-0 aspect-video rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10 bg-black/50 scroll-animate translate-y-10 opacity-0 transition-all duration-1000 relative group cursor-pointer" id="video-container">
+           
+           <!-- Custom HD Placeholder -->
+           <div id="video-placeholder" class="absolute inset-0 z-20 bg-cover bg-center transition-opacity duration-500" style="background-image: url('https://img.youtube.com/vi/tsWCAV9B42Q/maxresdefault.jpg');">
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                 <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                 </div>
+              </div>
+           </div>
+
+           <!-- YouTube Player -->
+           <div class="w-full h-full absolute inset-0 z-10">
+              <div id="youtube-player" class="w-full h-full opacity-0 transition-opacity duration-1000"></div>
+           </div>
+           
            <div id="quality-warning" class="absolute top-16 right-4 z-30 bg-black/70 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm font-mono px-4 py-2 rounded-lg pointer-events-none hidden transition-opacity duration-500 opacity-0 flex items-center gap-2 shadow-lg">
              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
              <span>Switch to 4K for a better Experience</span>
@@ -408,17 +422,30 @@
             'playsinline': 1,
             'loop': 1,
             'playlist': 'tsWCAV9B42Q',
-            'vq': 'hd2160' // try to suggest 4k via URL param
+            'vq': 'hd2160', // try to suggest 4k via URL param
+            'autoplay': 0
           },
           events: {
+            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
+        });
+      }
+
+      function onPlayerReady(event) {
+        document.getElementById('video-container').addEventListener('click', function() {
+           player.playVideo();
         });
       }
 
       function onPlayerStateChange(event) {
         // When the video starts playing (state 1), force the highest available quality
         if (event.data == YT.PlayerState.PLAYING) {
+          
+          document.getElementById('video-placeholder').style.opacity = '0';
+          document.getElementById('video-placeholder').style.pointerEvents = 'none';
+          document.getElementById('youtube-player').style.opacity = '1';
+
           event.target.setPlaybackQuality('highres');
           event.target.setPlaybackQuality('hd2160');
 
