@@ -77,7 +77,7 @@
         -webkit-user-drag: none;
       }
       .text-glow {
-        text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
       }
       .glass-card {
         background: linear-gradient(
@@ -220,8 +220,8 @@
         transform: translateY(-8px);
       }
       .popular-card {
-        border-color: rgba(139, 92, 246, 0.4);
-        box-shadow: 0 0 50px rgba(139, 92, 246, 0.1);
+        border-color: rgba(229, 9, 20, 0.4);
+        box-shadow: 0 0 50px rgba(229, 9, 20, 0.1);
         z-index: 20;
       }
       .glow-text {
@@ -306,6 +306,34 @@
       tailwind.config = {
         theme: {
           extend: {
+            colors: {
+              violet: {
+                50: "#fff1f2",
+                100: "#ffe4e6",
+                200: "#fecdd3",
+                300: "#ffa4a8",
+                400: "#ff5a62",
+                500: "#e50914",
+                600: "#b80710",
+                700: "#8a050c",
+                800: "#5c0308",
+                900: "#380205",
+                950: "#200103",
+              },
+              purple: {
+                50: "#fff1f2",
+                100: "#ffe4e6",
+                200: "#fecdd3",
+                300: "#ffa4a8",
+                400: "#ff5a62",
+                500: "#e50914",
+                600: "#b80710",
+                700: "#8a050c",
+                800: "#5c0308",
+                900: "#380205",
+                950: "#200103",
+              },
+            },
             fontFamily: {
               sans: ["Inter", "sans-serif"],
             },
@@ -343,7 +371,7 @@
         -webkit-mask-position: 0 0;
       "
     >
-      <canvas id="smoke-canvas" class="w-full h-full"></canvas>
+      <canvas id="smoke-canvas" class="w-full h-full" style="filter: hue-rotate(110deg) saturate(2);"></canvas>
     </div>
     <script>
       function _0x17de(_0x1c14fe, _0x4b38e8) {
@@ -2806,10 +2834,10 @@
       class="fixed inset-0 z-0 pointer-events-none w-full h-full opacity-60 mix-blend-screen overflow-hidden"
     >
       <div
-        class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.12)_0%,transparent_60%)] blur-[100px] rounded-full"
+        class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,rgba(229,9,20,0.12)_0%,transparent_60%)] blur-[100px] rounded-full"
       ></div>
       <div
-        class="absolute top-[30%] right-[-10%] w-[50%] h-[50%] bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.08)_0%,transparent_60%)] blur-[100px] rounded-full"
+        class="absolute top-[30%] right-[-10%] w-[50%] h-[50%] bg-[radial-gradient(circle_at_center,rgba(255,90,98,0.08)_0%,transparent_60%)] blur-[100px] rounded-full"
       ></div>
     </div>
     <div class="relative z-10 flex flex-col w-full">
@@ -2990,7 +3018,7 @@
             </button>
             <button
               id="desktop-contact-btn"
-              class="px-5 py-2 rounded-full bg-violet-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-violet-500 shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase"
+              class="px-5 py-2 rounded-full bg-violet-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-violet-500 shadow-[0_0_15px_rgba(184,7,16,0.4)] hover:shadow-[0_0_30px_rgba(184,7,16,0.6)] border border-violet-500 transition-all duration-300 uppercase"
               onclick="window.open('https://wa.me/201004113127', '_blank')"
             >
               CONTACT
@@ -3051,7 +3079,7 @@
           <hr class="border-white/10" />
           <button
             id="mobile-contact-btn"
-            class="w-full px-5 py-2 rounded-full bg-violet-600 text-white font-medium shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase"
+            class="w-full px-5 py-2 rounded-full bg-violet-600 text-white font-medium shadow-[0_0_15px_rgba(184,7,16,0.4)] hover:shadow-[0_0_30px_rgba(184,7,16,0.6)] border border-violet-500 transition-all duration-300 uppercase"
             onclick="window.open('https://wa.me/201004113127', '_blank')"
           >
             CONTACT
@@ -3065,7 +3093,7 @@
           <div class="absolute inset-0 z-0 pointer-events-none">
             <img
               loading="lazy"
-              src="https://drive.google.com/thumbnail?id=1zd9L9RbBnVWOWADqN2McGXfhTu_cV5cW&sz=w2000"
+              src="https://drive.google.com/thumbnail?id=1jnPexMHNNIFOTkHckH_xMV2u4HNiEnAk&sz=w2000"
               referrerpolicy="no-referrer"
               class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
               alt="Hero Background"
@@ -3286,7 +3314,7 @@
               </div>
               <div class="flex flex-row gap-4 mt-8">
                 <button
-                  class="px-8 py-3 bg-[#0a0a0a]/80 border border-violet-500/40 rounded-md text-violet-300 font-montserrat font-bold tracking-widest text-[13px] uppercase hover:bg-violet-900/20 hover:border-violet-500/80 hover:shadow-[0_0_30px_rgba(124,58,237,0.3)] transition-all duration-300 min-w-[160px] text-center"
+                  class="px-8 py-3 bg-[#0a0a0a]/80 border border-violet-500/40 rounded-md text-violet-300 font-montserrat font-bold tracking-widest text-[13px] uppercase hover:bg-violet-900/20 hover:border-violet-500/80 hover:shadow-[0_0_30px_rgba(184,7,16,0.3)] transition-all duration-300 min-w-[160px] text-center"
                   onclick="window.open('https://wa.me/201004113127', '_blank')"
                 >
                   GET IN TOUCH
@@ -3562,7 +3590,7 @@
               class="max-w-[1800px] 2xl:max-w-[2200px] mx-auto relative z-10 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32 w-full transition-all duration-300"
             >
               <div
-                class="md:absolute md:left-[5%] lg:left-[8%] md:top-[12%] glass-card p-8 xl:p-10 rounded-[2rem] w-72 md:w-80 xl:w-96 2xl:w-[450px] animate-[bounce_7s_ease-in-out_infinite] shadow-[0_0_100px_rgba(139,92,246,0.2)] xl:shadow-[0_0_150px_rgba(139,92,246,0.2)] -ml-[78px] mt-[150px] transition-all duration-300"
+                class="md:absolute md:left-[5%] lg:left-[8%] md:top-[12%] glass-card p-8 xl:p-10 rounded-[2rem] w-72 md:w-80 xl:w-96 2xl:w-[450px] animate-[bounce_7s_ease-in-out_infinite] shadow-[0_0_100px_rgba(229,9,20,0.2)] xl:shadow-[0_0_150px_rgba(229,9,20,0.2)] -ml-[78px] mt-[150px] transition-all duration-300"
               >
                 <p
                   class="text-xs sm:text-[13px] xl:text-sm 2xl:text-[16px] text-gray-300 leading-relaxed font-light italic"
@@ -3573,7 +3601,7 @@
                 </p>
               </div>
               <div
-                class="md:absolute md:left-[10%] lg:left-[12%] md:bottom-[15%] glass-card p-8 xl:p-10 rounded-[2rem] w-72 md:w-80 xl:w-96 2xl:w-[450px] animate-[bounce_6s_ease-in-out_infinite_reverse] shadow-[0_0_100px_rgba(139,92,246,0.2)] xl:shadow-[0_0_150px_rgba(139,92,246,0.2)] -ml-[78px] mt-0 mb-[0px] transition-all duration-300"
+                class="md:absolute md:left-[10%] lg:left-[12%] md:bottom-[15%] glass-card p-8 xl:p-10 rounded-[2rem] w-72 md:w-80 xl:w-96 2xl:w-[450px] animate-[bounce_6s_ease-in-out_infinite_reverse] shadow-[0_0_100px_rgba(229,9,20,0.2)] xl:shadow-[0_0_150px_rgba(229,9,20,0.2)] -ml-[78px] mt-0 mb-[0px] transition-all duration-300"
               >
                 <p
                   class="text-xs sm:text-[13px] xl:text-sm 2xl:text-[16px] text-gray-300 leading-relaxed font-light italic"
@@ -3584,7 +3612,7 @@
                 </p>
               </div>
               <div
-                class="md:absolute md:right-[10%] xl:right-[12%] 2xl:right-[15%] md:top-[20%] glass-card p-8 xl:p-10 rounded-[2rem] w-72 md:w-80 xl:w-96 2xl:w-[450px] animate-[bounce_8s_ease-in-out_infinite_reverse] shadow-[0_0_100px_rgba(139,92,246,0.2)] xl:shadow-[0_0_150px_rgba(139,92,246,0.2)] -mr-[128px] ml-0 mt-[150px] mb-0 transition-all duration-300"
+                class="md:absolute md:right-[10%] xl:right-[12%] 2xl:right-[15%] md:top-[20%] glass-card p-8 xl:p-10 rounded-[2rem] w-72 md:w-80 xl:w-96 2xl:w-[450px] animate-[bounce_8s_ease-in-out_infinite_reverse] shadow-[0_0_100px_rgba(229,9,20,0.2)] xl:shadow-[0_0_150px_rgba(229,9,20,0.2)] -mr-[128px] ml-0 mt-[150px] mb-0 transition-all duration-300"
               >
                 <p
                   class="text-xs sm:text-[13px] xl:text-sm 2xl:text-[16px] text-gray-300 leading-relaxed font-light italic"
@@ -3604,7 +3632,7 @@
           id="projects-section"
         >
           <div
-            class="absolute top-[40%] left-1/2 -translate-x-1/2 w-[120vw] h-[120vw] md:w-[80vw] md:h-[80vw] rounded-full blur-[140px] md:blur-[180px] pointer-events-none z-0 opacity-40 bg-gradient-to-t from-[#2e1065] via-[#5b21b6] to-[#8b5cf6]"
+            class="absolute top-[40%] left-1/2 -translate-x-1/2 w-[120vw] h-[120vw] md:w-[80vw] md:h-[80vw] rounded-full blur-[140px] md:blur-[180px] pointer-events-none z-0 opacity-40 bg-gradient-to-t from-[#450205] via-[#8A050C] to-[#e50914]"
           ></div>
           <div
             class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-12 w-full flex-grow flex flex-col pb-20 relative z-10"
@@ -3915,7 +3943,7 @@
                 class="w-full h-full rounded-full overflow-hidden relative group"
               >
                 <img
-                  src="https://drive.google.com/thumbnail?sz=w1000&id=1CNQLC1yDNqE6hIbmC9qh9PC-wJiuoPTr"
+                  src="https://drive.google.com/thumbnail?sz=w1000&id=1LbyG7mCfKpOaWxq4qHLUrES4duXo7Fcf"
                   class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
                   alt="Jimmy Avatar"
                 />
@@ -3960,7 +3988,7 @@
                     class="w-16 h-16 sm:w-20 sm:h-20 lg:w-16 lg:h-16 rounded-[20px] shadow-[0_0_30px_rgba(30,40,50,0.5)] group-hover/icon:scale-105 transition-all duration-300 relative flex items-center justify-center p-[2px]"
                   >
                     <div
-                      class="absolute inset-0 rounded-[20px] bg-[conic-gradient(from_200deg,#b6eb3d,#5ec0cd,#3e73b9,#825096,#d14f5e,#e5a254,#b6eb3d)]"
+                      class="absolute inset-0 rounded-[20px] bg-[conic-gradient(from_200deg,#b6eb3d,#5ec0cd,#3e73b9,#B82832,#d14f5e,#e5a254,#b6eb3d)]"
                     ></div>
                     <div
                       class="absolute inset-[2.5px] rounded-[18px] bg-[#1d222d] shadow-[inset_0_4px_10px_rgba(0,0,0,0.5)] z-0"
@@ -4299,16 +4327,16 @@
         class="hidden relative min-h-screen w-full overflow-x-hidden bg-transparent font-sans"
       >
         <div
-          class="fixed top-[60%] left-[45%] -translate-x-1/2 w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] rounded-full blur-[160px] pointer-events-none z-0 opacity-80 bg-[#5b21b6]"
+          class="fixed top-[60%] left-[45%] -translate-x-1/2 w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] rounded-full blur-[160px] pointer-events-none z-0 opacity-80 bg-[#8A050C]"
         ></div>
         <div
-          class="fixed top-[30%] left-[75%] -translate-x-1/2 w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] rounded-full blur-[140px] pointer-events-none z-0 opacity-70 bg-[#8b5cf6]"
+          class="fixed top-[30%] left-[75%] -translate-x-1/2 w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] rounded-full blur-[140px] pointer-events-none z-0 opacity-70 bg-[#e50914]"
         ></div>
         <div
           class="absolute top-[26vh] md:top-[22vh] left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none flex justify-center items-center opacity-60"
         >
           <h1
-            class="text-[32vw] md:text-[24vw] font-black tracking-tighter leading-none select-none text-transparent bg-clip-text bg-gradient-to-b from-[#2e1065] via-[#5b21b6] to-[#a78bfa] drop-shadow-[0_0_30px_rgba(139,92,246,0.4)]"
+            class="text-[32vw] md:text-[24vw] font-black tracking-tighter leading-none select-none text-transparent bg-clip-text bg-gradient-to-b from-[#450205] via-[#8A050C] to-[#ff5a62] drop-shadow-[0_0_30px_rgba(229,9,20,0.4)]"
           >
             Featured
           </h1>
@@ -4382,11 +4410,11 @@
                 Foundation Pack
               </h2>
               <div
-                class="glass-card rounded-[2.5rem] p-8 sm:p-10 flex-grow flex flex-col relative overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] hover:border-[#8b5cf6]/40 group cursor-pointer"
+                class="glass-card rounded-[2.5rem] p-8 sm:p-10 flex-grow flex flex-col relative overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_0_50px_rgba(229,9,20,0.3)] hover:border-[#e50914]/40 group cursor-pointer"
                 onclick="buyPackage('Foundation')"
               >
                 <div
-                  class="absolute -left-20 -top-20 w-64 h-64 bg-[#5b21b6]/20 blur-[80px] rounded-full pointer-events-none transition-all duration-700 group-hover:scale-110 group-hover:bg-[#8b5cf6]/30"
+                  class="absolute -left-20 -top-20 w-64 h-64 bg-[#8A050C]/20 blur-[80px] rounded-full pointer-events-none transition-all duration-700 group-hover:scale-110 group-hover:bg-[#e50914]/30"
                 ></div>
                 <div
                   class="flex flex-col sm:flex-row items-center sm:items-start gap-6 md:gap-8 mb-8 relative z-10 w-full text-center sm:text-left"
@@ -4415,7 +4443,7 @@
                         ></span
                       >
                       <div
-                        class="border border-white/10 text-white text-[10px] md:text-xs font-semibold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#8b5cf6]/20 backdrop-blur-md shadow-[0_0_15px_rgba(139,92,246,0.3)] uppercase tracking-widest inline-block whitespace-nowrap shrink-0"
+                        class="border border-white/10 text-white text-[10px] md:text-xs font-semibold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#e50914]/20 backdrop-blur-md shadow-[0_0_15px_rgba(229,9,20,0.3)] uppercase tracking-widest inline-block whitespace-nowrap shrink-0"
                       >
                         20% OFF
                       </div>
@@ -4510,7 +4538,7 @@
             class="group mt-20 md:mt-32 glass-card rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-stretch justify-between gap-10 relative overflow-hidden z-20 transition-all hover:bg-white/[0.03]"
           >
             <div
-              class="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#5b21b6]/20 blur-[100px] rounded-full pointer-events-none transition-all duration-700 group-hover:bg-[#8b5cf6]/20 group-hover:scale-110"
+              class="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#8A050C]/20 blur-[100px] rounded-full pointer-events-none transition-all duration-700 group-hover:bg-[#e50914]/20 group-hover:scale-110"
             ></div>
             <div
               class="flex-1 text-center md:text-left z-10 flex flex-col items-center md:items-start space-y-6 md:pr-8"
@@ -4522,7 +4550,7 @@
                   New Business Welcome Offer
                 </h3>
                 <div
-                  class="text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[8rem] whitespace-nowrap leading-none font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8b5cf6] drop-shadow-[0_0_40px_rgba(139,92,246,0.3)]"
+                  class="text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[8rem] whitespace-nowrap leading-none font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-[#e50914] drop-shadow-[0_0_40px_rgba(229,9,20,0.3)]"
                 >
                   20% OFF
                 </div>
@@ -4539,24 +4567,24 @@
               </p>
             </div>
             <button
-              class="group/btn flex-1 w-full flex flex-col items-center justify-center gap-4 md:gap-6 rounded-[2rem] border border-[#8b5cf6]/30 bg-white/[0.02] backdrop-blur-xl p-10 transition-all duration-500 hover:border-[#8b5cf6]/60 hover:shadow-[0_0_60px_rgba(139,92,246,0.2)] hover:bg-[#8b5cf6]/10 relative overflow-hidden z-10 cursor-pointer min-h-[16rem] md:min-h-full drop-shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+              class="group/btn flex-1 w-full flex flex-col items-center justify-center gap-4 md:gap-6 rounded-[2rem] border border-[#e50914]/30 bg-white/[0.02] backdrop-blur-xl p-10 transition-all duration-500 hover:border-[#e50914]/60 hover:shadow-[0_0_60px_rgba(229,9,20,0.2)] hover:bg-[#e50914]/10 relative overflow-hidden z-10 cursor-pointer min-h-[16rem] md:min-h-full drop-shadow-[0_0_15px_rgba(229,9,20,0.15)]"
               onclick="buyPackage('Welcome Offer')"
             >
               <div
-                class="absolute inset-0 transition-all duration-500 group-hover/btn:bg-[#8b5cf6]/5"
+                class="absolute inset-0 transition-all duration-500 group-hover/btn:bg-[#e50914]/5"
               ></div>
               <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#8b5cf6]/20 blur-[50px] rounded-full transition-all duration-500 group-hover/btn:w-56 group-hover/btn:h-56"
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#e50914]/20 blur-[50px] rounded-full transition-all duration-500 group-hover/btn:w-56 group-hover/btn:h-56"
               ></div>
               <span
-                class="relative z-10 text-2xl md:text-4xl font-bold text-[#a78bfa] tracking-widest uppercase flex items-center gap-4 drop-shadow-[0_0_12px_rgba(167,139,250,0.6)]"
+                class="relative z-10 text-2xl md:text-4xl font-bold text-[#ff5a62] tracking-widest uppercase flex items-center gap-4 drop-shadow-[0_0_12px_rgba(255,90,98,0.6)]"
                 >Claim Offer
                 <i
                   data-lucide="arrow-right"
-                  class="w-8 h-8 md:w-10 md:h-10 text-[#a78bfa] transition-transform duration-500 group-hover/btn:translate-x-4 drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]"
+                  class="w-8 h-8 md:w-10 md:h-10 text-[#ff5a62] transition-transform duration-500 group-hover/btn:translate-x-4 drop-shadow-[0_0_8px_rgba(255,90,98,0.8)]"
                 ></i> </span
               ><span
-                class="relative z-10 text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.3em] group-hover/btn:text-[#8b5cf6] transition-colors"
+                class="relative z-10 text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.3em] group-hover/btn:text-[#e50914] transition-colors"
                 >Unlock Premium Now</span
               >
             </button>
@@ -4759,7 +4787,7 @@
               "-l\x20border-",
               "\x20Spaces",
               "xisting\x20fo",
-              "8b5cf6]/10",
+              "e50914]/10",
               "EGP",
               "\x20<span\x20cla",
               "AxIPC",
@@ -4882,7 +4910,7 @@
               "Lixzq",
               "BPtJu",
               "\x20</div>\x0a\x0a\x20",
-              "der-[#8b5c",
+              "der-[#e509",
               "n-300\x20mt-a",
               "PVbZT",
               "QnuhC",
@@ -5167,7 +5195,7 @@
               "\x20\x20\x20\x20\x20\x20\x20\x20",
               "ne\x22>",
               "ce\x20campaig",
-              "er-[#8b5cf",
+              "er-[#e5091",
               "solo-conta",
               "-[105%]\x20z-",
               "md\x20leading",
@@ -6691,7 +6719,7 @@
                         }
                         return false;
                       "
-                      class="inline-flex flex-1 sm:flex-none w-full sm:w-[180px] h-[48px] items-center justify-center bg-violet-600/90 backdrop-blur-md border border-violet-500/50 shadow-[0_0_20px_rgba(139,92,246,0.5)] text-white text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.8)] hover:scale-105 rounded-[2px] pointer-events-auto gap-2"
+                      class="inline-flex flex-1 sm:flex-none w-full sm:w-[180px] h-[48px] items-center justify-center bg-violet-600/90 backdrop-blur-md border border-violet-500/50 shadow-[0_0_20px_rgba(229,9,20,0.5)] text-white text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 hover:bg-violet-500 hover:shadow-[0_0_30px_rgba(229,9,20,0.8)] hover:scale-105 rounded-[2px] pointer-events-auto gap-2"
                       >I WANT THIS
                       <svg
                         fill="none"
@@ -7252,7 +7280,7 @@
                       </div>
                   `;
               trackHtml += `
-                   <div class="relative shrink-0 overflow-hidden flex items-center justify-center bg-[#0d0a14] transition-all duration-700 ease-in-out will-change-transform project-slide" style="width: 100vw; height: 100vh; margin: 0; border-radius: 0px;" id="slide-${i}">
+                   <div class="relative shrink-0 overflow-hidden flex items-center justify-center bg-[#0f0a0b] transition-all duration-700 ease-in-out will-change-transform project-slide" style="width: 100vw; height: 100vh; margin: 0; border-radius: 0px;" id="slide-${i}">
       <span class="animate-text-breathe font-bold tracking-[0.2em] text-xs md:text-sm text-white/50 uppercase select-none relative z-0">JIMMY.RENDER</span>
       <img loading="lazy" src="${prj.src}" class="absolute inset-0 w-full h-full object-cover pointer-events-none origin-center transition-all duration-700 ease-in-out opacity-0 z-10" id="slide-img-${i}" onload="this.classList.remove('opacity-0'); this.previousElementSibling.style.display='none'" onerror="this.previousElementSibling.innerText='ERROR'">
       <div class="absolute inset-0 bg-black pointer-events-none transition-opacity duration-700 ease-in-out z-20" id="slide-overlay-${i}" style="opacity: 0"></div>
@@ -7415,7 +7443,7 @@
       onclick="openFullscreenViewer(window.currentModalData[${idx}].gallery, ${i})"
     >
       <span class="animate-text-breathe font-bold tracking-[0.2em] text-[10px] md:text-xs text-white/50 uppercase select-none text-center leading-loose">JIMMY<br/>RENDER</span>
-      <img loading="lazy" src="${imgSrc}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 bg-[#0d0a14]" onload="this.classList.remove('opacity-0'); this.previousElementSibling.style.display='none'" onerror="this.previousElementSibling.innerText='ERROR'" />
+      <img loading="lazy" src="${imgSrc}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 bg-[#0f0a0b]" onload="this.classList.remove('opacity-0'); this.previousElementSibling.style.display='none'" onerror="this.previousElementSibling.innerText='ERROR'" />
     </div>
                     `;
                 });
@@ -8637,7 +8665,7 @@
       <img
         loading="lazy"
         id="fullscreen-img"
-        class="absolute inset-0 w-full h-full p-4 md:p-12 object-contain cursor-zoom-out z-10 transition-opacity duration-300 opacity-0 bg-[#0d0a14]"
+        class="absolute inset-0 w-full h-full p-4 md:p-12 object-contain cursor-zoom-out z-10 transition-opacity duration-300 opacity-0 bg-[#0f0a0b]"
         onclick="closeFullscreenViewer()"
         onload="this.classList.remove('opacity-0')"
       />
@@ -8957,7 +8985,7 @@
         onclick="closeIWantThisModal()"
       ></div>
       <div
-        class="relative bg-[#0F0518]/60 backdrop-blur-3xl border border-white/20 rounded-[28px] max-w-lg w-full p-6 md:p-8 shadow-[0_0_50px_rgba(139,92,246,0.15)] transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto"
+        class="relative bg-[#0C0405]/60 backdrop-blur-3xl border border-white/20 rounded-[28px] max-w-lg w-full p-6 md:p-8 shadow-[0_0_50px_rgba(229,9,20,0.15)] transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto"
         id="i-want-content"
       >
         <button
@@ -9159,7 +9187,7 @@
           </div>
           <button
             onclick="submitIWantThis()"
-            class="mt-2 w-full shrink-0 py-4 bg-white text-black rounded-xl font-bold tracking-[0.2em] text-[11px] uppercase hover:bg-violet-300 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+            class="mt-2 w-full shrink-0 py-4 bg-white text-black rounded-xl font-bold tracking-[0.2em] text-[11px] uppercase hover:bg-violet-300 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(229,9,20,0.3)]"
           >
             Send via WhatsApp
           </button>
@@ -10886,7 +10914,7 @@
         onclick="closeSpatialWantModal()"
       ></div>
       <div
-        class="relative bg-[#0F0518]/60 backdrop-blur-3xl border border-white/20 rounded-[28px] max-w-lg w-full p-6 md:p-8 shadow-[0_0_50px_rgba(139,92,246,0.15)] transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto"
+        class="relative bg-[#0C0405]/60 backdrop-blur-3xl border border-white/20 rounded-[28px] max-w-lg w-full p-6 md:p-8 shadow-[0_0_50px_rgba(229,9,20,0.15)] transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto"
         id="spatial-want-content"
       >
         <button
@@ -11095,7 +11123,7 @@
           </div>
           <button
             onclick="submitSpatialWant()"
-            class="mt-2 w-full shrink-0 py-4 bg-white text-black rounded-xl font-bold tracking-[0.2em] text-[11px] uppercase hover:bg-violet-300 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+            class="mt-2 w-full shrink-0 py-4 bg-white text-black rounded-xl font-bold tracking-[0.2em] text-[11px] uppercase hover:bg-violet-300 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(229,9,20,0.3)]"
           >
             Send via WhatsApp
           </button>
@@ -11394,16 +11422,16 @@
                   "w-full px-5 py-2 rounded-full bg-red-600 text-white font-medium shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] border border-red-500 transition-all duration-300 uppercase";
               }
             } else {
-              smokeCanvas.style.filter = "";
+              smokeCanvas.style.filter = "hue-rotate(110deg) saturate(2)";
               const desktopBtn = document.getElementById("desktop-contact-btn");
               const mobileBtn = document.getElementById("mobile-contact-btn");
               if (desktopBtn) {
                 desktopBtn.className =
-                  "px-5 py-2 rounded-full bg-violet-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-violet-500 shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase";
+                  "px-5 py-2 rounded-full bg-violet-600 text-white font-montserrat font-bold text-[13px] tracking-widest hover:bg-violet-500 shadow-[0_0_15px_rgba(184,7,16,0.4)] hover:shadow-[0_0_30px_rgba(184,7,16,0.6)] border border-violet-500 transition-all duration-300 uppercase";
               }
               if (mobileBtn) {
                 mobileBtn.className =
-                  "w-full px-5 py-2 rounded-full bg-violet-600 text-white font-medium shadow-[0_0_15px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] border border-violet-500 transition-all duration-300 uppercase";
+                  "w-full px-5 py-2 rounded-full bg-violet-600 text-white font-medium shadow-[0_0_15px_rgba(184,7,16,0.4)] hover:shadow-[0_0_30px_rgba(184,7,16,0.6)] border border-violet-500 transition-all duration-300 uppercase";
               }
             }
           });
