@@ -90,6 +90,7 @@
       };
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/logos-config.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Alex+Brush&family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
@@ -837,6 +838,7 @@
                 "
               >
                 <div
+                  id="mobile-marquee-content"
                   class="flex items-center gap-6 w-max translate-x-0 group-hover:animation-play-state-paused"
                   style="animation: mobileMarquee 15s linear infinite"
                 >
@@ -5120,6 +5122,39 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         ensureVideosPlay();
+
+        // Dynamically load Google Drive logos into mobile marquee
+        const mobileMarquee = document.getElementById("mobile-marquee-content");
+        if (mobileMarquee) {
+          async function renderMobileLogos() {
+            try {
+              const logoList = (typeof window.loadMarqueeLogos === "function")
+                ? await window.loadMarqueeLogos()
+                : (window.DEFAULT_MARQUEE_LOGOS || []);
+
+              const logosMarkup = logoList.map(item => {
+                const src = (typeof window.getLogoImageUrl === "function")
+                  ? window.getLogoImageUrl(item)
+                  : "https://lh3.googleusercontent.com/d/" + item;
+                return `<img loading="lazy" src="${src}" class="h-4 w-auto object-contain" alt="logo" />`;
+              }).join("\n");
+
+              const setHtml = `
+                <div class="flex items-center gap-6 shrink-0 opacity-50 grayscale">
+                  ${logosMarkup}
+                </div>
+              `;
+              let html = "";
+              for (let i = 0; i < 4; i++) {
+                html += setHtml;
+              }
+              mobileMarquee.innerHTML = html;
+            } catch (e) {
+              console.error("Error rendering mobile marquee logos:", e);
+            }
+          }
+          renderMobileLogos();
+        }
       });
 
       // Periodically check for stuck videos (e.g. they paused due to slow connection and didn't resume automatically)
