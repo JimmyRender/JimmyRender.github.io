@@ -22,6 +22,7 @@
     <title>JIMMY.RENDER Landing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/logos-config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -7122,26 +7123,37 @@
         ];
         window.projectData = projectData;
 
-        // 1. Render Marquee Logos dynamically (to save tokens)
+        // 1. Render Marquee Logos dynamically with Google Drive live sync
         const marqueeContent = document.getElementById("marquee-content");
         if (marqueeContent) {
-          let html = "";
-          const groupHtml = `
-                <div
-                  class="flex justify-around items-center gap-16 md:gap-24 px-8 md:px-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-700 shrink-0"
-                >
-                  <img loading="lazy" src="https://lh3.googleusercontent.com/d/1iw96VznhNijHA35yXYd0cqR5tVBJ6-Xw" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />
-                  <img loading="lazy" src="https://lh3.googleusercontent.com/d/1QqWfCLZq8TL_sr9ZB5CpYczXC-XgZWIi" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />
-                  <img loading="lazy" src="https://lh3.googleusercontent.com/d/1JJ-1hiEPfBiY2KeHI2G0BqJTadYfQLB5" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />
-                  <img loading="lazy" src="https://lh3.googleusercontent.com/d/1IqDf4_mX-Pc4fjLM04CdAzfpqIyjQxyW" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />
-                  <img loading="lazy" src="https://lh3.googleusercontent.com/d/1ZaAfK9dLd65SJj3j-mSb9GzUvUXV9O99" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />
-                  <img loading="lazy" src="https://lh3.googleusercontent.com/d/1NGhrBt132bTNGsvxNsMifvttasr02TsO" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />
+          async function renderDesktopLogos() {
+            try {
+              const logoList = (typeof window.loadMarqueeLogos === "function")
+                ? await window.loadMarqueeLogos()
+                : (window.DEFAULT_MARQUEE_LOGOS || []);
+              
+              const logosMarkup = logoList.map(item => {
+                const src = (typeof window.getLogoImageUrl === "function")
+                  ? window.getLogoImageUrl(item)
+                  : "https://lh3.googleusercontent.com/d/" + item;
+                return `<img loading="lazy" src="${src}" class="h-6 md:h-7 w-auto object-contain shrink-0 logo-item transition-transform duration-75" alt="Logo" />`;
+              }).join("\n");
+
+              const groupHtml = `
+                <div class="flex justify-around items-center gap-16 md:gap-24 px-8 md:px-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-700 shrink-0">
+                  ${logosMarkup}
                 </div>
-           `;
-          for (let i = 0; i < 4; i++) {
-            html += groupHtml;
+              `;
+              let html = "";
+              for (let i = 0; i < 4; i++) {
+                html += groupHtml;
+              }
+              marqueeContent.innerHTML = html;
+            } catch (e) {
+              console.error("Error rendering desktop marquee logos:", e);
+            }
           }
-          marqueeContent.innerHTML = html;
+          renderDesktopLogos();
         }
 
         // 2. Render Project Grid dynamically
