@@ -3371,7 +3371,7 @@
           src: "https://lh3.googleusercontent.com/d/1JsgKEQ14lrS0Hu6Yaxbh2GrDI5BCwJnk",
           title: "MoM-Resto",
           concept: "MOM-Resto nothing yet",
-          video: "",
+          video: "https://www.youtube.com/embed/DFoGdUQKK4k",
           hearts: "3.4K",
           gallery: [
             "https://drive.google.com/thumbnail?sz=w1000&id=1C4BPH2jofEWBKtxbf0iKe7nzzacTZG5a",
@@ -3548,6 +3548,134 @@
         return `<span class="truncate block max-w-[85px] text-[12px] font-medium font-sans text-white/90 whitespace-nowrap">${norm}</span>`;
       }
 
+      // Project transition logic
+      let projectsList = [];
+      let spatialProjectsList = [];
+      let currentProjectIndex = 0;
+      let activeList = "projects";
+
+      window.projectsList = projectsList;
+      window.spatialProjectsList = spatialProjectsList;
+
+      // Extract projects and make cards clickable
+      function bindCardInteractions() {
+        projectsList.length = 0;
+        spatialProjectsList.length = 0;
+
+        document.querySelectorAll(".shrink-0, .search-item").forEach((card) => {
+          if (
+            card.classList.contains("w-[140px]") ||
+            card.classList.contains("w-[280px]") ||
+            card.classList.contains("search-item")
+          ) {
+            const imgElement = card.querySelector("img");
+            const textElement =
+              card.querySelector("span.font-medium") ||
+              card.querySelector("h4.font-montserrat") ||
+              card.querySelector("span.text-white");
+
+            if (imgElement) {
+              let isSpatial = card.closest("#spatial-carousel") !== null;
+              if (card.classList.contains("search-item")) {
+                const titleAttr = card.getAttribute("data-proj-title") || "";
+                if (
+                  titleAttr === "REHAB_New-Assuit" ||
+                  titleAttr === "Downtown_Assuit-City" ||
+                  titleAttr === "Workspace_mobica-test"
+                ) {
+                  isSpatial = true;
+                }
+              }
+              const targetList = isSpatial ? spatialProjectsList : projectsList;
+              const listName = isSpatial ? "spatial" : "projects";
+
+              // Avoid duplicate array items in navigation index tracking
+              const srcShort = imgElement.getAttribute("src");
+              const alreadyExists = targetList.some((p) => p.src === srcShort);
+              if (!alreadyExists) {
+                const titleAttr = card.getAttribute("data-proj-title");
+                let finalTitle = "Untitled";
+                if (titleAttr) {
+                  finalTitle = titleAttr;
+                } else if (textElement) {
+                  finalTitle = textElement.innerText.replace(/\n/g, " ").trim();
+                }
+                let galleryData = [];
+                let conceptData = "";
+                let videoData = "";
+                const matchedProject = allProjects.find(
+                  (p) => p.title.toLowerCase() === finalTitle.toLowerCase(),
+                );
+                if (matchedProject) {
+                  galleryData = matchedProject.gallery || [];
+                  conceptData = matchedProject.concept || "";
+                  videoData = matchedProject.video || "";
+                }
+                targetList.push({
+                  src: srcShort,
+                  title: finalTitle,
+                  gallery: galleryData,
+                  concept: conceptData,
+                  video: videoData,
+                });
+              }
+
+              card.style.cursor = "pointer";
+
+              if (!card.__hasProjectClick) {
+                card.__hasProjectClick = true;
+                let clickStartX = 0;
+                let clickStartY = 0;
+                card.addEventListener("mousedown", (e) => {
+                  clickStartX = e.clientX;
+                  clickStartY = e.clientY;
+                });
+                card.addEventListener("mouseup", (e) => {
+                  if (
+                    Math.abs(e.clientX - clickStartX) < 10 &&
+                    Math.abs(e.clientY - clickStartY) < 10
+                  ) {
+                    const clickIdx = targetList.findIndex(
+                      (p) => p.src === srcShort,
+                    );
+                    if (clickIdx !== -1) {
+                      openProjectDetail(clickIdx, listName);
+                    }
+                  }
+                });
+                card.addEventListener(
+                  "touchstart",
+                  (e) => {
+                    clickStartX = e.touches[0].clientX;
+                    clickStartY = e.touches[0].clientY;
+                  },
+                  { passive: true },
+                );
+                card.addEventListener("touchend", (e) => {
+                  const touchEndX = e.changedTouches
+                    ? e.changedTouches[0].clientX
+                    : clickStartX;
+                  const touchEndY = e.changedTouches
+                    ? e.changedTouches[0].clientY
+                    : clickStartY;
+                  if (
+                    Math.abs(touchEndX - clickStartX) < 10 &&
+                    Math.abs(touchEndY - clickStartY) < 10
+                  ) {
+                    const clickIdx = targetList.findIndex(
+                      (p) => p.src === srcShort,
+                    );
+                    if (clickIdx !== -1) {
+                      openProjectDetail(clickIdx, listName);
+                    }
+                  }
+                });
+              }
+            }
+          }
+        });
+      }
+
       // Dynamic Population of Featured Carousel
       function renderFeaturedCarousel(projectsToRender) {
         const featuredCarousel = document.getElementById("featured-carousel");
@@ -3682,134 +3810,6 @@
 
       if (typeof lucide !== "undefined" && lucide.createIcons) {
         lucide.createIcons();
-      }
-
-      // Project transition logic
-      let projectsList = [];
-      let spatialProjectsList = [];
-      let currentProjectIndex = 0;
-      let activeList = "projects";
-
-      window.projectsList = projectsList;
-      window.spatialProjectsList = spatialProjectsList;
-
-      // Extract projects and make cards clickable
-      function bindCardInteractions() {
-        projectsList.length = 0;
-        spatialProjectsList.length = 0;
-
-        document.querySelectorAll(".shrink-0, .search-item").forEach((card) => {
-          if (
-            card.classList.contains("w-[140px]") ||
-            card.classList.contains("w-[280px]") ||
-            card.classList.contains("search-item")
-          ) {
-            const imgElement = card.querySelector("img");
-            const textElement =
-              card.querySelector("span.font-medium") ||
-              card.querySelector("h4.font-montserrat") ||
-              card.querySelector("span.text-white");
-
-            if (imgElement) {
-              let isSpatial = card.closest("#spatial-carousel") !== null;
-              if (card.classList.contains("search-item")) {
-                const titleAttr = card.getAttribute("data-proj-title") || "";
-                if (
-                  titleAttr === "REHAB_New-Assuit" ||
-                  titleAttr === "Downtown_Assuit-City" ||
-                  titleAttr === "Workspace_mobica-test"
-                ) {
-                  isSpatial = true;
-                }
-              }
-              const targetList = isSpatial ? spatialProjectsList : projectsList;
-              const listName = isSpatial ? "spatial" : "projects";
-
-              // Avoid duplicate array items in navigation index tracking
-              const srcShort = imgElement.getAttribute("src");
-              const alreadyExists = targetList.some((p) => p.src === srcShort);
-              if (!alreadyExists) {
-                const titleAttr = card.getAttribute("data-proj-title");
-                let finalTitle = "Untitled";
-                if (titleAttr) {
-                  finalTitle = titleAttr;
-                } else if (textElement) {
-                  finalTitle = textElement.innerText.replace(/\n/g, " ").trim();
-                }
-                let galleryData = [];
-                let conceptData = "";
-                let videoData = "";
-                const matchedProject = allProjects.find(
-                  (p) => p.title.toLowerCase() === finalTitle.toLowerCase(),
-                );
-                if (matchedProject) {
-                  galleryData = matchedProject.gallery || [];
-                  conceptData = matchedProject.concept || "";
-                  videoData = matchedProject.video || "";
-                }
-                targetList.push({
-                  src: srcShort,
-                  title: finalTitle,
-                  gallery: galleryData,
-                  concept: conceptData,
-                  video: videoData,
-                });
-              }
-
-              card.style.cursor = "pointer";
-
-              if (!card.__hasProjectClick) {
-                card.__hasProjectClick = true;
-                let clickStartX = 0;
-                let clickStartY = 0;
-                card.addEventListener("mousedown", (e) => {
-                  clickStartX = e.clientX;
-                  clickStartY = e.clientY;
-                });
-                card.addEventListener("mouseup", (e) => {
-                  if (
-                    Math.abs(e.clientX - clickStartX) < 10 &&
-                    Math.abs(e.clientY - clickStartY) < 10
-                  ) {
-                    const clickIdx = targetList.findIndex(
-                      (p) => p.src === srcShort,
-                    );
-                    if (clickIdx !== -1) {
-                      openProjectDetail(clickIdx, listName);
-                    }
-                  }
-                });
-                card.addEventListener(
-                  "touchstart",
-                  (e) => {
-                    clickStartX = e.touches[0].clientX;
-                    clickStartY = e.touches[0].clientY;
-                  },
-                  { passive: true },
-                );
-                card.addEventListener("touchend", (e) => {
-                  const touchEndX = e.changedTouches
-                    ? e.changedTouches[0].clientX
-                    : clickStartX;
-                  const touchEndY = e.changedTouches
-                    ? e.changedTouches[0].clientY
-                    : clickStartY;
-                  if (
-                    Math.abs(touchEndX - clickStartX) < 10 &&
-                    Math.abs(touchEndY - clickStartY) < 10
-                  ) {
-                    const clickIdx = targetList.findIndex(
-                      (p) => p.src === srcShort,
-                    );
-                    if (clickIdx !== -1) {
-                      openProjectDetail(clickIdx, listName);
-                    }
-                  }
-                });
-              }
-            }
-          }
-        });
       }
 
       setTimeout(bindCardInteractions, 100);
