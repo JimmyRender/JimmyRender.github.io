@@ -3545,6 +3545,14 @@
             </span>
           `;
         }
+        if (lower.includes("ma-accessories") || lower.includes("ma accessories")) {
+          return `
+            <span class="flex flex-col select-none font-sans leading-none text-left whitespace-nowrap">
+              <span class="text-[11px] font-bold text-white/95 whitespace-nowrap">MA</span>
+              <span class="text-[8px] text-white/60 font-medium whitespace-nowrap">Accessories</span>
+            </span>
+          `;
+        }
         return `<span class="truncate block max-w-[85px] text-[12px] font-medium font-sans text-white/90 whitespace-nowrap">${norm}</span>`;
       }
 
@@ -3858,6 +3866,14 @@
             <span class="flex flex-col font-sans leading-none text-left select-none">
               <span class="text-[34px] sm:text-[42px] font-black text-white tracking-[0.05em] leading-none">KAY</span>
               <span class="text-[34px] sm:text-[42px] font-black text-white/80 tracking-[0.05em] leading-none mt-1">ALI</span>
+            </span>
+          `;
+        }
+        if (lower.includes("ma-accessories") || lower.includes("ma accessories")) {
+          return `
+            <span class="flex flex-col font-sans leading-none text-left select-none">
+              <span class="text-[34px] sm:text-[42px] font-black text-white tracking-tight leading-none">MA</span>
+              <span class="text-[20px] sm:text-[24px] text-white/80 font-medium tracking-wide mt-1 leading-none">Accessories</span>
             </span>
           `;
         }
