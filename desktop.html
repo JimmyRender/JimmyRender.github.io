@@ -23,6 +23,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/logos-config.js"></script>
+    <script src="/projects-config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -7157,10 +7158,18 @@
         }
 
         // 2. Render Project Grid dynamically
-        const gridContainer = document.getElementById("projects-grid");
-        if (gridContainer) {
+        const baseFeaturedArray = projectData.slice(0, 12);
+        const spatialDataArray = projectData.slice(12, 15);
+        window.spatialDataArray = spatialDataArray;
+        window.featuredDataArray = baseFeaturedArray;
+        window.currentModalListType = "featured";
+        window.currentModalData = baseFeaturedArray;
+
+        function renderDesktopProjectGrid(list) {
+          const gridContainer = document.getElementById("projects-grid");
+          if (!gridContainer) return;
           let gridHtml = "";
-          projectData.slice(0, 12).forEach((prj, i) => {
+          list.forEach((prj, i) => {
             const hiddenClass = i >= 3 ? "hidden" : "";
             gridHtml +=
               `
@@ -7207,6 +7216,26 @@
                 `;
           });
           gridContainer.innerHTML = gridHtml;
+        }
+
+        // Render existing projects immediately
+        renderDesktopProjectGrid(baseFeaturedArray);
+
+        // Fetch and prepend any new Google Drive project folders
+        if (typeof window.loadNewProjects === "function") {
+          window.loadNewProjects().then((newProjects) => {
+            if (Array.isArray(newProjects) && newProjects.length > 0) {
+              window.featuredDataArray = [...newProjects, ...baseFeaturedArray];
+              window.projectData = [...window.featuredDataArray, ...spatialDataArray];
+              if (window.currentModalListType === "featured") {
+                window.currentModalData = window.featuredDataArray;
+              }
+              renderDesktopProjectGrid(window.featuredDataArray);
+              if (typeof window.renderModalTracks === "function") {
+                window.renderModalTracks();
+              }
+            }
+          }).catch(console.warn);
         }
 
         const spatialGridContainer = document.getElementById("spatial-grid");
@@ -7260,11 +7289,6 @@
           });
           spatialGridContainer.innerHTML = spatialHtml;
         }
-
-        const featuredDataArray = projectData.slice(0, 12);
-        const spatialDataArray = projectData.slice(12, 15);
-        window.currentModalListType = "featured";
-        window.currentModalData = featuredDataArray;
 
         window.renderModalTracks = function () {
           const thumbsContainer = document.getElementById("modal-thumbs");
@@ -7382,8 +7406,8 @@
             window.currentModalListType = targetListType;
             window.currentModalData =
               targetListType === "spatial"
-                ? spatialDataArray
-                : featuredDataArray;
+                ? (window.spatialDataArray || spatialDataArray)
+                : (window.featuredDataArray || featuredDataArray);
             window.renderModalTracks();
           }
 
