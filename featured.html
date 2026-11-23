@@ -3,24 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beats Studio 3</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-              display: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-              mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-              beats: ['Montserrat', 'sans-serif'],
-            }
-          }
-        }
-      }
-    </script>
+    <title>JIMMY.RENDER — Beats Studio 3 Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
       
       body {
         background-color: #000;
@@ -105,20 +95,33 @@
       ::-webkit-scrollbar-corner {
         background: 0 0;
       }
+
+      html.mobile-embed .backdrop-blur-sm,
+      html.mobile-embed .backdrop-blur-md,
+      html.mobile-embed .backdrop-blur-xl {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
     </style>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get("mobile") === "true") {
+          document.documentElement.classList.add("mobile-embed");
+        }
+      })();
+    </script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="styles/featured.css" />
   </head>
   <body class="min-h-screen bg-[#050505] text-white selection:bg-orange-500/30 font-sans overflow-x-hidden select-none" oncontextmenu="return false" ondragstart="return false;">
-    <!-- SECTION 1: HERO -->
     <section class="relative w-full h-screen max-h-[1080px] border-b border-white/15">
-      <!-- Background Image -->
       <div class="absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
         <img src="BTS-MN_BG.png" alt="Hero Background" class="w-full h-full object-cover md:object-contain opacity-40 object-center scale-[1.5] md:scale-100" />
         <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 mix-blend-multiply pointer-events-none"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 pointer-events-none"></div>
       </div>
 
-      <!-- Grid Lines -->
       <div class="absolute left-0 right-0 h-px bg-white/15 z-0" style="top: 15%"></div>
       <div class="absolute left-0 right-0 h-px bg-white/15 z-0" style="top: 35%"></div>
       <div class="absolute left-0 right-0 h-px bg-white/15 z-0" style="top: 60%"></div>
@@ -129,7 +132,6 @@
       <div class="absolute top-0 bottom-0 w-px bg-white/15 z-0" style="left: 60%"></div>
       <div class="absolute top-0 bottom-0 w-px bg-white/15 z-0" style="left: 80%"></div>
 
-      <!-- Glass Panels -->
       <div class="absolute bg-white/[0.01] border border-white/10 backdrop-blur-sm z-0 transition-all duration-500 hover:bg-white/[0.05] hover:backdrop-blur-md hover:border-white/30" style="top: 35%; bottom: 40%; left: 0; right: 85%"></div>
       <div class="absolute bg-white/[0.01] border border-white/10 backdrop-blur-sm z-0 transition-all duration-500 hover:bg-white/[0.05] hover:backdrop-blur-md hover:border-white/30" style="top: 35%; bottom: 40%; left: 60%; right: 20%"></div>
       <div class="absolute bg-white/[0.01] border border-white/10 backdrop-blur-sm z-0 transition-all duration-500 hover:bg-white/[0.05] hover:backdrop-blur-md hover:border-white/30" style="top: 60%; bottom: 15%; left: 40%; right: 40%"></div>
@@ -138,10 +140,8 @@
       <div class="absolute bg-white/[0.01] border border-white/10 backdrop-blur-sm z-0 transition-all duration-500 hover:bg-white/[0.05] hover:backdrop-blur-md hover:border-white/30" style="top: 85%; bottom: 0; left: 15%; right: 60%"></div>
       <div class="absolute bg-white/[0.01] border border-white/10 backdrop-blur-sm z-0 transition-all duration-500 hover:bg-white/[0.05] hover:backdrop-blur-md hover:border-white/30" style="top: 85%; bottom: 0; left: 80%; right: 0%"></div>
 
-      <!-- Content Wrapper -->
       <div class="relative w-full h-full p-4 sm:p-8 z-10">
         
-        <!-- Floating Tags -->
         <div class="absolute font-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-[0.2em] z-10" style="top: 7%; left: 5%;">[luxury]</div>
         <div class="absolute font-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-[0.2em] z-10" style="top: 10%; left: 63%;">[premium]</div>
         <div class="absolute font-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-[0.2em] z-10" style="top: 60%; left: 25%;">[experience]</div>
@@ -151,7 +151,6 @@
         <div class="absolute font-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-[0.2em] z-10" style="top: 72%; left: 43%;">[studio]</div>
         <div class="absolute font-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-[0.2em] z-10" style="top: 75%; right: 12%;">[audio]</div>
 
-        <!-- Logo -->
         <div class="absolute top-[20%] left-[3%] sm:left-[5%] z-20 animate-fade-in-up">
           <h1 class="font-beats font-black tracking-tighter drop-shadow-2xl leading-none mt-[-26px] mb-[5px]">
             <span class="block text-red-600 text-6xl sm:text-8xl md:text-[11rem]">BEATS</span>
@@ -159,13 +158,11 @@
           </h1>
         </div>
 
-        <!-- Top Right Agency Text -->
         <div class="absolute top-[22%] right-[5%] sm:right-[10%] text-right font-mono text-xs sm:text-sm text-white/70 tracking-widest leading-loose animate-fade-in" style="animation-delay: 0.6s;">
           [ premium listening ]<br/>
           [ sound quality ]
         </div>
 
-        <!-- Bottom Left Paragraph -->
         <div class="absolute bottom-[20%] left-[3%] sm:left-[5%] max-w-[320px] sm:max-w-[400px] animate-fade-in-right" style="animation-delay: 0.8s;">
           <p class="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed font-light">
             Experience the music exactly the way<br class="hidden sm:block" />
@@ -174,28 +171,21 @@
           </p>
         </div>
 
-
       </div>
     </section>
 
-    <!-- SECTION 2: VIDEO & GALLERY -->
     <section class="relative w-full pt-[60px] pb-[10px] flex flex-col justify-start overflow-hidden border-t border-white/15">
-      <!-- Background -->
       <div class="absolute inset-0 z-0 bg-[#0a0505]"></div>
 
-      <!-- Section Header Bar -->
       <div class="absolute top-0 left-0 right-0 z-10 flex justify-between items-center px-4 md:px-6 py-4 border-b border-white/15 bg-black/20 backdrop-blur-sm font-mono text-[8px] md:text-[10px] lg:text-xs text-white/50 tracking-widest uppercase">
         <span>[ pure adaptive noise canceling ]</span>
         <span class="text-white/80 font-bold">[ BEATS STUDIO 3 ]</span>
       </div>
 
-      <!-- Top Row: Video (Left) + Vertical Photo (Right) -->
       <div class="relative z-20 w-full px-4 md:px-0 md:w-[calc(100%-20px)] md:ml-[20px] md:pr-4 sm:pr-8 mt-12 md:mt-[10px] mb-4 md:mb-[-10%] lg:mb-[-8.5%] flex flex-col md:flex-row gap-6 lg:gap-8 items-stretch md:scale-[0.85] md:origin-top-left">
         
-        <!-- Left: Center Video Player -->
         <div class="w-full md:w-[65%] lg:w-[80%] shrink-0 aspect-video rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10 bg-black/50 scroll-animate translate-y-10 opacity-0 transition-all duration-1000 relative group cursor-pointer" id="video-container">
            
-           <!-- Custom HD Placeholder -->
            <div id="video-placeholder" class="absolute inset-0 z-20 bg-cover bg-center transition-opacity duration-500" style="background-image: url('https://img.youtube.com/vi/tsWCAV9B42Q/maxresdefault.jpg');">
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -204,24 +194,16 @@
               </div>
            </div>
 
-           <!-- YouTube Player -->
            <div class="w-full h-full absolute inset-0 z-10">
               <div id="youtube-player" class="w-full h-full opacity-0 transition-opacity duration-1000"></div>
            </div>
-           
-           <div id="quality-warning" class="absolute top-16 right-4 z-30 bg-black/70 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm font-mono px-4 py-2 rounded-lg pointer-events-none hidden transition-opacity duration-500 opacity-0 flex items-center gap-2 shadow-lg">
-             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-             <span>Switch to 4K for a better Experience</span>
-           </div>
         </div>
 
-        <!-- Right: Vertical Placeholder for 3D -->
         <div class="w-full md:w-[35%] lg:w-[35%] shrink-0 h-[250px] md:h-auto md:aspect-auto scroll-animate translate-y-10 opacity-0 transition-all duration-1000 delay-200 relative flex items-center justify-center">
            <model-viewer src="BTS.MDL-compressed.glb" alt="3D Model" auto-rotate camera-controls class="w-full h-full absolute inset-0 z-10 opacity-80 hover:opacity-100 transition-opacity duration-500"></model-viewer>
         </div>
       </div>
 
-      <!-- Bottom Row: Scrolling Marquee (2 Horizontal, 2 Squares) -->
       <div class="relative z-20 w-full overflow-hidden flex flex-col justify-center pb-8 mt-4 scroll-animate translate-y-10 opacity-0 transition-all duration-1000 delay-300">
         <div class="flex gap-4 md:gap-6 w-max mt-4 md:mt-[60px] pl-[1px]" style="animation: scroll-left 30s linear infinite;">
            <style>
@@ -231,57 +213,50 @@
              }
            </style>
            
-           <!-- Original Set -->
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="Pic1.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="Pic1.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic-2.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic-2.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic-3.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic-3.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic%206.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic%206.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic-5.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic-5.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
 
-           <!-- Duplicated Set for infinite scroll -->
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="Pic1.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="Pic1.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic-2.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic-2.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic-3.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic-3.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic%206.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic%206.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
            <div class="h-48 md:h-64 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0 shadow-xl relative group flex items-center justify-center">
-               <img src="pic-5.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+               <img loading="lazy" src="pic-5.png" class="h-full w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
            </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: CONCEPT & AESTHETIC STRATEGY -->
     <section class="relative w-full h-auto min-h-screen md:min-h-[800px] md:max-h-[1080px] overflow-hidden bg-[#0a0505] font-sans flex flex-col justify-between">
       
-      <!-- Background Image -->
       <div class="absolute inset-0 z-0">
         <img src="BG-CRR.png" alt="Concept Background" class="w-full h-full object-cover" />
       </div>
 
-      <!-- Content Container -->
       <div class="relative z-20 w-full px-6 lg:px-12 py-10 flex flex-col h-full justify-between">
         
-        <!-- Top Row -->
         <div class="flex flex-col md:flex-row justify-between items-start w-full gap-8 md:gap-0">
-            <!-- Top Left -->
             <div class="w-full max-w-[480px] space-y-4 md:space-y-6 pt-6 scroll-animate opacity-0 transition-all duration-1000 mt-2 md:mt-[10px]">
                 <p class="text-white/80 text-sm md:text-2xl lg:text-[26px] font-light leading-snug">
                     The objective for the Beats Studio 3 campaign was to bridge the gap between the physical hardware and the internal experience of the listener.
@@ -291,25 +266,21 @@
                 </p>
             </div>
             
-            <!-- Top Right -->
             <div class="scroll-animate opacity-0 transition-all duration-1000 delay-200 w-full md:w-auto">
                 <h2 class="text-[#cf151c] text-3xl sm:text-5xl md:text-[80px] lg:text-[110px] font-thin uppercase tracking-wider md:tracking-normal leading-[0.9] md:leading-[0.85] font-sans w-full md:w-[800px] flex flex-col">
                     <span class="text-left self-start">VISUALIZING</span>
-                    <span class="text-right self-end -ml-2 mr-[84px]">ACOUSTIC</span>
+                    <span class="text-right self-end -ml-2 mr-4 md:mr-[84px]">ACOUSTIC</span>
                     <span class="text-right self-end">SUPREMACY</span>
                 </h2>
             </div>
         </div>
 
-        <!-- Middle Row Text -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full scroll-animate opacity-0 transition-all duration-1000 delay-300 gap-6 md:gap-0 mt-8 md:mt-0">
-            <!-- Middle Left -->
             <div class="w-full max-w-[537px]">
                 <p class="text-white font-bold text-sm md:text-[19px] text-left leading-relaxed md:mt-[250px] w-full">
                     The Aesthetic Strategy for the Beats Studio 3 campaign. A high-contrast approach for a sensory experience.
                 </p>
             </div>
-            <!-- Middle Right -->
             <div class="w-full max-w-[320px] text-left md:text-right">
                 <p class="text-white/70 text-[10px] md:text-[13px] font-light leading-relaxed">
                     4 strategies to bridge the gap between<br class="hidden md:block">hardware and the listener.
@@ -320,10 +291,8 @@
             </div>
         </div>
 
-        <!-- Bottom Row Cards -->
         <div class="flex overflow-x-auto md:grid md:grid-cols-4 gap-4 pb-6 mt-7 scroll-animate opacity-0 transition-all duration-1000 delay-500 snap-x snap-mandatory items-stretch">
             
-            <!-- Card 1 -->
             <div class="w-[65vw] md:w-auto flex flex-col justify-start gap-4 md:block shrink-0 snap-center bg-white/5 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] whitespace-normal">
                 <div>
                     <h3 class="text-white text-base md:text-xl font-normal mb-1 md:mb-5">The Palette</h3>
@@ -336,7 +305,6 @@
                 </p>
             </div>
             
-            <!-- Card 2 -->
             <div class="w-[65vw] md:w-auto flex flex-col justify-start gap-4 md:block shrink-0 snap-center bg-white/5 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] whitespace-normal">
                 <div>
                     <h3 class="text-white text-base md:text-xl font-normal mb-1 md:mb-5">The Focal Point</h3>
@@ -349,7 +317,6 @@
                 </p>
             </div>
 
-            <!-- Card 3 -->
             <div class="w-[65vw] md:w-auto flex flex-col justify-start gap-4 md:block shrink-0 snap-center bg-white/5 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] whitespace-normal">
                 <div>
                     <h3 class="text-white text-base md:text-xl font-normal mb-1 md:mb-5">The Pacing</h3>
@@ -362,7 +329,6 @@
                 </p>
             </div>
 
-            <!-- Card 4 -->
             <div class="w-[65vw] md:w-auto flex flex-col justify-start gap-4 md:block shrink-0 snap-center bg-white/5 backdrop-blur-xl rounded-[24px] p-6 lg:p-8 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] whitespace-normal">
                 <div>
                     <h3 class="text-white text-base md:text-xl font-normal mb-1 md:mb-5">Visual Metaphor</h3>
@@ -380,9 +346,7 @@
       </div>
     </section>
 
-    <!-- SECTION 3.5: PHOTO HOLDER -->
     <section class="relative w-full bg-[#050505] flex flex-col items-center justify-center py-6 px-6 lg:px-12 z-20">
-      <!-- Color Palette -->
       <div class="w-full max-w-7xl mx-auto flex h-16 md:h-24 mt-12 mb-8 scroll-animate opacity-0 translate-y-4 transition-all duration-1000">
         <div class="flex-1 bg-[#101b23] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#101b23</div>
         <div class="flex-1 bg-[#1c415c] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#1c415c</div>
@@ -390,7 +354,6 @@
         <div class="flex-1 bg-[#ac0b4c] flex items-center justify-center font-sans text-[10px] sm:text-xs md:text-xl text-white tracking-wide">#ac0b4c</div>
       </div>
 
-      <!-- Carousel -->
       <style>
         .custom-scrollbar::-webkit-scrollbar {
           height: 8px;
@@ -408,29 +371,28 @@
         }
       </style>
       <div class="w-[100vw] relative left-1/2 -translate-x-1/2 flex overflow-x-auto gap-4 md:gap-8 px-6 md:px-12 lg:px-24 pb-8 mb-12 scroll-animate opacity-0 translate-y-4 transition-all duration-1000 snap-x snap-mandatory custom-scrollbar">
-        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
-          <img src="https://lh3.googleusercontent.com/d/1SrAskrOCwuu6stcUvCpZ4koV08Mt9WpP" alt="Photo 1" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        <div class="w-[75vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img loading="lazy" src="https://lh3.googleusercontent.com/d/1SrAskrOCwuu6stcUvCpZ4koV08Mt9WpP=w1000" alt="Photo 1" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
         </div>
-        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
-          <img src="https://lh3.googleusercontent.com/d/1AtYfAcQRgddUD76L-KRDJkbx2O_njmKV" alt="Photo 2" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        <div class="w-[75vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img loading="lazy" src="https://lh3.googleusercontent.com/d/1AtYfAcQRgddUD76L-KRDJkbx2O_njmKV=w1000" alt="Photo 2" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
         </div>
-        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
-          <img src="https://lh3.googleusercontent.com/d/1AcuNb6gCvU3luzcLpATPzx0E-_-xWQ5z" alt="Photo 3" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        <div class="w-[75vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img loading="lazy" src="https://lh3.googleusercontent.com/d/1AcuNb6gCvU3luzcLpATPzx0E-_-xWQ5z=w1000" alt="Photo 3" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
         </div>
-        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
-          <img src="https://lh3.googleusercontent.com/d/1YyKTyuZ55v6T0VEDPHsd1OWoV1jEsAJp" alt="Photo 4" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        <div class="w-[75vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img loading="lazy" src="https://lh3.googleusercontent.com/d/1YyKTyuZ55v6T0VEDPHsd1OWoV1jEsAJp=w1000" alt="Photo 4" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
         </div>
-        <div class="w-[55vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
-          <img src="https://lh3.googleusercontent.com/d/1V-VpmopfAOhFBOX48boX0LylccI1JYJF" alt="Photo 5" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
+        <div class="w-[75vw] md:w-[48vw] lg:w-[42vw] shrink-0 snap-center rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group cursor-zoom-in flex flex-col">
+          <img loading="lazy" src="https://lh3.googleusercontent.com/d/1V-VpmopfAOhFBOX48boX0LylccI1JYJF=w1000" alt="Photo 5" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 block bg-black/50" />
         </div>
       </div>
 
       <div class="w-full max-w-7xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative group mb-12">
-        <img src="SCRSHTS.png" alt="Featured Photo" class="w-full h-auto object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-700 block" />
+        <img loading="lazy" src="SCRSHTS.png" alt="Featured Photo" class="w-full h-auto object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-700 block" />
       </div>
     </section>
 
-    <!-- SECTION 4: DISCLAIMER -->
     <footer id="main-footer" class="relative w-full bg-[#050505] py-6 md:py-12 px-6 lg:px-12 border-t border-white/10 z-30 flex flex-col items-center justify-center font-sans">
       <div class="max-w-4xl mx-auto text-center space-y-4 md:space-y-6">
         <h4 class="text-[#cf151c] font-bold text-sm md:text-2xl uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Non-Commercial Work</h4>
@@ -443,7 +405,6 @@
       </div>
     </footer>
 
-    <!-- Bottom Right Beats Logo (Fixed) -->
     <div class="fixed bottom-6 right-6 sm:bottom-10 sm:right-10 z-50 animate-fade-in" style="animation-delay: 1s;">
       <svg class="w-16 h-16 sm:w-24 sm:h-24 drop-shadow-xl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <title>Beats</title>
@@ -457,7 +418,6 @@
       </svg>
     </div>
 
-    <!-- Lightbox Overlay -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center opacity-0 transition-all duration-300 backdrop-blur-md cursor-zoom-out">
       <button id="lightbox-close" class="absolute top-6 right-6 text-white/70 hover:text-white z-[110] bg-black/50 hover:bg-black/80 rounded-full p-2 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -465,177 +425,184 @@
       <img id="lightbox-img" src="" alt="Fullscreen view" class="w-auto h-auto max-w-[95vw] max-h-[95vh] object-contain scale-95 transition-transform duration-300" />
     </div>
 
-    <!-- Simple Intersection Observer for scroll animations -->
     <script>
-      // YouTube Iframe API setup to force 4K quality
-      var tag = document.createElement('script');
+      var tag = document.createElement("script");
+
       tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
+
+      var firstScriptTag = document.getElementsByTagName("script")[0];
+
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       var player;
+
       function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtube-player', {
-          videoId: 'tsWCAV9B42Q',
+        player = new YT.Player("youtube-player", {
+          videoId: "tsWCAV9B42Q",
           playerVars: {
-            'playsinline': 1,
-            'loop': 1,
-            'playlist': 'tsWCAV9B42Q',
-            'vq': 'hd2160', // try to suggest 4k via URL param
-            'autoplay': 0
+            playsinline: 1,
+            loop: 1,
+            playlist: "tsWCAV9B42Q",
+            autoplay: 0,
           },
           events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+          },
         });
       }
 
       function onPlayerReady(event) {
-        document.getElementById('video-container').addEventListener('click', function() {
-           player.playVideo();
+        document.getElementById("video-container").addEventListener("click", function () {
+          player.playVideo();
         });
       }
 
       function onPlayerStateChange(event) {
-        // When the video starts playing (state 1), force the highest available quality
-        if (event.data == YT.PlayerState.PLAYING) {
-          
-          document.getElementById('video-placeholder').style.opacity = '0';
-          document.getElementById('video-placeholder').style.pointerEvents = 'none';
-          document.getElementById('youtube-player').style.opacity = '1';
-
-          event.target.setPlaybackQuality('highres');
-          event.target.setPlaybackQuality('hd2160');
-
-          // Check quality shortly after playing
-          setTimeout(() => {
-            const currentQuality = event.target.getPlaybackQuality();
-            if (currentQuality !== 'highres' && currentQuality !== 'hd2160') {
-              const warningEl = document.getElementById('quality-warning');
-              if (warningEl) {
-                warningEl.classList.remove('hidden', 'opacity-30');
-                // Small delay to allow display:block to apply before animating opacity
-                setTimeout(() => {
-                  warningEl.classList.remove('opacity-0');
-                  
-                  // Make it more transparent after 2 seconds
-                  setTimeout(() => {
-                    warningEl.classList.add('opacity-30');
-                  }, 2500);
-                }, 50);
-              }
-            } else {
-              const warningEl = document.getElementById('quality-warning');
-              if (warningEl) {
-                warningEl.classList.add('opacity-0');
-                setTimeout(() => warningEl.classList.add('hidden'), 1000);
-              }
-            }
-          }, 300);
+        if (event.data === YT.PlayerState.PLAYING) {
+          const placeholder = document.getElementById("video-placeholder");
+          placeholder.style.opacity = "0";
+          placeholder.style.pointerEvents = "none";
+          document.getElementById("youtube-player").style.opacity = "1";
         }
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.remove('opacity-0', 'translate-y-10', 'scale-90');
-              entry.target.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-animate').forEach(el => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.remove("opacity-0", "translate-y-10", "scale-90");
+                entry.target.classList.add("opacity-100", "translate-y-0", "scale-100");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          },
+        );
+        document.querySelectorAll(".scroll-animate").forEach((el) => {
           observer.observe(el);
         });
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
-
-        // Select images inside group class (marquee and photo holder)
-        const clickableImages = document.querySelectorAll('.group img');
-        
-        clickableImages.forEach(img => {
-          img.classList.add('cursor-zoom-in');
-          img.addEventListener('click', (e) => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxClose = document.getElementById("lightbox-close");
+        const clickableImages = document.querySelectorAll(".group img");
+        clickableImages.forEach((img) => {
+          img.classList.add("cursor-zoom-in");
+          img.addEventListener("click", (e) => {
             e.stopPropagation();
-            const src = img.getAttribute('src');
-            lightboxImg.setAttribute('src', src);
-            
-            // Show lightbox
-            lightbox.classList.remove('hidden');
-            lightbox.style.display = 'flex';
-            
-            // Trigger animation
+            const src = img.getAttribute("src");
+            lightboxImg.setAttribute("src", src);
+            lightbox.classList.remove("hidden");
+            lightbox.style.display = "flex";
             setTimeout(() => {
-              lightbox.classList.remove('opacity-0');
-              lightbox.classList.add('opacity-100');
-              lightboxImg.classList.remove('scale-95');
-              lightboxImg.classList.add('scale-100');
+              lightbox.classList.remove("opacity-0");
+              lightbox.classList.add("opacity-100");
+              lightboxImg.classList.remove("scale-95");
+              lightboxImg.classList.add("scale-100");
             }, 10);
           });
         });
-
         const closeLightbox = () => {
-          lightbox.classList.remove('opacity-100');
-          lightbox.classList.add('opacity-0');
-          lightboxImg.classList.remove('scale-100');
-          lightboxImg.classList.add('scale-95');
-          
+          lightbox.classList.remove("opacity-100");
+          lightbox.classList.add("opacity-0");
+          lightboxImg.classList.remove("scale-100");
+          lightboxImg.classList.add("scale-95");
           setTimeout(() => {
-            lightbox.classList.add('hidden');
-            lightbox.style.display = '';
-            lightboxImg.setAttribute('src', '');
+            lightbox.classList.add("hidden");
+            lightbox.style.display = "";
+            lightboxImg.setAttribute("src", "");
           }, 300);
         };
-
         if (lightbox) {
-            lightbox.addEventListener('click', closeLightbox);
+          lightbox.addEventListener("click", closeLightbox);
         }
         if (lightboxClose) {
-            lightboxClose.addEventListener('click', (e) => {
+          lightboxClose.addEventListener("click", (e) => {
             e.stopPropagation();
             closeLightbox();
-            });
+          });
         }
       });
     </script>
   
 <script>
-  window.addEventListener('scroll', () => {
-    window.parent.postMessage({ type: 'scroll', scrollY: window.scrollY }, '*');
-  });
-  window.addEventListener('mousemove', (e) => {
-    window.parent.postMessage({ type: 'mousemove', clientX: e.clientX, clientY: e.clientY }, '*');
-  });
-  
-  // If embedded in the mobile view app (detect via query param), add padding to the footer so it's not hidden by the mobile bottom bar
   const urlParams = new URLSearchParams(window.location.search);
-  const isMobileApp = urlParams.get('mobile') === 'true';
 
-  if (isMobileApp) {
-    const footer = document.getElementById('main-footer');
+  const isMobileApp = urlParams.get("mobile") === "true";
+
+  if (!isMobileApp) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        window.parent.postMessage(
+          {
+            type: "scroll",
+            scrollY: window.scrollY,
+          },
+          window.location.origin,
+        );
+      },
+      {
+        passive: true,
+      },
+    );
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        window.parent.postMessage(
+          {
+            type: "mousemove",
+            clientX: e.clientX,
+            clientY: e.clientY,
+          },
+          window.location.origin,
+        );
+      },
+      {
+        passive: true,
+      },
+    );
+  } else {
+    const footer = document.getElementById("main-footer");
     if (footer) {
-      footer.style.paddingBottom = '350px'; // large enough to clear the bottom nav in scaled space
+      footer.style.paddingBottom = "115px";
     }
-    
-    // Also adjust the fixed Beats logo
-    const logo = document.querySelector('.fixed.bottom-6');
+    const logo = document.querySelector(".fixed.bottom-6");
     if (logo) {
-       logo.style.bottom = '300px';
+      logo.style.bottom = "92px";
     }
+  }
+
+  const mv = document.querySelector("model-viewer");
+
+  if (mv && "IntersectionObserver" in window) {
+    const mvObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            mv.setAttribute("auto-rotate", "");
+          } else {
+            mv.removeAttribute("auto-rotate");
+          }
+        });
+      },
+      {
+        threshold: 0.05,
+      },
+    );
+    mvObserver.observe(mv);
   }
 </script>
 
     <script>
-      // Global restriction for right click, long press, drag, and select
-      document.addEventListener('contextmenu', event => event.preventDefault());
-      document.addEventListener('dragstart', event => event.preventDefault());
-      document.addEventListener('selectstart', event => event.preventDefault());
+      document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+      document.addEventListener("dragstart", (event) => event.preventDefault());
+
+      document.addEventListener("selectstart", (event) => event.preventDefault());
     </script>
 
 </body>
